@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding: 0;
+}
+
+.img {
+    background-image: url('https://maintenance.rs-online.com/wp-content/uploads/2021/10/379559482_hero_slim_1250x640.jpg?w=1250');
+}
+
+.fixed-bg {
+    background-image: url("https://maintenance.rs-online.com/wp-content/uploads/2021/10/379559482_hero_slim_1250x640.jpg?w=1250");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#section-howitworks {
+    background: linear-gradient(to top right, #00528b, #1d8ac2);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom left;
+    position: relative;
+}
+
+.container .flex {
+    display: flex;
+}
+
+#section-industries {
+    background-color: #d9f2ff;
+}
+
+.mobileimg {
+    margin-left: 150px;
+}
+
+.section {
+    width: auto;
+    margin: initial;
+}
+
+section {
+    display: block;
+}
+
+body {
+    font-family: 'Segoe UI', 'Open Sans', Helvetica, Tahoma, sans-serif;
+}
+
+div {
+    display: block;
+}
+
+.blue {
+    color: #1d8ac2;
+}
+
+.container {
+    box-sizing: border-box;
+    padding: 72px 0 72px 40px;
+    max-width: 1260px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-graphic {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    overflow: hidden;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    #header-top {
+        background-attachment: scroll;
+    }
+}
+
+@media (max-width:650px) {
+    #header-top {
+        background-position: center 0;
+    }
+}

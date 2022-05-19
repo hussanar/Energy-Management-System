@@ -1,0 +1,56 @@
+<form [formGroup]="formGroup" (ngSubmit)="storing(this.formGroup.value)" class="bg-light w-50 bg-light" style="align-items: center; margin: 50px auto; ">
+    <div class="form-group ">
+        <label for="firstName">First Name</label>
+        <input id="firstName" class="form-control" formControlName="firstName" placeholder="FirstName Required" required />
+        <div class="help-block text-danger" *ngIf="firstName.touched">
+            <span *ngIf="firstName.errors?.required">
+                First Name is REQUIRED!!!
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input id="lname" class="form-control" formControlName="lastName" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="form-control" formControlName="email" placeholder="Email (required)" />
+        <div class="help-block text-danger" *ngIf="email.touched">
+            <span *ngIf="email.errors?.required"> Email is REQUIRED!!! </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password" />
+    </div>
+
+    <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input id="mobile" class="form-control" formControlName="mobile" placeholder="Enter your phone #" />
+    </div>
+    <hr />
+    <button class="btn btn-primary">Sign Up</button>
+</form>
+<button class="btn btn-primary" (click)="view()"> view</button>
+
+<!-- <table>
+    <tr>
+        <th>email</th>
+        <th>firstName</th>
+        <th>lastname</th>
+        <th>mobile</th>
+        <th>password</th>
+        <th>id</th>
+    </tr>
+    <tr *ngFor="let user of alluserData">
+        <td>{{user.email}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.mobile}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.id}}</td>
+        <button (click)="view()">view</button>
+    </tr>
+</table> -->
