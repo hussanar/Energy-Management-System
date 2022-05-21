@@ -22,7 +22,6 @@ export class ApiService {
   };
 
   add(db: string, doc: object): Observable<{}> {
-    // const url2 = `${this.url}${db}`;
     const url = this.url + db;
     return this.http.post(url, doc, this.httpOptions)
   }
@@ -31,4 +30,15 @@ export class ApiService {
     return this.http.get(url, this.httpOptions)
 
   }
+
+
+  // deleteData(deleteObj: any) {
+  //   const database = deleteObj.database;
+  //   const id = deleteObj.id;
+  //   const deleteObj.rev;
+  //   const url = this.url.database + '/' + id + '?rev=' + rev;
+  //   return this.http.delete(url);
+
+  // }
+
 }

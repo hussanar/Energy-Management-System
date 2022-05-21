@@ -28,11 +28,11 @@
     </div>
 
     <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
+    <button type="button" class="btn btn-primary btn-block mb-4" (click)="dashboard()">Sign in</button>
+    <button class="btn btn-primary" (click)="view()">Sign Up</button>
     <!-- Register buttons -->
     <div class="text-center">
-        <p>Not a member? </p><button class="btn btn-primary" (click)="view()">Sign Up</button>
+        <p>Not a member? </p>
         <p>or sign up with:</p>
         <button type="button" class="btn btn-link btn-floating mx-1">
             <i class="fab fa-facebook-f"></i>

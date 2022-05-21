@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
   click() {
-    this.router.navigate([''])
+    this.router.navigate(['loginmain'])
   }
 
 }

@@ -4,6 +4,7 @@ import { FormBuilder, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   alluserData: any;
   store: any = []
   obj: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService) {
+  idValue: any;
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
     this.formGroup = this.fb.group({
       firstName: [this.empRecord.firstName],
       lastName: [this.empRecord.lastName],
@@ -36,7 +38,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const body = { title: 'Angular put request ' };
   }
   get firstName() {
     return this.formGroup.get('firstName')!;
@@ -71,9 +74,10 @@ export class LoginComponent implements OnInit {
       this.alluserData = this.alluser.map((el: any) => el.doc);
       console.log(this.alluserData[0]);
       this.api.array(this.alluserData);
-      let id = this.alluserData[0]._id
-      console.log(id)
+
       this.data.store(this.alluserData);
+
+      /**
       for (const array in this.alluserData) {
         console.log(`${this.store.push(this.alluserData[array])}`);
         console.log(this.alluserData[array].email)
@@ -85,12 +89,13 @@ export class LoginComponent implements OnInit {
 
       //  this.res['rows'].map(el => el.doc.firstName)
       // this.alluser=this.alluser
+      
       for (const key in this.alluser) {
         if (Object.prototype.hasOwnProperty.call(this.alluser, key)) {
           const element = this.alluser[key];
           console.log(element.id);
         }
-      }
+      } */
       // this.api.getalluserdata(element.id).subscribe(res => {
       //   console.log(res);
       //   this.store.push(res);
@@ -109,7 +114,21 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+  view1(id: any) {
+    // this.router.navigate(['view'])
+    this.idValue = id
+    console.log(this.idValue)
+    this.data.getDocByIds("energy-management-login", id).subscribe(res => {
+      console.log(res);
+      let temp = res;
+      var record = [res];
+      //console.log(record[0])
+      alert("get the data successfully!");
+      //  console.log(this.empRecord);
+    }, rej => {
+      alert("opps! Can not get data" + rej);
+    });
+  }
 
   click() {
     this.router.navigate(['login']);

@@ -1,24 +1,32 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
+            <th scope="col">R.no</th>
             <th scope="col">email</th>
             <th scope="col">firstName</th>
             <th scope="col">lastname</th>
             <th scope="col">mobile</th>
             <th scope="col">password</th>
             <th scope="col">id</th>
+            <th scope="col">Delete</th>
+            <th scope="col">view</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of temp[0]">
+            <td>{{user}}</td>
             <td>{{user.email}}</td>
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
             <td>{{user.mobile}}</td>
             <td>{{user.password}}</td>
             <td>{{user._id}}</td>
+            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+            <td>
+                <a class="btn btn-primary" (click)="view1(user._id,user)">view</a>
+            </td>
 
-            <button class="btn btn-primary" (click)="view()" [routerLink]="['view']">view</button>
+            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
         </tr>
 
     </tbody>

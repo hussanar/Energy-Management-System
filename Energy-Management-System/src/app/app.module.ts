@@ -15,6 +15,12 @@ import { Login2Component } from './login2/login2.component';
 import { MainComponent } from './main/main.component';
 import { Login1Component } from './login1/login1.component';
 import { ViewComponent } from './view/view.component';
+import { DashBoardComponent } from './dash-board/dash-board.component';
+import { ElectrictyComponent } from './electricty/electricty.component';
+import { WaterComponent } from './water/water.component';
+import { GasComponent } from './gas/gas.component';
+import { RenewableComponent } from './renewable/renewable.component';
+import { AddentryComponent } from './addentry/addentry.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +39,19 @@ import { ViewComponent } from './view/view.component';
 
     Login1Component,
 
-    ViewComponent
+    ViewComponent,
+
+    DashBoardComponent,
+
+    ElectrictyComponent,
+
+    WaterComponent,
+
+    GasComponent,
+
+    RenewableComponent,
+
+    AddentryComponent
   ],
   imports: [
     BrowserModule,

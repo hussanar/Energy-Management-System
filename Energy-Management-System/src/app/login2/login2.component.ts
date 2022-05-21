@@ -21,5 +21,8 @@ export class Login2Component implements OnInit {
   view() {
     this.router.navigate(['login'])
   }
+  dashboard() {
+    this.router.navigate(['dashboard'])
+  }
 
 }

@@ -1,0 +1,67 @@
+<h1>Energy Management Data Entry</h1>
+
+
+<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value)">
+    <div class="form-group">
+        <label for="firstName">Name</label>
+        <input id="firstName" class="form-control" formControlName="name" placeholder="Name Required" required />
+        <div class="help-block text-danger" *ngIf="name.touched">
+            <span *ngIf="name.errors?.required">
+                First Name is REQUIRED!!!
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="gas">Gas</label>
+        <input id="gas" class="form-control" formControlName="gas" placeholder="How Much electricty use in Megajoules (MJ)" />
+    </div>
+
+    <div class="form-group">
+        <label for="electricty">Electricty</label>
+        <input id="electricty" class="form-control" formControlName="electricty" placeholder="How Much electricty use in Unit" />
+
+    </div>
+
+    <div class="form-group">
+        <label for="Water">Water</label>
+        <input id="Water" class="form-control" formControlName="water" placeholder="How Much Water use in Liter" />
+    </div>
+
+    <div class="form-group">
+        <label for="renewable">Renewable Energy Volume</label>
+        <input id="renewable" class="form-control" formControlName="renewable" placeholder="Renewable Energy Volume in Mega-Watt" />
+    </div>
+    <hr />
+    <button class="btn btn-primary">Add Data</button>
+</form>
+<button class="btn btn-primary" (click)="getData()">Get Data</button>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">water</th>
+            <th scope="col">Gas</th>
+            <th scope="col">Electricty</th>
+            <th scope="col">Renewable</th>
+            <!-- <th scope="col">id</th> -->
+            <th scope="col">Delete</th>
+            <th scope="col">view</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of alluserData">
+            <td>{{user.name}}</td>
+            <td>{{user.water}}</td>
+            <td>{{user.gas}}</td>
+            <td>{{user.electricty}}</td>
+            <td>{{user.renewable}}</td>
+            <!-- <td>{{user._id}}</td> -->
+            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id)">Delete</a></td>
+            <td><a class="btn btn-primary " (click)="view()">View</a> </td>
+
+            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
+        </tr>
+
+    </tbody>
+</table>
