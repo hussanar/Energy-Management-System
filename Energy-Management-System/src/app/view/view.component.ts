@@ -18,10 +18,11 @@ export class ViewComponent implements OnInit {
   activeindex: any;
   home: any;
   title: string | undefined;
+  value: any;
   constructor(public api: ApiService, private data: DataService, private router: Router) { }
   ngOnInit(): void {
     this.temp = this.data.pusharray
-    console.log(this.temp)
+    console.log(this.temp[0])
     for (let user of this.alluserData) {
       console.log(this.temp[user].email);
     }
@@ -29,32 +30,38 @@ export class ViewComponent implements OnInit {
 
 
   }
-  view(id: any) {
-    // this.router.navigate(['view'])
-    this.data.getDocByIds("hussain_new_db", id).subscribe(res => {
-      console.log(res);
-      let temp = res;
-      var record = [res];
-      //console.log(record[0])
-      alert("get the data successfully!");
-      //  console.log(this.empRecord);
-    }, rej => {
-      alert("opps! Can not get data" + rej);
-    });
-  }
+
   deleteuser(id: any, datarev: any) {
     console.log(id);
-    this.data.deleteData(id).subscribe(res => {
+    console.log(datarev)
+    this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
+      this.refresh();
     })
-    alert("pass the component")
 
   }
-  view1(obj: any, index: any) {
-    this.title = 'update';
-    this.home = obj;
-    this.activeindex = index;
+
+  view1(obj: any) {
+    this.router.navigate(['view1comp']);
+    this.data.getDataById('energy-management-login/', obj).subscribe(res => {
+      console.log(res);
+      this.data.save(res);
+      alert('get data successfully');
+    }, rej => {
+      alert('sorry Cant Get the Object')
+    }
+    );
+
+
+  }
+  refresh(): void {
+    window.location.reload();
   }
 
+  //user.email,user.lastName,user.mobile,user.password,user._id
+  edit(user: Object) {
+    //console.log(user.temp[0]);
+
+  }
 
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { getAllJSDocTags } from 'typescript';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     email: '',
     password: '',
     mobile: '',
+    type: 'login'
   };
   alluser: any;
   alluserData: any;
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
       email: [this.empRecord.email],
       password: [this.empRecord.password],
       mobile: [this.empRecord.mobile],
+      type: [this.empRecord.login]
     });
   }
 
@@ -68,13 +71,10 @@ export class LoginComponent implements OnInit {
     this.api.get("energy-management-login").subscribe(res => {
       // console.log(res);
       this.alluser = res;
-      console.log("hello");
-      console.log(this.alluser);
       this.alluser = this.alluser.rows;
       this.alluserData = this.alluser.map((el: any) => el.doc);
       console.log(this.alluserData[0]);
       this.api.array(this.alluserData);
-
       this.data.store(this.alluserData);
 
       /**
@@ -113,7 +113,24 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  getdata() {
+    this.api.get("energy-management-login").subscribe(res => {
+      // console.log(res);
+      this.alluser = res;
+      this.alluser = this.alluser.rows;
+      this.alluserData = this.alluser.map((el: any) => el.doc);
+      console.log(this.alluserData[0]);
+      this.api.array(this.alluserData);
 
+      this.data.store(this.alluserData);
+    }, rej => {
+      alert("opps! Somthing went wrong" + rej);
+      // alert("Your data was posted successfully!");
+      // this.empRecord.reset();
+    });
+
+
+  }
   view1(id: any) {
     // this.router.navigate(['view'])
     this.idValue = id

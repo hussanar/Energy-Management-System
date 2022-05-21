@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-
-
+  //https://username:password@URL.
+  Urlpwd = 'https://apikey-v2-15a2mog1stn0kv0gjnidlq2eoth4psp58f8ov9zs42i6:aabcfd48d07fe38f4760f6cd11b83b4a@b4af4ef2-55e1-4a9b-9b02-8168e5964652-bluemix.cloudantnosqldb.appdomain.cloud/'
   temp: any;
   pusharray: any = [];
   url = 'https://b4af4ef2-55e1-4a9b-9b02-8168e5964652-bluemix.cloudantnosqldb.appdomain.cloud/'
@@ -21,6 +21,7 @@ export class DataService {
       'Authorization': this.basicAuth
     })
   };
+  viewid: any;
   constructor(private http: HttpClient) { }
   store(data: any) {
     console.log(data);
@@ -28,27 +29,39 @@ export class DataService {
     this.pusharray.push(data);
     console.log(this.pusharray)
   }
-  //  update(){
-  //   const url = this.url + 'hussain_new_db' + '/' + id + "?rev=";
-  //   const updateObjId = { id: id, firstName: "raju", lastName: 'bhai' }
-  //   return this.http.put(updateObjId, url)
-  //  }
-  deleteData(id: any): Observable<{}> {
-    return this.http.delete(this.url + 'energy-management-login/' + id)
+  save(Obj: Object) {
+    console.log(Obj);
+    this.temp = Obj;
+    this.pusharray.push(Obj);
+
   }
+
+  updateData(updateobj: any) {
+    const id = updateobj.id;
+    const rev = updateobj.rev;
+    const changedObj = updateobj.changedVal;
+    const url = this.url + 'energy-management-login/' + id + '/rev=' + rev;
+    return this.http.put(url, changedObj)
+  }
+  deleteData(id: any, rev: any): Observable<{}> {
+    const urld = this.url + 'energy-management-login/' + id + '/?rev=' + rev;
+    return this.http.delete(urld, this.httpOptions);
+  }
+
   getDocByIds(db: string, id: any): Observable<{}> {
     const url = this.url + db + '/' + id;
-    return this.http.get(url, this.httpOptions)
+    return this.http.get(url, this.httpOptions);
 
   }
-
-  BookDelete(bookid: String): Observable<number> {
-    let httpheaders = new HttpHeaders()
-      .set('Content-type', 'application/Json');
-    let options = {
-      headers: httpheaders
-    };
-    return this.http.delete<number>(this.url + "/" + bookid);
+  getDataById(database: string, id: any) {
+    const url = this.url + database + '/' + id;
+    return this.http.get(url, this.httpOptions);
   }
 
+
+  view1(id: any) {
+    this.viewid = id;
+    console.log(this.viewid);
+
+  }
 }

@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { Login2Component } from './login2/login2.component';
 import { RenewableComponent } from './renewable/renewable.component';
 import { ViewComponent } from './view/view.component';
+import { View1Component } from './view1/view1.component';
 import { WaterComponent } from './water/water.component';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'water', component: WaterComponent },
   { path: 'gas', component: GasComponent },
   { path: "renewable", component: RenewableComponent },
-  { path: 'adddata', component: AddentryComponent }
+  { path: 'adddata', component: AddentryComponent },
+  { path: 'view1comp', component: View1Component }
 
 ];
 

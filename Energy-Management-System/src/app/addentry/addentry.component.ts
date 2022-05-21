@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, Validator } from '@angular/forms';
 import { FormBuilder, NgForm } from '@angular/forms';
+import { Alert } from 'selenium-webdriver';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 
@@ -87,19 +88,11 @@ export class AddentryComponent implements OnInit {
       console.log(this.alluserData)
     });
   }
-  deleteuser(id: any) {
-    console.log(id);
-    this.data.BookDelete(id)
-      .subscribe(book => {
-        this.getsoftBooks();
-        alert('deleted successfully')
-      })
-  }
-  getsoftBooks() {
-    this.allbooks = this.getData();
-  }
 
-  view() {
+
+  view(id: any) {
+    console.log(id)
+    alert('viewed' + id)
 
   }
 }

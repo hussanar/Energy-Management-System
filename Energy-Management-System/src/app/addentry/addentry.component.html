@@ -57,11 +57,12 @@
             <td>{{user.electricty}}</td>
             <td>{{user.renewable}}</td>
             <!-- <td>{{user._id}}</td> -->
-            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id)">Delete</a></td>
-            <td><a class="btn btn-primary " (click)="view()">View</a> </td>
+            <td><a class="btn btn-sm text-white btn-danger" (click)="(user._id)">Delete</a></td>
+            <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
 
             <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
         </tr>
+
 
     </tbody>
 </table>

@@ -21,6 +21,7 @@ import { WaterComponent } from './water/water.component';
 import { GasComponent } from './gas/gas.component';
 import { RenewableComponent } from './renewable/renewable.component';
 import { AddentryComponent } from './addentry/addentry.component';
+import { View1Component } from './view1/view1.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,9 @@ import { AddentryComponent } from './addentry/addentry.component';
 
     RenewableComponent,
 
-    AddentryComponent
+    AddentryComponent,
+
+    View1Component
   ],
   imports: [
     BrowserModule,
