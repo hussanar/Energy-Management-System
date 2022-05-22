@@ -19,6 +19,7 @@ export class ViewComponent implements OnInit {
   home: any;
   title: string | undefined;
   value: any;
+  tempr: any;
   constructor(public api: ApiService, private data: DataService, private router: Router) { }
   ngOnInit(): void {
     this.temp = this.data.pusharray
@@ -43,9 +44,11 @@ export class ViewComponent implements OnInit {
 
   view1(obj: any) {
     this.router.navigate(['view1comp']);
-    this.data.getDataById('energy-management-login/', obj).subscribe(res => {
-      console.log(res);
-      this.data.save(res);
+    this.data.getDataById('energy-management-login/', obj).subscribe(Response => {
+      this.tempr = Response
+      console.log(Response);
+      // this.temp=this.res.rows
+      this.data.save(this.tempr);
       alert('get data successfully');
     }, rej => {
       alert('sorry Cant Get the Object')

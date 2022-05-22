@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       email: [this.empRecord.email],
       password: [this.empRecord.password],
       mobile: [this.empRecord.mobile],
-      type: [this.empRecord.login]
+      type: [this.empRecord.type]
     });
   }
 
@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
   storing(formdata: NgForm) {
     // console.log(formdata);
     // this.store.pushData(formdata);
+    console.log(formdata)
     this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
       console.log(res);
       alert("Your data was posted successfully!");

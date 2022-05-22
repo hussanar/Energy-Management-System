@@ -33,9 +33,21 @@ export class DataService {
     console.log(Obj);
     this.temp = Obj;
     this.pusharray.push(Obj);
+    console.log(this.pusharray)
 
   }
-
+  login(email: string, password: string, type: string) {
+    let url = this.url + 'energy-management-login/_find'
+    let loginData = {
+      selector: {
+        type: type,
+        email: email,
+        password: password
+      },
+      fields: ["_id", "firstName", "email", "phone"]
+    };
+    return this.http.post(url, loginData, this.httpOptions)
+  }
   updateData(updateobj: any) {
     const id = updateobj.id;
     const rev = updateobj.rev;

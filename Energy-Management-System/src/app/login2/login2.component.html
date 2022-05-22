@@ -1,4 +1,4 @@
-<form (ngSubmit)="logindata()">
+<form [formGroup]="formGroup" (ngSubmit)="login(this.formGroup.value)">
     <!-- Email input -->
     <div class="form-outline mb-4">
         <input type="email" id="form2Example1" formControlName="email" class="form-control" />
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4" (click)="dashboard()">Sign in</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4" (click)="login(this.formGroup.value)">Sign in</button>
     <button class="btn btn-primary" (click)="view()">Sign Up</button>
     <!-- Register buttons -->
     <div class="text-center">

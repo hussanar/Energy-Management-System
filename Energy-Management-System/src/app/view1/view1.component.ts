@@ -8,13 +8,17 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./view1.component.css']
 })
 export class View1Component implements OnInit {
-  temp: any;
+  temp: any = [];
+  variable: any;
 
   constructor(private api: ApiService, private data: DataService) { }
 
   ngOnInit(): void {
     this.temp = this.data.pusharray;
-    console.log(this.temp)
+    console.log(this.temp);
+
+    this.variable = JSON.parse(JSON.stringify(this.temp))
+    console.log(this.variable)
 
   }
   show() {
