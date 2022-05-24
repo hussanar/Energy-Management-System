@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,9 @@ export class DataService {
     })
   };
   viewid: any;
+  response: any;
+  typedData: any;
+  total: any;
   constructor(private http: HttpClient) { }
   store(data: any) {
     console.log(data);
@@ -48,6 +52,43 @@ export class DataService {
     };
     return this.http.post(url, loginData, this.httpOptions)
   }
+  getDataNode(id: any) {
+    return this.http.get(`http://localhost:8000/get_all_query/${id}`);
+  }
+  postDataNode(formObject: any) {
+    return this.http.post('http://localhost:8000/postquery', formObject)
+  }
+  // getByType(type: string) {
+  //   let url = this.url + 'energy-management-login/_find'
+  //   let typedData = {
+  //     selector: {
+  //       type: type
+
+  //     },
+  //     fields: ["_id", "name", "useage", "cooling", "gardening", "_rev", "date"]
+  //   };
+  //   return this.http.post(url, typedData, this.httpOptions)
+
+  // }
+  // updateData(updateData:any){
+  //   const id=updateData._id
+  //   const rev=updateData._rev;
+  //   const changedObj=updateData.changedVal;
+  //   const url = this.url+'/'+id+'/?rev='+rev;
+  //   return this.http.put(url,changedObj)
+  // }
+
+  getByType(type: string, fields: any) {
+    let url = this.url + 'energy-management-login/_find'
+    let typedData = {
+      selector: {
+        type: type
+      },
+      fields: fields
+    };
+    return this.http.post(url, typedData, this.httpOptions)
+
+  }
   updateData(updateobj: any) {
     const id = updateobj.id;
     const rev = updateobj.rev;
@@ -69,11 +110,13 @@ export class DataService {
     const url = this.url + database + '/' + id;
     return this.http.get(url, this.httpOptions);
   }
-
-
-  view1(id: any) {
-    this.viewid = id;
-    console.log(this.viewid);
+  getnumbers(db: string): Observable<{}> {
+    const url = this.url + db + '/_all_docs';
+    return this.http.get(url, this.httpOptions)
 
   }
+  checkuserlogin(email: any, password: any) {
+    return this.http.get<any>('http://localhost:8000/getdata/' + email);
+  }
+
 }

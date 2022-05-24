@@ -43,8 +43,9 @@ export class ViewComponent implements OnInit {
   }
 
   view1(obj: any) {
-    this.router.navigate(['view1comp']);
-    this.data.getDataById('energy-management-login/', obj).subscribe(Response => {
+    this.router.navigate(['view1comp'], { queryParams: { data: obj } });
+
+    this.data.getDataById('energy-management-login', obj).subscribe(Response => {
       this.tempr = Response
       console.log(Response);
       // this.temp=this.res.rows

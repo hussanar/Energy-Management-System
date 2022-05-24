@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
   idValue: any;
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
     this.formGroup = this.fb.group({
-      firstName: [this.empRecord.firstName],
-      lastName: [this.empRecord.lastName],
-      email: [this.empRecord.email],
-      password: [this.empRecord.password],
-      mobile: [this.empRecord.mobile],
+      firstName: [this.empRecord.firstName, Validators.required],
+      lastName: [this.empRecord.lastName, Validators.required],
+      email: [this.empRecord.email, [Validators.required, Validators.pattern("[a-zA-Z0-9]*@gmail.com")]],
+      password: [this.empRecord.password, [Validators.required, Validators.pattern("[a-zA-z@_]{6,}")]],
+      mobile: [this.empRecord.mobile, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       type: [this.empRecord.type]
     });
   }
@@ -60,8 +60,9 @@ export class LoginComponent implements OnInit {
     // console.log(formdata);
     // this.store.pushData(formdata);
     console.log(formdata)
-    this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
+    this.api.addByNode(this.formGroup.value).subscribe(res => {
       console.log(res);
+      alert("Data is successfully posted ")
       alert("Your data was posted successfully!");
       // this.empRecord.reset();
       this.router.navigate(['login']);
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
     }, rej => {
       alert("opps! Can not post data" + rej);
     });
+
     this.api.get("energy-management-login").subscribe(res => {
       // console.log(res);
       this.alluser = res;
@@ -78,6 +80,13 @@ export class LoginComponent implements OnInit {
       this.api.array(this.alluserData);
       this.data.store(this.alluserData);
 
+      this.api.getByNode().subscribe(res => {
+        console.log(res);
+        alert("data get success fully")
+      }, rej => {
+        alert("cant get Data");
+
+      })
       /**
       for (const array in this.alluserData) {
         console.log(`${this.store.push(this.alluserData[array])}`);

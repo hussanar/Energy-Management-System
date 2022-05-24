@@ -22,6 +22,12 @@ import { GasComponent } from './gas/gas.component';
 import { RenewableComponent } from './renewable/renewable.component';
 import { AddentryComponent } from './addentry/addentry.component';
 import { View1Component } from './view1/view1.component';
+import { ViewWaterComponent } from './view-water/view-water.component';
+import { ViewElectrictyComponent } from './view-electricty/view-electricty.component';
+import { ViewGasComponent } from './view-gas/view-gas.component';
+import { RenewableViewComponent } from './renewable-view/renewable-view.component';
+import { DummyComponent } from './dummy/dummy.component';
+import { EditFromComponent } from './edit-from/edit-from.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +60,19 @@ import { View1Component } from './view1/view1.component';
 
     AddentryComponent,
 
-    View1Component
+    View1Component,
+
+    ViewWaterComponent,
+
+    ViewElectrictyComponent,
+
+    ViewGasComponent,
+
+    RenewableViewComponent,
+
+    DummyComponent,
+
+    EditFromComponent
   ],
   imports: [
     BrowserModule,

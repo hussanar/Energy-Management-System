@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 
@@ -8,17 +9,30 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./view1.component.css']
 })
 export class View1Component implements OnInit {
-  temp: any = [];
+  temp: any;
   variable: any;
 
-  constructor(private api: ApiService, private data: DataService) { }
+  constructor(private api: ApiService, private data: DataService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.temp = this.data.pusharray;
-    console.log(this.temp);
+    //this.temp = this.data.pusharray;
+    //console.log(this.temp);
+    this.route.queryParams.subscribe((params: any) => {
+      console.log(params);
+      console.log(params.data)
+      this.data.getDataById('energy-management-login', params.data).subscribe(Response => {
+        this.temp = Response
+        console.log(Response);
+        alert('get data successfully');
+      }, rej => {
+        alert('sorry Cant Get the Object')
+      }
+      );
 
-    this.variable = JSON.parse(JSON.stringify(this.temp))
-    console.log(this.variable)
+    })
+    this.temp = this.data.pusharray;
+    console.log(this.temp)
+
 
   }
   show() {

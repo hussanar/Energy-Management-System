@@ -1,1 +1,83 @@
-<p>renewable works!</p>
+<h1>Renewable Energy Production Management </h1>
+<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value)">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" class="form-control" formControlName="name" placeholder="Name Required" required />
+        <div class="help-block text-danger" *ngIf="name.touched">
+            <span *ngIf="name.errors?.required">
+                First Name is REQUIRED!!!
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="solar">How much Energy produced in Solar ?</label>
+        <input id="solar" type='number' class="form-control" formControlName="solar" placeholder="How Much gas used Mega Watts" />
+    </div>
+
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input id="date" type='number' class="form-control" type="date" formControlName="date" placeholder="Date " />
+
+    </div>
+
+    <div class="form-group">
+        <label for="wind">How much Energy produced in Wind mills</label>
+        <input id="wind" type='number' class="form-control" formControlName="wind" placeholder="How Much Energy produced in Maga watts" />
+    </div>
+
+    <div class="form-group">
+        <label for="hydro">How much Energy prduced in Hydro power plant </label>
+        <input id="hydro" type='number' class="form-control" formControlName="hydro" placeholder="How Much Energy produced in Maga watts" />
+    </div>
+    <div class="form-group">
+        <label for="nuclear">How much Energy prduced from Nuclear power plant</label>
+        <input id="nuclear" type='number' class="form-control" formControlName="nuclear" placeholder="How Much Energy produced in Maga watts" />
+    </div>
+
+    <div class="form-group">
+        <label for="tidal">How much Energy produced from Tidal power plant </label>
+        <input id="tidal" type='number' class="form-control" formControlName="tidal" placeholder="How Much Energy produced in Maga watts" />
+    </div>
+    <hr />
+    <button class="btn btn-primary">Add Data</button>
+</form>
+<button class="btn btn-primary" (click)="getData('renewable')">Get Data</button>
+<button (click)="exportexcel()" class="btn btn-success
+">Export to Excel</button>
+
+
+<table class="table" id="excel-table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Solar</th>
+            <th scope="col">date</th>
+            <th scope="col">Wind Mill</th>
+            <th scope="col">Hydro power</th>
+            <th scope="col">Nuclear power</th>
+            <th scope="col">Tidal power</th>
+
+            <!-- <th scope="col">id</th> -->
+            <th scope="col">Delete</th>
+            <th scope="col">view</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of typedData">
+            <td>{{user.name}}</td>
+            <td>{{user.solar}}</td>
+            <td>{{user.date}}</td>
+            <td>{{user.wind}}</td>
+            <td>{{user.hydro}}</td>
+            <td>{{user.nuclear}}</td>
+            <td>{{user.tidal}}</td>
+            <!-- <td>{{user._id}}</td> -->
+            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+            <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
+
+            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
+        </tr>
+
+
+    </tbody>
+</table>

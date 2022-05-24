@@ -21,6 +21,12 @@ export class ApiService {
       'Authorization': this.basicAuth
     })
   };
+  addByNode(doc: object) {
+    return this.http.post<any>('http://localhost:8000/postdata/', doc);
+  }
+  getByNode() {
+    return this.http.get('http://localhost:8000/get_query/');
+  }
 
   add(db: string, doc: object): Observable<{}> {
     // const url2 = `${this.url}${db}`;
@@ -36,7 +42,7 @@ export class ApiService {
     console.log(obj)
     this.datavalue = obj;
     console.log(this.datavalue);
-    
+
     return this.datavalue;
 
 

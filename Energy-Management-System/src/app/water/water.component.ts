@@ -4,6 +4,11 @@ import { FormGroup, Validator } from '@angular/forms';
 import { FormBuilder, NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import * as XLSX from 'xlsx';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-water',
@@ -11,36 +16,40 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./water.component.css']
 })
 export class WaterComponent implements OnInit {
-
+  response: any | undefined;
+  typedData: any = [];
+  fileName = 'ExcelSheet.xlsx'
+  totalUseage: any | undefined
+  tempr: Object | undefined
 
   ngOnInit(): void {
   }
+
   formGroup: FormGroup;
-  dataRecord: any = {
-    data: {
-      name: '',
-      useage: '',
-      date: '',
-      cooling: '',
-      gardening: '',
-      type: 'water'
-    }
-  }
+  empRecord: any = {
+    name: '',
+    useage: '',
+    date: '',
+    cooling: '',
+    gardening: '',
+    type: 'water'
+  };
+  total: any;
   alluser: any;
   alluserData: any;
-  allbooks: any;
-
-  constructor(private fb: FormBuilder, private api: ApiService, private data: DataService) {
+  fields: any = []
+  obj: any;
+  idValue: any;
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
     this.formGroup = this.fb.group({
-      name: [this.dataRecord.name, Validators.required],
-      useage: [this.dataRecord.useage, Validators.required],
-      date: [this.dataRecord.date, Validators.required],
-      cooling: [this.dataRecord.cooling, Validators.required],
-      gardening: [this.dataRecord.gardening, Validators.required],
-      type: [this.dataRecord.type]
-    })
+      name: [this.empRecord.name],
+      useage: [this.empRecord.useage],
+      date: [this.empRecord.date],
+      cooling: [this.empRecord.cooling],
+      gardening: [this.empRecord.gardening],
+      type: [this.empRecord.type]
+    });
   }
-
 
   get name() {
     return this.formGroup.get('name')!;
@@ -57,6 +66,7 @@ export class WaterComponent implements OnInit {
   get gardening() {
     return this.formGroup.get('gadening')!;
   }
+
   storing(doc: any) {
     console.log(doc);
 
@@ -68,33 +78,81 @@ export class WaterComponent implements OnInit {
       alert("Sorry Can't post Data ")
     });
 
-    // const database = updateObj.database;
-    // const id = updateObj.id;
-    // const rev = updateObj.rev;
-    // const changedObj = updateObj.changedVal;
-    // const url = this.url + database + '/' + id + "?rev=" + rev;
-    // return this.http.put( updateObj,url)
-    //this.api.adduser(formdata).subscribe(res => {
-    //   console.log("data stored successfully");
-    //   alert("data stored successfully");
-    // }, err => {
-    //   console.log("can not store data");
-    // })
-    // }
-  }
-  getData() {
-    this.api.get('energy-management-login').subscribe((Response: any) => {
-      console.log(Response);
-      this.alluser = Response.rows;
-      this.alluserData = this.alluser.map((x: any) => x.doc);
-      console.log(this.alluserData)
-    });
+
   }
 
+  deleteuser(id: any, datarev: any) {
+    console.log(id);
+    console.log(datarev)
+    this.data.deleteData(id, datarev).subscribe(res => {
+      console.log(res);
+    })
+
+  }
+  viewWater(obj: any) {
+    this.router.navigate(['waterView'], { queryParams: { data: obj } });
+    this.data.getDataById('energy-management-login', obj).subscribe(Response => {
+      this.tempr = Response
+      console.log(Response);
+      // this.temp=this.res.rows
+      this.data.save(this.tempr);
+      alert('get data successfully');
+    }, rej => {
+      alert('sorry Cant Get the Object')
+    }
+    );
+  }
+
+
+  getData(type: string) {
+    console.log(type);
+    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date"]
+    this.data.getByType(type, fields).subscribe(res => {
+      console.log(res);
+      this.response = res;
+      this.typedData = this.response.docs
+      console.log(this.typedData);
+      this.formGroup.markAsUntouched();
+      for (var i = 0; i < length; i++) {
+        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].gardening)
+      }
+      this.typedData.forEach((element: any) => {
+        element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
+
+        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].gardening)
+
+      });
+      var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
+      console.log(result)
+    })
+  }
+  updateData(id: any) {
+    console.log(id);
+    this.router.navigate(['editform'], { queryParams: { data: id } });
+    this.data.getDataById('energy-management-login', id).subscribe(res => {
+      console.log(res)
+    })
+  }
+  store() {
+    this.data.store(this.total);
+  }
 
   view(id: any) {
     console.log(id)
     alert('viewed' + id)
+
+  }
+  exportexcel(): void {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
 
   }
 }
