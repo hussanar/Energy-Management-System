@@ -6,6 +6,8 @@ import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
+import * as _ from 'lodash';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-electricty',
@@ -18,6 +20,7 @@ export class ElectrictyComponent implements OnInit {
   fileName = 'ExcelSheet.xlsx'
   totalUseage: any | undefined
   tempr: any;
+  total: any;
 
   ngOnInit(): void {
   }
@@ -134,12 +137,27 @@ export class ElectrictyComponent implements OnInit {
       this.typedData = this.response.docs
       console.log(this.typedData);
       this.formGroup.markAsUntouched();
+      this.typedData.forEach((element: any) => {
+        element['total'] = parseInt(element.cooling) + parseInt(element.computer) + parseInt(element.useage)
+        console.log(this.typedData)
+      });
+      this.total = Number(this.typedData[1].useage) + Number(this.typedData[1].cooling) + Number(this.typedData[1].computer)
+      console.log(this.total)
 
-      for (let array of this.typedData) {
 
-        this.totalUseage += array.useage
-        console.log(`${this.totalUseage += parseInt(array.useage)}`)
+      for (var i = 0; i < length; i++) {
+        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].computer)
       }
+      this.typedData.forEach((element: any) => {
+        element['total'] = parseInt(element.cooling) + parseInt(element.computer) + parseInt(element.useage)
+        console.log(this.typedData)
+
+        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].computer)
+
+      });
+      var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
+      console.log(result)
+      console.log(typeof (result))
     })
   }
   viewele(obj: any) {

@@ -45,7 +45,6 @@ export class Login2Component implements OnInit {
     this.email = val.email
     this.password = val.password
     // this.data.checkuserlogin(this.email, this.password).subscribe(data => {
-
     //   console.log(data);
     //   console.log(data.docs[0])
     //   //  if ((data.docs.length == 1))
@@ -64,22 +63,38 @@ export class Login2Component implements OnInit {
     //   }
     // })
     // console.log("from form", val);
-    this.type = val.type
-    console.log(this.type)
-    this.data.login(this.email, this.password, this.type).subscribe(res => {
-      console.log(res);
-      this.response = res;
-      this.logindata = this.response.docs
-      console.log(this.logindata);
-      this.id = this.logindata[3]._id
-      console.log(this.id)
-      this.router.navigate(['dashboard'], { queryParams: { data: this.id } })
-      this.formGroup.markAsUntouched();
-      this.api.get('energy-managemet-login').subscribe(res => {
-        console.log(res);
 
-      })
+
+    this.data.checkuserlogin(this.email, this.password).subscribe(data => {
+      console.log(data);
+      if ((data.docs[0].password == this.password)) {
+        alert("success!!")
+        this.router.navigate(['dashboard']);
+      }
+      else {
+        // this.toastr.warning("Hi Patient wrong authentication,Please enter correct Email and Password");
+        alert("Login authentication failed");
+      }
     })
+
+
+    // this.type = val.type
+    // console.log(this.type)
+    // this.data.login(this.email, this.password, this.type).subscribe(res => {
+    //   console.log(res);
+    //   this.response = res;
+    //   this.logindata = this.response.docs
+    //   console.log(this.logindata);
+    //   this.id = this.logindata[3]._id
+    //   console.log(this.id)
+    //   this.router.navigate(['water'], { queryParams: { data: this.id } })
+    //   this.formGroup.markAsUntouched();
+    //   this.api.get('energy-managemet-login').subscribe(res => {
+    //     console.log(res);
+
+    // })
+    // })
+
     // this.router.navigate(['dashboard']);
 
 

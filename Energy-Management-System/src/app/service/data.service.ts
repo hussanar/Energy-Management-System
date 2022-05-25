@@ -48,7 +48,7 @@ export class DataService {
         email: email,
         password: password
       },
-      fields: ["_id", "firstName", "email", "phone"]
+      fields: ["_id", "firstName", "email", "phone", "lastName", "password"]
     };
     return this.http.post(url, loginData, this.httpOptions)
   }
@@ -89,6 +89,32 @@ export class DataService {
     return this.http.post(url, typedData, this.httpOptions)
 
   }
+  postByTypedUser(type: string, fields: any, id: any) {
+    let url = this.url + 'energy-management-login/_find'
+    let typedData = {
+      selector: {
+        type: type,
+        user: id
+      },
+      fields: ["email"]
+    };
+    return this.http.post(url, typedData, this.httpOptions)
+
+  }
+
+  getByTypedUser(type: string, fields: any, id: any) {
+    let url = this.url + 'energy-management-login/_find'
+    let typedData = {
+      selector: {
+        type: type,
+        user: id
+      },
+      fields: fields
+    };
+    return this.http.get(url, this.typedData)
+
+  }
+
   updateData(updateobj: any) {
     const id = updateobj.id;
     const rev = updateobj.rev;

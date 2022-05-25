@@ -6,6 +6,7 @@ import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as XLSX from 'xlsx';
 import * as _ from 'lodash';
 
@@ -21,8 +22,14 @@ export class WaterComponent implements OnInit {
   fileName = 'ExcelSheet.xlsx'
   totalUseage: any | undefined
   tempr: Object | undefined
+  id: any;
+  type: string | undefined
 
   ngOnInit(): void {
+    this.acrouter.queryParams.subscribe((params: any) => {
+      console.log(params);
+      this.id = params.data
+    })
   }
 
   formGroup: FormGroup;
@@ -40,7 +47,7 @@ export class WaterComponent implements OnInit {
   fields: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute) {
     this.formGroup = this.fb.group({
       name: [this.empRecord.name],
       useage: [this.empRecord.useage],
@@ -50,6 +57,7 @@ export class WaterComponent implements OnInit {
       type: [this.empRecord.type]
     });
   }
+
 
   get name() {
     return this.formGroup.get('name')!;
@@ -66,14 +74,23 @@ export class WaterComponent implements OnInit {
   get gardening() {
     return this.formGroup.get('gadening')!;
   }
-
-  storing(doc: any) {
+  // update(id: any,this.formdata.value) {
+  //   // 
+  //   console.log(doc)
+  // }
+  storing(doc: any, id: any) {
     console.log(doc);
-
+    doc['user'] = id;
+    console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
       alert("Your Data is stored Successfully");
-
+      console.log(doc)
+      this.type = "water"
+      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
+        console.log(res)
+        console.log(this.id)
+      })
     }, rejects => {
       alert("Sorry Can't post Data ")
     });
@@ -124,6 +141,12 @@ export class WaterComponent implements OnInit {
       });
       var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
       console.log(result)
+    })
+  }
+  getDataByUser(type: any) {
+    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
+    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+      console.log(res)
     })
   }
   updateData(id: any) {

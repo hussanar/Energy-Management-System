@@ -28,6 +28,11 @@ import { ViewGasComponent } from './view-gas/view-gas.component';
 import { RenewableViewComponent } from './renewable-view/renewable-view.component';
 import { DummyComponent } from './dummy/dummy.component';
 import { EditFromComponent } from './edit-from/edit-from.component';
+import { AboutComponent } from './about/about.component';
+import { SolutionsComponent } from './solutions/solutions.component';
+import { IndustriesComponent } from './industries/industries.component';
+import { ProductsComponent } from './products/products.component';
+import { DocumentsComponent } from './documents/documents.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +77,17 @@ import { EditFromComponent } from './edit-from/edit-from.component';
 
     DummyComponent,
 
-    EditFromComponent
+    EditFromComponent,
+
+    AboutComponent,
+
+    SolutionsComponent,
+
+    IndustriesComponent,
+
+    ProductsComponent,
+
+    DocumentsComponent
   ],
   imports: [
     BrowserModule,

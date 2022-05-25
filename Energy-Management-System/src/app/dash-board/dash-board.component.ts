@@ -16,7 +16,10 @@ export class DashBoardComponent implements OnInit {
   email: any;
   response: any;
   typedData: any;
-  total: any;;
+  total: any;
+  localObject: any;
+  localvalue: any;
+
 
   constructor(private router: Router, private Acrouter: ActivatedRoute, private data: DataService) { }
 
@@ -32,32 +35,18 @@ export class DashBoardComponent implements OnInit {
         this.data.getDocByIds("energy-management-login", res.data).subscribe(res => {
           console.log(res)
           this.temp = res
+          this.localvalue = this.temp._id
+          console.log(this.localvalue)
+          localStorage.setItem("userdetails", this.localvalue)
           this.email = this.temp.email
+          this.localObject = localStorage.getItem("userdetails")
+          console.log(this.localObject)
+
         })
       })
     }))
   }
-  getData(type: string) {
-    console.log(type);
-    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date"]
-    this.data.getByType(type, fields).subscribe(res => {
-      console.log(res);
-      this.response = res;
-      this.typedData = this.response.doc
-      console.log(this.typedData);
-      for (var i = 0; i < length; i++) {
-        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].gardening)
-      }
-      this.typedData.forEach((element: any) => {
-        element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
 
-        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].gardening)
-
-      });
-      var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
-      console.log(result)
-    })
-  }
   ele() {
     this.router.navigate(['ele'])
   }
@@ -72,5 +61,8 @@ export class DashBoardComponent implements OnInit {
   }
   adddata() {
     this.router.navigate(['adddata'])
+  }
+  logout() {
+
   }
 }

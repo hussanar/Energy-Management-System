@@ -1,5 +1,5 @@
 <h1>Water Management</h1>
-<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value)">
+<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value,id.data)">
     <div class="form-group">
         <label for="firstName">Name</label>
         <input id="firstName" class="form-control" formControlName="name" placeholder="Name Required" required />
@@ -36,7 +36,8 @@
 <button class="btn btn-primary" (click)="getData('water')">Get Data</button>
 <button (click)="exportexcel()" class="btn btn-success
 ">Export to Excel</button>
-
+<!-- <button "> </button> -->
+<button (click)="getDataByUser('water')">getDataByUser</button>
 
 <table class="table" id="excel-table">
     <thead class="thead-dark">

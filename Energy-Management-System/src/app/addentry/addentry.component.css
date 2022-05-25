@@ -1,5 +1,5 @@
-form {
-    width: 70%;
-    align-items: center;
-    margin: 70px auto;
+table {
+    width: 40%;
+    margin: 30px auto;
+    border: .5px solid black;
 }
