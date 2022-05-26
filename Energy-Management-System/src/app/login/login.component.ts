@@ -123,24 +123,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getdata() {
-    this.api.get("energy-management-login").subscribe(res => {
-      // console.log(res);
-      this.alluser = res;
-      this.alluser = this.alluser.rows;
-      this.alluserData = this.alluser.map((el: any) => el.doc);
-      console.log(this.alluserData[0]);
-      this.api.array(this.alluserData);
 
-      this.data.store(this.alluserData);
-    }, rej => {
-      alert("opps! Somthing went wrong" + rej);
-      // alert("Your data was posted successfully!");
-      // this.empRecord.reset();
-    });
-
-
-  }
   view1(id: any) {
     // this.router.navigate(['view'])
     this.idValue = id

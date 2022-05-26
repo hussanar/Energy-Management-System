@@ -51,7 +51,7 @@ export class DashBoardComponent implements OnInit {
     this.router.navigate(['ele'])
   }
   water() {
-    this.router.navigate(['water']);
+    this.router.navigate(['water'], { queryParams: { data: this.localObject } });
   }
   gas() {
     this.router.navigate(['gas']);
@@ -64,5 +64,8 @@ export class DashBoardComponent implements OnInit {
   }
   logout() {
 
+  }
+  view() {
+    this.router.navigate(['viwe'])
   }
 }

@@ -32,6 +32,9 @@ export class Login2Component implements OnInit {
   response: any;
   logindata: any;
   id: any;
+  value: any;
+  array: any;
+  private _id: any;
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
     this.formGroup = this.fb.group({
 
@@ -44,35 +47,21 @@ export class Login2Component implements OnInit {
     console.log(val);
     this.email = val.email
     this.password = val.password
-    // this.data.checkuserlogin(this.email, this.password).subscribe(data => {
-    //   console.log(data);
-    //   console.log(data.docs[0])
-    //   //  if ((data.docs.length == 1))
-    //   if ((data.docs[0].email == val.email)) {
-    //     alert("userName Already Exists");
-    //     window.location.reload();
-
-    //   }
-    //   else {
-    //     alert("Success");
-    //     this.data.postDataNode(val).subscribe((data) => {
-    //       console.log("data returned from server", data);
-    //     })
-    //     this.router.navigate(['dashboard', this.email, this.password]);
-
-    //   }
-    // })
-    // console.log("from form", val);
-
-
     this.data.checkuserlogin(this.email, this.password).subscribe(data => {
       console.log(data);
+      this.value = data
+      this.array = this.value.docs
+      this._id = this.array[0]._id
+      console.log(this._id)
+
       if ((data.docs[0].password == this.password)) {
         alert("success!!")
-        this.router.navigate(['dashboard']);
+
+        localStorage.setItem('userData', JSON.stringify(data.docs[0]))
+        this.router.navigate(['dashboard'], { queryParams: { data: this._id } });
       }
       else {
-        // this.toastr.warning("Hi Patient wrong authentication,Please enter correct Email and Password");
+
         alert("Login authentication failed");
       }
     })

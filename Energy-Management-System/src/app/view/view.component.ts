@@ -24,12 +24,20 @@ export class ViewComponent implements OnInit {
   ngOnInit(): void {
     this.temp = this.data.pusharray
     console.log(this.temp[0])
-    for (let user of this.alluserData) {
-      console.log(this.temp[user].email);
-    }
+    this.api.get("energy-management-login").subscribe(res => {
+      // console.log(res);
+      this.alluser = res;
+      this.alluser = this.alluser.rows;
+      this.alluserData = this.alluser.map((el: any) => el.doc);
+      console.log(this.alluserData[0]);
+      this.api.array(this.alluserData);
 
-
-
+      this.data.store(this.alluserData);
+    }, rej => {
+      alert("opps! Somthing went wrong" + rej);
+      // alert("Your data was posted successfully!");
+      // this.empRecord.reset();
+    });
   }
 
   deleteuser(id: any, datarev: any) {
@@ -37,11 +45,14 @@ export class ViewComponent implements OnInit {
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
-      this.refresh();
     })
 
   }
+  getdata() {
 
+
+
+  }
   view1(obj: any) {
     this.router.navigate(['view1comp'], { queryParams: { data: obj } });
 

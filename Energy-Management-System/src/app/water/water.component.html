@@ -37,8 +37,8 @@
 <button (click)="exportexcel()" class="btn btn-success
 ">Export to Excel</button>
 <!-- <button "> </button> -->
-<button (click)="getDataByUser('water')">getDataByUser</button>
-
+<button class="btn btn-primary" (click)="getDataByUser('water')">getDataByUser</button>
+<!-- <button (click)="storing('water',id)">post</button> -->
 <table class="table" id="excel-table">
     <thead class="thead-dark">
         <tr>
@@ -54,7 +54,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of typedData">
+        <tr *ngFor="let user of arrayVal">
             <td>{{user.name}}</td>
             <td>{{user.useage}}</td>
             <td>{{user.date}}</td>

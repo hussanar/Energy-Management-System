@@ -24,11 +24,14 @@ export class WaterComponent implements OnInit {
   tempr: Object | undefined
   id: any;
   type: string | undefined
+  value: any;
+  arrayVal: any;
 
   ngOnInit(): void {
     this.acrouter.queryParams.subscribe((params: any) => {
       console.log(params);
       this.id = params.data
+      console.log(this.id)
     })
   }
 
@@ -79,8 +82,9 @@ export class WaterComponent implements OnInit {
   //   console.log(doc)
   // }
   storing(doc: any, id: any) {
+
     console.log(doc);
-    doc['user'] = id;
+    doc['user'] = this.id;
     console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
@@ -91,6 +95,7 @@ export class WaterComponent implements OnInit {
         console.log(res)
         console.log(this.id)
       })
+
     }, rejects => {
       alert("Sorry Can't post Data ")
     });
@@ -145,9 +150,16 @@ export class WaterComponent implements OnInit {
   }
   getDataByUser(type: any) {
     let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
+    let userObject: any = localStorage.getItem('userData')
+    let user = JSON.parse(userObject.toString())
+    user['_id']
+    console.log(user)
     this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
       console.log(res)
-    })
+      this.value = res;
+      this.arrayVal = this.value.docs
+      console.log(this.arrayVal)
+    }, err => { console.log(err) })
   }
   updateData(id: any) {
     console.log(id);

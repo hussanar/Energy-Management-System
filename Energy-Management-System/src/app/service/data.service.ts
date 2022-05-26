@@ -108,10 +108,11 @@ export class DataService {
       selector: {
         type: type,
         user: id
-      },
+      }
+      ,
       fields: fields
     };
-    return this.http.get(url, this.typedData)
+    return this.http.post(url, typedData, this.httpOptions)
 
   }
 

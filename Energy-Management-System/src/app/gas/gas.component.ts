@@ -119,11 +119,7 @@ export class GasComponent implements OnInit {
       console.log(this.typedData);
       this.formGroup.markAsUntouched();
 
-      for (let array of this.typedData) {
 
-        this.totalUseage += array.useage
-        console.log(`${this.totalUseage += parseInt(array.useage)}`)
-      }
     })
   }
 
