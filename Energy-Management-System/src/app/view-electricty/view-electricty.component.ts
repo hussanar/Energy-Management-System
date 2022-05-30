@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
+import { Router } from '@angular/router';
+import { parseMessage } from '@angular/localize/src/utils';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-view-electricty',
@@ -9,20 +12,26 @@ import { DataService } from '../service/data.service';
 })
 export class ViewElectrictyComponent implements OnInit {
   temp: any;
+  localObject: any;
+  id: any;
 
-  constructor(private router: ActivatedRoute, private data: DataService) { }
+  constructor(private acrouter: ActivatedRoute, private data: DataService, private router: Router, private alert: NotificationService) { }
 
   ngOnInit(): void {
-    this.router.queryParams.subscribe((params: any) => {
+    this.localObject = localStorage.getItem('userDetail')
+    this.acrouter.queryParams.subscribe((params: any) => {
       console.log(params);
       console.log(params.data)
+      this.id = params.data
       this.data.getDataById('energy-management-login', params.data).subscribe(Response => {
         this.temp = Response
         console.log(this.temp);
         console.log(this.temp.cooling)
-        alert('get data successfully');
+        this.alert.showSuccess("get data successfully", "Success")
+
+
       }, rej => {
-        alert('sorry Cant Get the Object')
+        this.alert.showError("sorry Cant Get the Object", "Error")
       }
       );
 
@@ -30,5 +39,10 @@ export class ViewElectrictyComponent implements OnInit {
     this.temp = this.data.pusharray;
     console.log(this.temp)
   }
-
+  nanvigateHome() {
+    this.router.navigate(['dashboard'], { queryParams: { data: this.id } })
+  }
+  nanvigateback() {
+    this.router.navigate(['ele'], { queryParams: { data: this.id } })
+  }
 }

@@ -5,7 +5,9 @@ import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as XLSX from 'xlsx';
+import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from '../notification.service';
+
 
 @Component({
   selector: 'app-renewable',
@@ -13,13 +15,22 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./renewable.component.css']
 })
 export class RenewableComponent implements OnInit {
+  id: any;
+  type: string | undefined
+  value: any;
+  arrayVal: any;
 
 
   ngOnInit(): void {
+    this.acrouter.queryParams.subscribe((params: any) => {
+      console.log(params);
+      this.id = params.data
+      console.log(this.id)
+    })
   }
 
   response: any | undefined;
-  typedData: any;
+
   fileName = 'ExcelSheet.xlsx'
   totalUseage: any | undefined
   tempr: any;
@@ -42,7 +53,7 @@ export class RenewableComponent implements OnInit {
   fields: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute, private alert: NotificationService) {
     this.formGroup = this.fb.group({
       name: [this.empRecord.name],
       solar: [this.empRecord.solar],
@@ -67,7 +78,7 @@ export class RenewableComponent implements OnInit {
   get wind() {
     return this.formGroup.get('wind')!;
   }
-  get hydror() {
+  get hydro() {
     return this.formGroup.get(' hydro')!;
   }
   get nuclear() {
@@ -76,69 +87,47 @@ export class RenewableComponent implements OnInit {
   get tidal() {
     return this.formGroup.get('tidal')!;
   }
-  // get type() {
-  //   return this.formGroup.get('type')!;
-  // }
-  storing(doc: any) {
-    console.log(doc);
 
+  storing(doc: any, id: any) {
+
+    console.log(doc);
+    doc['user'] = this.id;
+    console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
-      alert("Your Data is stored Successfully");
+      this.alert.showSuccess("Your Data is stored Successfully", "Success")
+      console.log(doc)
+      this.type = "gas"
+      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
+        console.log(res)
+        console.log(this.id)
+      })
 
     }, rejects => {
-      alert("Sorry Can't post Data ")
+      this.alert.showError("Sorry Can't post Data", "Error")
     });
-  }
-  deleteuser(id: any, datarev: any) {
-    console.log(id);
-    console.log(datarev)
-    this.data.deleteData(id, datarev).subscribe(res => {
-      console.log(res);
-    })
+
 
   }
-  getData(type: string) {
-    console.log(type);
-    let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date"]
-    this.data.getByType(type, fields).subscribe(res => {
-      console.log(res);
-      this.response = res;
-      this.typedData = this.response.docs
-      console.log(this.typedData);
-      this.formGroup.markAsUntouched();
-
-      for (let array of this.typedData) {
-
-        this.totalUseage += array.useage
-        console.log(`${this.totalUseage += parseInt(array.useage)}`)
-      }
-    })
+  getDataByUser(type: any) {
+    let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date", "user"]
+    let userObject: any = localStorage.getItem('userData')
+    let user = JSON.parse(userObject.toString())
+    user['_id']
+    console.log(user)
+    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+      console.log(res)
+      this.value = res;
+      this.arrayVal = this.value.docs
+      console.log(this.arrayVal)
+    }, err => { console.log(err) })
   }
-  view(obj: any) {
-    this.router.navigate(['renewableView'], { queryParams: { data: obj } });
-    this.data.getDataById('energy-management-login', obj).subscribe(Response => {
-      this.tempr = Response
-      console.log(Response);
-      // this.temp=this.res.rows
-      this.data.save(this.tempr);
-      alert('get data successfully');
-    }, rej => {
-      alert('sorry Cant Get the Object')
-    }
-    );
+
+  movetoTable() {
+    this.router.navigate(['rennewabletable', { queryparam: { data: this.id } }])
   }
-  exportexcel(): void {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
 
-  }
+
 }

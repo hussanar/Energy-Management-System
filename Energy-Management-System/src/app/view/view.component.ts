@@ -20,10 +20,14 @@ export class ViewComponent implements OnInit {
   title: string | undefined;
   value: any;
   tempr: any;
+  type: string | undefined
+  response: any;
+  typedData: any;
   constructor(public api: ApiService, private data: DataService, private router: Router) { }
   ngOnInit(): void {
     this.temp = this.data.pusharray
     console.log(this.temp[0])
+    //array temp[0]
     this.api.get("energy-management-login").subscribe(res => {
       // console.log(res);
       this.alluser = res;
@@ -38,6 +42,19 @@ export class ViewComponent implements OnInit {
       // alert("Your data was posted successfully!");
       // this.empRecord.reset();
     });
+
+
+    this.type = "user"
+    let fields: Array<string> = ["_id", "mobile", "email", "firstName", "lastName", "_rev", "password"]
+    this.data.getByType(this.type, fields).subscribe(res => {
+      console.log(res);
+      this.response = res;
+      this.typedData = this.response.docs
+      console.log(this.typedData);
+
+
+    })
+
   }
 
   deleteuser(id: any, datarev: any) {

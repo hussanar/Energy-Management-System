@@ -3,3 +3,8 @@ form {
     align-items: center;
     margin: 20px auto;
 }
+
+#btn {
+    margin-left: 700px;
+    margin-top: 20px;
+}

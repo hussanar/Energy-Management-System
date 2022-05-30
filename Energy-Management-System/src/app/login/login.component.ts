@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { getAllJSDocTags } from 'typescript';
-
+import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
   store: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private alert: NotificationService) {
     this.formGroup = this.fb.group({
       firstName: [this.empRecord.firstName, Validators.required],
       lastName: [this.empRecord.lastName, Validators.required],
@@ -57,22 +56,17 @@ export class LoginComponent implements OnInit {
     return this.formGroup.get('password')!;
   }
   storing(formdata: NgForm) {
-    // console.log(formdata);
-    // this.store.pushData(formdata);
     console.log(formdata)
-    this.api.addByNode(this.formGroup.value).subscribe(res => {
+    this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
       console.log(res);
-      alert("Data is successfully posted ")
-      alert("Your data was posted successfully!");
-      // this.empRecord.reset();
-      this.router.navigate(['login']);
+      this.alert.showSuccess("Success", "Data Posted Success Fully")
+      this.router.navigate(['loginmain']);
 
     }, rej => {
-      alert("opps! Can not post data" + rej);
+      this.alert.showError("opps! Can not post data", "Error")
     });
 
     this.api.get("energy-management-login").subscribe(res => {
-      // console.log(res);
       this.alluser = res;
       this.alluser = this.alluser.rows;
       this.alluserData = this.alluser.map((el: any) => el.doc);
@@ -80,71 +74,14 @@ export class LoginComponent implements OnInit {
       this.api.array(this.alluserData);
       this.data.store(this.alluserData);
 
-      this.api.getByNode().subscribe(res => {
-        console.log(res);
-        alert("data get success fully")
-      }, rej => {
-        alert("cant get Data");
 
-      })
-      /**
-      for (const array in this.alluserData) {
-        console.log(`${this.store.push(this.alluserData[array])}`);
-        console.log(this.alluserData[array].email)
-        console.log(this.alluserData[array].firstName)
-        console.log(this.alluserData[array].lastName)
-        console.log(this.alluserData[array].password)
-        console.log(this.alluserData[array].mobile)
-      }
-
-      //  this.res['rows'].map(el => el.doc.firstName)
-      // this.alluser=this.alluser
-      
-      for (const key in this.alluser) {
-        if (Object.prototype.hasOwnProperty.call(this.alluser, key)) {
-          const element = this.alluser[key];
-          console.log(element.id);
-        }
-      } */
-      // this.api.getalluserdata(element.id).subscribe(res => {
-      //   console.log(res);
-      //   this.store.push(res);
-      //   console.log("data is came");
-      // }, rej => {
-      //   console.log("error" + rej);
-      // })
-
-      // }
-      // }
-    }, rej => {
-      alert("opps! Somthing went wrong" + rej);
-      // alert("Your data was posted successfully!");
-      // this.empRecord.reset();
     });
-  }
 
-
-  view1(id: any) {
-    // this.router.navigate(['view'])
-    this.idValue = id
-    console.log(this.idValue)
-    this.data.getDocByIds("energy-management-login", id).subscribe(res => {
-      console.log(res);
-      let temp = res;
-      var record = [res];
-      //console.log(record[0])
-      alert("get the data successfully!");
-      //  console.log(this.empRecord);
-    }, rej => {
-      alert("opps! Can not get data" + rej);
-    });
   }
 
   click() {
     this.router.navigate(['login']);
   }
-  view() {
-    this.router.navigate(['view'])
-  }
+
 
 }

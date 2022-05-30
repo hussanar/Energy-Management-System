@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { NotificationService } from '../notification.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  //https://username:password@URL.
+
   Urlpwd = 'https://apikey-v2-15a2mog1stn0kv0gjnidlq2eoth4psp58f8ov9zs42i6:aabcfd48d07fe38f4760f6cd11b83b4a@b4af4ef2-55e1-4a9b-9b02-8168e5964652-bluemix.cloudantnosqldb.appdomain.cloud/'
   temp: any;
   pusharray: any = [];
@@ -26,7 +26,7 @@ export class DataService {
   response: any;
   typedData: any;
   total: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private alert: NotificationService) { }
   store(data: any) {
     console.log(data);
     this.temp = data;
@@ -58,25 +58,6 @@ export class DataService {
   postDataNode(formObject: any) {
     return this.http.post('http://localhost:8000/postquery', formObject)
   }
-  // getByType(type: string) {
-  //   let url = this.url + 'energy-management-login/_find'
-  //   let typedData = {
-  //     selector: {
-  //       type: type
-
-  //     },
-  //     fields: ["_id", "name", "useage", "cooling", "gardening", "_rev", "date"]
-  //   };
-  //   return this.http.post(url, typedData, this.httpOptions)
-
-  // }
-  // updateData(updateData:any){
-  //   const id=updateData._id
-  //   const rev=updateData._rev;
-  //   const changedObj=updateData.changedVal;
-  //   const url = this.url+'/'+id+'/?rev='+rev;
-  //   return this.http.put(url,changedObj)
-  // }
 
   getByType(type: string, fields: any) {
     let url = this.url + 'energy-management-login/_find'
@@ -126,6 +107,7 @@ export class DataService {
   deleteData(id: any, rev: any): Observable<{}> {
     const urld = this.url + 'energy-management-login/' + id + '/?rev=' + rev;
     return this.http.delete(urld, this.httpOptions);
+    this.alert.showWarning("Data Deleted Successfully", "Deleted")
   }
 
   getDocByIds(db: string, id: any): Observable<{}> {
@@ -144,6 +126,13 @@ export class DataService {
   }
   checkuserlogin(email: any, password: any) {
     return this.http.get<any>('http://localhost:8000/getdata/' + email);
+  }
+  getDataByViewDoc(db: string, type: string, id: any) {
+    const url = this.url + db + '/_design/' + type + '/_view' + '/new-view' + '?include_docs=true'
+    const objectview = {
+      "keys": [type + id]
+    }
+    return this.http.post(url, objectview, this.httpOptions)
   }
 
 }

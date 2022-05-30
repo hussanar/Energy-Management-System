@@ -1,0 +1,42 @@
+<button (click)="exportexcel()" class="btn btn-success
+" [disabled]="isDisabled">Export to Excel</button>
+<button class="btn btn-primary" (click)="getDataByUser('gas')">getDataByUser</button>
+<button class="btn btn-success" (click)="nanvigateHome()">Home</button>
+<button class="btn btn-primary" (click)="nanvigateback()">Back</button>
+
+
+<table class="table" id="excel-table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Useage</th>
+            <th scope="col">date</th>
+            <th scope="col">food</th>
+            <th scope="col">power the ovens</th>
+            <th scope="col">petrol for vehical</th>
+            <th scope="col">petrol for heateing</th>
+
+            <!-- <th scope="col">id</th> -->
+            <th scope="col">Delete</th>
+            <th scope="col">view</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of arrayVal">
+            <td>{{user.name}}</td>
+            <td>{{user.useage}}</td>
+            <td>{{user.date}}</td>
+            <td>{{user.food}}</td>
+            <td>{{user.power}}</td>
+            <td>{{user.vehical}}</td>
+            <td>{{user.heateing}}</td>
+            <!-- <td>{{user._id}}</td> -->
+            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+            <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
+
+            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
+        </tr>
+
+
+    </tbody>
+</table>

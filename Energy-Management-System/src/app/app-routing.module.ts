@@ -17,6 +17,11 @@ import { View1Component } from './view1/view1.component';
 import { WaterComponent } from './water/water.component';
 import { DummyComponent } from './dummy/dummy.component';
 import { EditFromComponent } from './edit-from/edit-from.component';
+import { RenewableViewTableComponent } from './renewable-view-table/renewable-view-table.component';
+import { GasViewTableComponent } from './gas-view-table/gas-view-table.component';
+import { WaterViewTableComponent } from './water-view-table/water-view-table.component';
+import { EleViewTableComponent } from './ele-view-table/ele-view-table.component';
+import { WaterAditionalinfoComponent } from './water-aditionalinfo/water-aditionalinfo.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +40,12 @@ const routes: Routes = [
   { path: 'gasView', component: ViewGasComponent },
   { path: 'renewableView', component: RenewableViewComponent },
   { path: 'dummy', component: DummyComponent },
-  { path: 'editform', component: EditFromComponent }
+  { path: 'editform', component: EditFromComponent },
+  { path: 'rennewabletable', component: RenewableViewTableComponent },
+  { path: 'gastable', component: GasViewTableComponent },
+  { path: 'watertable', component: WaterViewTableComponent },
+  { path: 'eletable', component: EleViewTableComponent },
+  { path: 'aditionalInfo', component: WaterAditionalinfoComponent }
 
 ];
 

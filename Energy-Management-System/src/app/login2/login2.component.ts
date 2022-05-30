@@ -6,8 +6,7 @@ import { FormBuilder, NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-login2',
@@ -35,7 +34,7 @@ export class Login2Component implements OnInit {
   value: any;
   array: any;
   private _id: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private alert: NotificationService) {
     this.formGroup = this.fb.group({
 
       email: [this.empRecord.email],
@@ -51,75 +50,21 @@ export class Login2Component implements OnInit {
       console.log(data);
       this.value = data
       this.array = this.value.docs
-      this._id = this.array[0]._id
+      this._id = this.array[0]?._id
       console.log(this._id)
 
       if ((data.docs[0].password == this.password)) {
-        alert("success!!")
 
         localStorage.setItem('userData', JSON.stringify(data.docs[0]))
         this.router.navigate(['dashboard'], { queryParams: { data: this._id } });
+        this.alert.showSuccess("Login Successfully", "Success")
       }
       else {
 
-        alert("Login authentication failed");
+        this.alert.showError("login authendication Failed", "Error")
       }
     })
-
-
-    // this.type = val.type
-    // console.log(this.type)
-    // this.data.login(this.email, this.password, this.type).subscribe(res => {
-    //   console.log(res);
-    //   this.response = res;
-    //   this.logindata = this.response.docs
-    //   console.log(this.logindata);
-    //   this.id = this.logindata[3]._id
-    //   console.log(this.id)
-    //   this.router.navigate(['water'], { queryParams: { data: this.id } })
-    //   this.formGroup.markAsUntouched();
-    //   this.api.get('energy-managemet-login').subscribe(res => {
-    //     console.log(res);
-
-    // })
-    // })
-
-    // this.router.navigate(['dashboard']);
-
-
   }
-
-
-
-  // getuser() {
-  //   this.api.getEmployee().subscribe(res => {
-  //     console.log(res);
-  //     console.log("response is comming");
-  //     this.alluser = res;
-  //     this.alluser = this.alluser.data;
-  //     this.alluser = this.alluser.rows;
-  //     console.log(this.alluser);
-  //     for (const key in this.alluser) {
-  //       if (Object.prototype.hasOwnProperty.call(this.alluser, key)) {
-  //         const element = this.alluser[key];
-  //         console.log(element.id);
-  //         this.api.getAllEmployee(element.id).subscribe(res => {
-  //           console.log(res);
-  //           this.exchange = res;
-  //           this.exchange = this.exchange.data;
-  //           this.store.push(this.exchange);
-  //           console.log("data is came");
-  //         }, rej => {
-  //           console.log("error" + rej);
-  //         })
-
-  //       }
-  //     }
-  //   }, rej => {
-  //     console.log("opps! Somthing went wrong" + rej);
-  //   })
-  // }
-
   ngOnInit(): void {
     this.router.navigate(['home']);
   }
@@ -128,8 +73,6 @@ export class Login2Component implements OnInit {
     this.router.navigate(['login'])
 
   }
-  dashboard() {
 
-  }
 
 }

@@ -2,3 +2,13 @@ table {
     width: 40%;
     margin: 0 auto;
 }
+
+#home {
+    margin-left: 900px;
+    margin-top: 30px;
+}
+
+#back {
+    margin-left: 1050px;
+    margin-top: -70px;
+}

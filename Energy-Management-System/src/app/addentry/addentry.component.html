@@ -3,34 +3,35 @@
 <table class="table">
     <thead class="thead-dark dark-bg">
         <tr>
-            <th scope="col">fields</th>
-            <th scope="col">user details</th>
-            <!-- <th scope="col">week</th>
-            <th scope="col">monthly</th> -->
+            <th scope="col">Fields</th>
+            <th scope="col">User details</th>
+            <th scope="col">View</th>
+
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Total Water Useage in liter</td>
             <td>{{result}}</td>
-            <!-- <td>{{resultweek}}</td>
-            <td>{{resultmonthly}}</td> -->
+            <button (click)=" waterviewtable()" class="btn btn-primary ">View</button>
         </tr>
         <tr>
             <td>Total Electricity Useage in Units</td>
-            <td>{{total}}</td>
+            <td>{{electricty}}</td>
+            <button (click)=" eleviewtable()" class="btn btn-primary ">View</button>
+
         </tr>
         <tr>
             <td>Total Gas Consuption</td>
             <td>{{gas}}</td>
+            <button (click)=" gasviewtable()" class="btn btn-primary ">View</button>
+
         </tr>
         <tr>
             <td>Total Energy Generated</td>
             <td>{{renewable}}</td>
+            <button (click)=" renewableviewtable()" class=" btn btn-primary ">View</button>
+
         </tr>
-
-
-
-
     </tbody>
 </table>

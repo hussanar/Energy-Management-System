@@ -1,0 +1,33 @@
+<button (click)="exportexcel()" class="btn btn-success
+" [disabled]="isDisabled">Export to Excel</button>
+
+<button class="btn btn-primary" (click)="getDataByView('water')">Get Data By View</button>
+<button class="btn btn-primary" id="home" (click)="navigateHome()">Home</button>
+<button class="btn btn-success" id="home" (click)="navigateBack()">Back</button>
+
+
+<table class="table" id="excel-table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Useage</th>
+            <th scope="col">date</th>
+            <th scope="col">cooling</th>
+            <th scope="col">gardening</th>
+            <th scope="col">Delete</th>
+            <th scope="col">view</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of viewVal">
+            <td>{{user.name}}</td>
+            <td>{{user.useage}}</td>
+            <td>{{user.date}}</td>
+            <td>{{user.cooling}}</td>
+            <td>{{user.gardening}}</td>
+            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+            <td><a class="btn btn-primary " (click)="viewWater(user._id)">View</a> </td>
+
+        </tr>
+    </tbody>
+</table>

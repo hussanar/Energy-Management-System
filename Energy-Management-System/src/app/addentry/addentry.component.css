@@ -1,5 +1,10 @@
 table {
     width: 40%;
     margin: 30px auto;
-    border: .5px solid black;
+    border: 1px solid black;
+    font-size: 1.3rem;
+}
+
+button {
+    margin-top: 7px;
 }

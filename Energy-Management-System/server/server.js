@@ -26,22 +26,6 @@ app.get('/getdata/:id', (req, res) => {
 
     }))
 })
-app.post('/postdata', function(req, res) {
-    var name = req.body.firstName;
-    console.log(name);
-    var objectnew = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        phone: req.body.mobile,
-    }
-    console.log("data from angular....", objectnew);
-    dbconnection.fresher.insert(objectnew).then((data) => {
-        console.log("Data inserted Successfully", data);
-    });
-});
-
 
 app.listen(port, (err) => {
     if (err) {

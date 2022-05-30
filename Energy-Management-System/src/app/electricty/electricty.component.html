@@ -1,5 +1,9 @@
 <h1>Electricty Management</h1>
-<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value)">
+<button class="btn btn-primary move" id="btn" (click)="movetoTable()">View Details</button>
+
+<button class="btn btn-primary btn-success" id="home" (click)="navigateHome()">Home</button>
+
+<form [formGroup]="formval" class="form" (ngSubmit)="storing(this.formval.value,id)">
     <div class="form-group">
         <label for="name">Name</label>
         <input id="name" class="form-control" formControlName="name" placeholder="Name Required" required />
@@ -34,38 +38,3 @@
     <hr />
     <button class="btn btn-primary">Add Data</button>
 </form>
-<button class="btn btn-primary" (click)="getData('electricty')">Get Data</button>
-<button (click)="exportexcel()" class="btn btn-success
-">Export to Excel</button>
-
-
-<table class="table" id="excel-table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Useage</th>
-            <th scope="col">date</th>
-            <th scope="col">cooling</th>
-            <th scope="col">computer</th>
-            <!-- <th scope="col">id</th> -->
-            <th scope="col">Delete</th>
-            <th scope="col">view</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of typedData">
-            <td>{{user.name}}</td>
-            <td>{{user.useage}}</td>
-            <td>{{user.date}}</td>
-            <td>{{user.cooling}}</td>
-            <td>{{user.computer}}</td>
-            <!-- <td>{{user._id}}</td> -->
-            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
-            <td><a class="btn btn-primary " (click)="viewele(user._id)">View</a> </td>
-
-            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
-        </tr>
-
-
-    </tbody>
-</table>

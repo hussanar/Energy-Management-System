@@ -19,12 +19,40 @@ export class DashBoardComponent implements OnInit {
   total: any;
   localObject: any;
   localvalue: any;
+  id: any;
+  name: any;
+  type: string | undefined
+  value: any;
+  arrayVal: any;
+  length: any = 0;
+  electricty: any;
+  responseData: any;
+  sample: any;
+  viewVal: any = [];
 
 
   constructor(private router: Router, private Acrouter: ActivatedRoute, private data: DataService) { }
 
   ngOnInit(): void {
+    this.Acrouter.queryParams.subscribe((params: any) => {
+      console.log(params);
+      this.id = params.data
+      console.log(this.id);
+      this.data.getDataByViewDoc('energy-management-login', 'water', this.localObject).subscribe(res => {
+        console.log(res)
+        this.responseData = res
+        this.sample = this.responseData.rows
+        console.log(this.sample);
 
+        for (const iterator of this.sample) {
+          this.viewVal.push(iterator.doc);
+        }
+        this.length = this.viewVal.length
+        console.log(this.length)
+      })
+
+    })
+    this.lengthOfArray()
     let db = 'energy-management-login';
     this.data.getnumbers(db).subscribe((res => {
       console.log(res);
@@ -39,6 +67,7 @@ export class DashBoardComponent implements OnInit {
           console.log(this.localvalue)
           localStorage.setItem("userdetails", this.localvalue)
           this.email = this.temp.email
+          this.name = this.temp.firstName
           this.localObject = localStorage.getItem("userdetails")
           console.log(this.localObject)
 
@@ -46,21 +75,46 @@ export class DashBoardComponent implements OnInit {
       })
     }))
   }
+  getDataByView(type: string) {
 
+  }
+  lengthOfArray() {
+    this.type = "water";
+    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
+
+    let userObject: any = localStorage.getItem('userData')
+    let user = JSON.parse(userObject.toString())
+    user['_id']
+    console.log(user)
+    this.data.getByTypedUser(this.type, fields, this.localObject).subscribe(res => {
+      console.log(res)
+      this.value = res;
+      this.arrayVal = this.value.docs
+    })
+    this.type = "electricty"
+    this.data.getByTypedUser(this.type, fields, this.localObject).subscribe(res => {
+      console.log(res)
+      this.value = res;
+      this.arrayVal = this.value.docs
+      this.electricty = this.arrayVal.length
+      console.log(this.length)
+    })
+
+  }
   ele() {
-    this.router.navigate(['ele'])
+    this.router.navigate(['ele'], { queryParams: { data: this.localObject } })
   }
   water() {
     this.router.navigate(['water'], { queryParams: { data: this.localObject } });
   }
   gas() {
-    this.router.navigate(['gas']);
+    this.router.navigate(['gas'], { queryParams: { data: this.localObject } });
   }
   renewable() {
-    this.router.navigate(['renewable'])
+    this.router.navigate(['renewable'], { queryParams: { data: this.localObject } })
   }
   adddata() {
-    this.router.navigate(['adddata'])
+    this.router.navigate(['adddata'], { queryParams: { data: this.localObject } })
   }
   logout() {
 

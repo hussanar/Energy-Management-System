@@ -1,0 +1,41 @@
+<button class="btn btn-primary" (click)="getData('renewable')">Get Data</button>
+<button (click)="exportexcel()" class="btn btn-success
+">Export to Excel</button>
+<button class="btn btn-primary" (click)="getDataByUser('renewable')">getDataByUser</button>
+<button class="btn btn-success" (click)="nanvigateHome()">Home</button>
+<button class="btn btn-primary" (click)="nanvigateback()">Back</button>
+<table class="table" id="excel-table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Solar</th>
+            <th scope="col">date</th>
+            <th scope="col">Wind Mill</th>
+            <th scope="col">Hydro power</th>
+            <th scope="col">Nuclear power</th>
+            <th scope="col">Tidal power</th>
+
+            <!-- <th scope="col">id</th> -->
+            <th scope="col">Delete</th>
+            <th scope="col">view</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of arrayVal">
+            <td>{{user.name}}</td>
+            <td>{{user.solar}}</td>
+            <td>{{user.date}}</td>
+            <td>{{user.wind}}</td>
+            <td>{{user.hydro}}</td>
+            <td>{{user.nuclear}}</td>
+            <td>{{user.tidal}}</td>
+            <!-- <td>{{user._id}}</td> -->
+            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+            <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
+
+            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
+        </tr>
+
+
+    </tbody>
+</table>

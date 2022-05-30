@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,6 +32,14 @@ import { SolutionsComponent } from './solutions/solutions.component';
 import { IndustriesComponent } from './industries/industries.component';
 import { ProductsComponent } from './products/products.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { RenewableViewTableComponent } from './renewable-view-table/renewable-view-table.component';
+import { GasViewTableComponent } from './gas-view-table/gas-view-table.component';
+import { EleViewTableComponent } from './ele-view-table/ele-view-table.component';
+import { WaterViewTableComponent } from './water-view-table/water-view-table.component';
+import { GasLookupComponent } from './gas-lookup/gas-lookup.component';
+import { WaterAditionalinfoComponent } from './water-aditionalinfo/water-aditionalinfo.component';
+
+import { ToastrModule } from 'ngx-toastr'
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,15 +94,31 @@ import { DocumentsComponent } from './documents/documents.component';
 
     ProductsComponent,
 
-    DocumentsComponent
+    DocumentsComponent,
+
+    RenewableViewTableComponent,
+
+    GasViewTableComponent,
+
+    EleViewTableComponent,
+
+    WaterViewTableComponent,
+
+    GasLookupComponent,
+
+    WaterAditionalinfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 3000,
+      progressBar: true,
+    }),
 
 
   ],

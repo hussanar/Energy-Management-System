@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-renewable-view',
@@ -10,7 +11,7 @@ import { DataService } from '../service/data.service';
 export class RenewableViewComponent implements OnInit {
   temp: any;
 
-  constructor(private router: ActivatedRoute, private data: DataService) { }
+  constructor(private router: ActivatedRoute, private data: DataService, private alert: NotificationService) { }
 
   ngOnInit(): void {
     this.router.queryParams.subscribe((params: any) => {
@@ -19,9 +20,9 @@ export class RenewableViewComponent implements OnInit {
       this.data.getDataById('energy-management-login', params.data).subscribe(Response => {
         this.temp = Response
         console.log(this.temp);
-        alert('get data successfully');
+        this.alert.showSuccess("get data successfully", "Success")
       }, rej => {
-        alert('sorry Cant Get the Object')
+        this.alert.showError("Sorry Cant Get the Object", "Error")
       }
       );
 

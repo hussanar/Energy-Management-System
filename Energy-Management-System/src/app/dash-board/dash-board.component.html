@@ -24,7 +24,7 @@
                 <div class="profile">
 
                     <img src="../../assets/icons8-circled-user-male-skin-type-7.gif" class="pro-img" />
-                    <p>Hussanar<span>{{email}}</span></p>
+                    <p>{{name}}<span>{{email}}</span></p>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -36,33 +36,44 @@
         <div class="col-div-3">
             <div class="box">
                 <a (click)="view()">
-                    <p>{{TotalNumberOfUsers}}<br /><span>Total Users </span></p>
+                    <p>{{length}}<br /><span></span></p>
                 </a>
-                <i class="fa fa-users box-icon"></i>
+                <img src="../../assets/icons8-water-96.png" alt="water">
             </div>
         </div>
         <div class="col-div-3">
             <div class="box">
-                <p>88<br /><span>Projects</span></p>
-                <i class="fa fa-list box-icon"></i>
+                <p>{{electricty}}<br /><span></span></p>
+                <img src="../../assets/icons8-electricity-96.png" alt="electricty">
             </div>
         </div>
         <div class="col-div-3">
             <div class="box">
-                <p>99<br /><span>Orders</span></p>
-                <i class="fa fa-shopping-bag box-icon"></i>
+                <p>99<br /><span></span></p>
+                <img src="../../assets/icons8-gas-96.png" alt="gas">
             </div>
         </div>
         <div class="col-div-3">
             <div class="box">
-                <p>78<br /><span>Tasks</span></p>
-                <i class="fa fa-tasks box-icon"></i>
+                <p>78<br /><span></span></p>
+                <img src="../../assets/icons8-renewable-energy-96.png" alt="renewable">
             </div>
         </div>
         <div class="clearfix"></div>
         <br /><br />
 
-
+        <div class="card">
+            <div class="image">
+                <img src="https://media.istockphoto.com/photos/water-splash-of-falling-drop-with-circular-waves-picture-id1320488845?b=1&k=20&m=1320488845&s=170667a&w=0&h=fDoTxns9aJ5IL2sWHXkFGhge1urE8NEOZEjb9xTZaJQ=" alt="water img">
+            </div>
+            <div class="title">
+                <h1>Water</h1>
+            </div>
+            <div class="des">
+                <p>Water Management</p>
+                <button (click)="water()">Entry</button>
+            </div>
+        </div>
 
         <div class="card">
             <div class="image">
@@ -73,21 +84,10 @@
             </div>
             <div class="des">
                 <p>Electricity Management</p>
-                <button (click)="ele()">view </button>
+                <button (click)="ele()">Entry </button>
             </div>
         </div>
-        <div class="card">
-            <div class="image">
-                <img src="https://media.istockphoto.com/photos/water-splash-of-falling-drop-with-circular-waves-picture-id1320488845?b=1&k=20&m=1320488845&s=170667a&w=0&h=fDoTxns9aJ5IL2sWHXkFGhge1urE8NEOZEjb9xTZaJQ=" alt="water img">
-            </div>
-            <div class="title">
-                <h1>Water</h1>
-            </div>
-            <div class="des">
-                <p>Water Management</p>
-                <button (click)="water()">view </button>
-            </div>
-        </div>
+
         <div class="card">
             <div class="image">
                 <img src="https://media.istockphoto.com/photos/gas-bottles-lpg-plant-picture-id494257144?k=20&m=494257144&s=612x612&w=0&h=nXb_vYgdxD46oww8Z0DJd-U8lbhkz5rsbKtr3KviHvs=" alt="gas img ">
@@ -97,7 +97,7 @@
             </div>
             <div class="des">
                 <p>Gas Management</p>
-                <button (click)="gas()">view </button>
+                <button (click)="gas()">Entry </button>
             </div>
         </div>
         <div class="card">
@@ -109,7 +109,7 @@
             </div>
             <div class="des">
                 <p>Renewable Energy Management</p>
-                <button (click)="renewable()">view </button>
+                <button (click)="renewable()">Entry</button>
             </div>
         </div>
         <div class="card">

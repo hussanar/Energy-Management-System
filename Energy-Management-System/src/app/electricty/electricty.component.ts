@@ -3,11 +3,12 @@ import { FormGroup, Validator } from '@angular/forms';
 import { FormBuilder, NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as XLSX from 'xlsx';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
-import { element } from 'protractor';
+import { NotificationService } from '../notification.service';
+
 
 @Component({
   selector: 'app-electricty',
@@ -17,14 +18,22 @@ import { element } from 'protractor';
 export class ElectrictyComponent implements OnInit {
   response: any | undefined;
   typedData: any;
-  fileName = 'ExcelSheet.xlsx'
   totalUseage: any | undefined
   tempr: any;
   total: any;
+  value: any;
+  arrayVal: any;
+  id: any;
+  type: string | undefined
 
   ngOnInit(): void {
+    this.acrouter.queryParams.subscribe((params: any) => {
+      console.log(params);
+      this.id = params.data
+      console.log(this.id)
+    })
   }
-  formGroup: FormGroup;
+  formval: FormGroup;
   empRecord: any = {
     name: '',
     useage: '',
@@ -39,8 +48,8 @@ export class ElectrictyComponent implements OnInit {
   fields: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
-    this.formGroup = this.fb.group({
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute, private alert: NotificationService) {
+    this.formval = this.fb.group({
       name: [this.empRecord.name],
       useage: [this.empRecord.useage],
       date: [this.empRecord.date],
@@ -51,83 +60,49 @@ export class ElectrictyComponent implements OnInit {
   }
 
   get name() {
-    return this.formGroup.get('name')!;
+    return this.formval.get('name')!;
   }
   get useage() {
-    return this.formGroup.get('useage')!;
+    return this.formval.get('useage')!;
   }
   get date() {
-    return this.formGroup.get('date')!;
+    return this.formval.get('date')!;
   }
   get cooling() {
-    return this.formGroup.get('cooling')!;
+    return this.formval.get('cooling')!;
   }
   get gardening() {
-    return this.formGroup.get('gadening')!;
+    return this.formval.get('gadening')!;
   }
   get computer() {
-    return this.formGroup.get('computer')!;
+    return this.formval.get('computer')!;
   }
-  // get type() {
-  //   return this.formGroup.get('type')!;
-  // }
-  storing(doc: any) {
-    console.log(doc);
 
-    this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
+  navigateHome() {
+    this.router.navigate(['dashboard'], { queryParams: { data: this.id } })
+  }
+  storing(doc: any, id: any) {
+
+    console.log(doc);
+    doc['user'] = this.id;
+    console.log(id)
+    this.api.add("energy-management-login", this.formval.value).subscribe((res: any) => {
       console.log(res);
-      alert("Your Data is stored Successfully");
+      this.alert.showSuccess("Your Data is stored Successfully", "Success")
+      console.log(doc)
+      this.type = "electricty"
+      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
+        console.log(res)
+        console.log(this.id)
+      })
 
     }, rejects => {
-      alert("Sorry Can't post Data ")
+      this.alert.showError("Sorry Can't post Data ", "Error")
     });
 
 
-    // const database = updateObj.database;
-    // const id = updateObj.id;
-    // const rev = updateObj.rev;
-    // const changedObj = updateObj.changedVal;
-    // const url = this.url + database + '/' + id + "?rev=" + rev;
-    // return this.http.put( updateObj,url)
-    //this.api.adduser(formdata).subscribe(res => {
-    //   console.log("data stored successfully");
-    //   alert("data stored successfully");
-    // }, err => {
-    //   console.log("can not store data");
-    // })
-    // }
   }
-  // getData() {
-  //   this.api.get('energy-management-login').subscribe((Response: any) => {
-  //     console.log(Response);
-  //     this.alluser = Response.rows;
-  //     this.alluserData = this.alluser.map((x: any) => x.doc);
-  //     console.log(this.alluserData)
-  //   });
-  // }
-  //   login(val: any) {
-  //   console.log(val);
-  //   this.router.navigate(['dashboard']);;
-  //   this.email = val.email
-  //   this.password = val.password
-  //   this.type = val.type
-  //   console.log(this.type)
-  //   this.data.login(this.email, this.password, this.type).subscribe(res => {
-  //     console.log(res);
-  //     this.response = res;
-  //     this.logindata = this.response.docs
-  //     console.log(this.logindata);
-  //     this.formGroup.markAsUntouched();
-  //   })
-  // }
-  deleteuser(id: any, datarev: any) {
-    console.log(id);
-    console.log(datarev)
-    this.data.deleteData(id, datarev).subscribe(res => {
-      console.log(res);
-    })
 
-  }
   getData(type: string) {
     console.log(type);
     let fields: Array<string> = ["_id", "name", "useage", "cooling", "computer", "_rev", "date"]
@@ -136,7 +111,7 @@ export class ElectrictyComponent implements OnInit {
       this.response = res;
       this.typedData = this.response.docs
       console.log(this.typedData);
-      this.formGroup.markAsUntouched();
+      this.formval.markAsUntouched();
       this.typedData.forEach((element: any) => {
         element['total'] = parseInt(element.cooling) + parseInt(element.computer) + parseInt(element.useage)
         console.log(this.typedData)
@@ -160,33 +135,8 @@ export class ElectrictyComponent implements OnInit {
       console.log(typeof (result))
     })
   }
-  viewele(obj: any) {
-    this.router.navigate(['eleView'], { queryParams: { data: obj } });
-    this.data.getDataById('energy-management-login', obj).subscribe(Response => {
-      this.tempr = Response
-      console.log(Response);
-      // this.temp=this.res.rows
-      this.data.save(this.tempr);
-      alert('get data successfully');
-    }, rej => {
-      alert('sorry Cant Get the Object')
-    }
-    );
+  movetoTable() {
+    this.router.navigate(['eletable', { queryparam: { data: this.id } }])
   }
 
-
-
-  exportexcel(): void {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
-
-  }
 }

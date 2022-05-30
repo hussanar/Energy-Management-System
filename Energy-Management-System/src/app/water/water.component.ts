@@ -7,8 +7,11 @@ import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import * as XLSX from 'xlsx';
-import * as _ from 'lodash';
+import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../notification.service';
+
+
+
 
 
 @Component({
@@ -19,20 +22,23 @@ import * as _ from 'lodash';
 export class WaterComponent implements OnInit {
   response: any | undefined;
   typedData: any = [];
-  fileName = 'ExcelSheet.xlsx'
+
   totalUseage: any | undefined
   tempr: Object | undefined
   id: any;
   type: string | undefined
   value: any;
   arrayVal: any;
+  localObject: any;
 
   ngOnInit(): void {
     this.acrouter.queryParams.subscribe((params: any) => {
       console.log(params);
       this.id = params.data
       console.log(this.id)
+      this.localObject
     })
+
   }
 
   formGroup: FormGroup;
@@ -50,7 +56,7 @@ export class WaterComponent implements OnInit {
   fields: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute, private alert: NotificationService) {
     this.formGroup = this.fb.group({
       name: [this.empRecord.name],
       useage: [this.empRecord.useage],
@@ -60,8 +66,6 @@ export class WaterComponent implements OnInit {
       type: [this.empRecord.type]
     });
   }
-
-
   get name() {
     return this.formGroup.get('name')!;
   }
@@ -77,118 +81,32 @@ export class WaterComponent implements OnInit {
   get gardening() {
     return this.formGroup.get('gadening')!;
   }
-  // update(id: any,this.formdata.value) {
-  //   // 
-  //   console.log(doc)
-  // }
+
   storing(doc: any, id: any) {
 
     console.log(doc);
     doc['user'] = this.id;
+    doc['date'] = new Date
     console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
-      alert("Your Data is stored Successfully");
+      this.alert.showSuccess("Your Data Stored Successfully", "Success")
       console.log(doc)
       this.type = "water"
-      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
-        console.log(res)
-        console.log(this.id)
-      })
-
     }, rejects => {
-      alert("Sorry Can't post Data ")
+      alert("Sorry Can't post Data " + rejects)
+      this.alert.showError("Sorry Can't Post Data", "Error")
     });
-
-
   }
-
-  deleteuser(id: any, datarev: any) {
-    console.log(id);
-    console.log(datarev)
-    this.data.deleteData(id, datarev).subscribe(res => {
-      console.log(res);
-    })
-
+  navigateBack() {
+    this.router.navigate(['dashboard'],
+      { queryParams: { data: this.id } })
   }
-  viewWater(obj: any) {
-    this.router.navigate(['waterView'], { queryParams: { data: obj } });
-    this.data.getDataById('energy-management-login', obj).subscribe(Response => {
-      this.tempr = Response
-      console.log(Response);
-      // this.temp=this.res.rows
-      this.data.save(this.tempr);
-      alert('get data successfully');
-    }, rej => {
-      alert('sorry Cant Get the Object')
-    }
-    );
+  aditionalinfo() {
+    this.router.navigate(['aditionalInfo'], { queryParams: { data: this.id } })
   }
-
-
-  getData(type: string) {
-    console.log(type);
-    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date"]
-    this.data.getByType(type, fields).subscribe(res => {
-      console.log(res);
-      this.response = res;
-      this.typedData = this.response.docs
-      console.log(this.typedData);
-      this.formGroup.markAsUntouched();
-      for (var i = 0; i < length; i++) {
-        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].gardening)
-      }
-      this.typedData.forEach((element: any) => {
-        element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
-
-        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].gardening)
-
-      });
-      var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
-      console.log(result)
-    })
-  }
-  getDataByUser(type: any) {
-    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
-    let userObject: any = localStorage.getItem('userData')
-    let user = JSON.parse(userObject.toString())
-    user['_id']
-    console.log(user)
-    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
-      console.log(res)
-      this.value = res;
-      this.arrayVal = this.value.docs
-      console.log(this.arrayVal)
-    }, err => { console.log(err) })
-  }
-  updateData(id: any) {
-    console.log(id);
-    this.router.navigate(['editform'], { queryParams: { data: id } });
-    this.data.getDataById('energy-management-login', id).subscribe(res => {
-      console.log(res)
-    })
-  }
-  store() {
-    this.data.store(this.total);
-  }
-
-  view(id: any) {
-    console.log(id)
-    alert('viewed' + id)
-
-  }
-  exportexcel(): void {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
-
+  movetoTable() {
+    this.router.navigate(['watertable', { queryparam: { data: this.id } }])
   }
 }
 

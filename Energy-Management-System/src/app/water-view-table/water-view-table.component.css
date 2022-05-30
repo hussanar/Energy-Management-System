@@ -1,0 +1,11 @@
+table {
+    width: 70%;
+    justify-content: center;
+    margin: 100px auto;
+    margin-left: 200px;
+}
+
+button {
+    margin-top: 20px;
+    margin-left: 20px;
+}

@@ -5,7 +5,8 @@ import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as XLSX from 'xlsx';
+import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-gas',
   templateUrl: './gas.component.html',
@@ -19,8 +20,17 @@ export class GasComponent implements OnInit {
   fileName = 'ExcelSheet.xlsx'
   totalUseage: any | undefined
   tempr: any;
+  id: any;
+  type: string | undefined
+  value: any;
+  arrayVal: any;
 
   ngOnInit(): void {
+    this.acrouter.queryParams.subscribe((params: any) => {
+      console.log(params);
+      this.id = params.data
+      console.log(this.id)
+    })
   }
   formGroup: FormGroup;
   empRecord: any = {
@@ -39,7 +49,7 @@ export class GasComponent implements OnInit {
   fields: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute, private alert: NotificationService) {
     this.formGroup = this.fb.group({
       name: [this.empRecord.name],
       useage: [this.empRecord.useage],
@@ -73,33 +83,33 @@ export class GasComponent implements OnInit {
   get heateing() {
     return this.formGroup.get('heateing')!;
   }
-  // get type() {
-  //   return this.formGroup.get('type')!;
-  // }
-  view(obj: any) {
-    this.router.navigate(['gasView'], { queryParams: { data: obj } });
-    this.data.getDataById('energy-management-login', obj).subscribe(Response => {
-      this.tempr = Response
-      console.log(Response);
-      // this.temp=this.res.rows
-      this.data.save(this.tempr);
-      alert('get data successfully');
-    }, rej => {
-      alert('sorry Cant Get the Object')
-    }
-    );
+
+  navigateHome() {
+    this.router.navigate(['dashboard'], { queryParams: { data: this.id } })
   }
+  movetoTable() {
+    this.router.navigate(['gastable'], { queryParams: { data: this.id } })
+  }
+  storing(doc: any, id: any) {
 
-  storing(doc: any) {
     console.log(doc);
-
+    doc['user'] = this.id;
+    console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
-      alert("Your Data is stored Successfully");
+      this.alert.showSuccess("Your Data is stored Successfully", "Success")
+      console.log(doc)
+      this.type = "gas"
+      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
+        console.log(res)
+        console.log(this.id)
+      })
 
     }, rejects => {
-      alert("Sorry Can't post Data ")
+      this.alert.showError("Sorry Can't post Data", "Error")
     });
+
+
   }
   deleteuser(id: any, datarev: any) {
     console.log(id);
@@ -109,6 +119,7 @@ export class GasComponent implements OnInit {
     })
 
   }
+
   getData(type: string) {
     console.log(type);
     let fields: Array<string> = ["_id", "name", "useage", "food", "power", "heateing", "vehical", "_rev", "date"]
@@ -123,17 +134,4 @@ export class GasComponent implements OnInit {
     })
   }
 
-  exportexcel(): void {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-    /* save to file */
-    XLSX.writeFile(wb, this.fileName);
-
-  }
 }
