@@ -1,6 +1,6 @@
 <button class="btn btn-primary" (click)="getData('renewable')">Get Data</button>
 <button (click)="exportexcel()" class="btn btn-success
-">Export to Excel</button>
+" [disabled]="isDisabled">Export to Excel</button>
 <button class="btn btn-primary" (click)="getDataByUser('renewable')">getDataByUser</button>
 <button class="btn btn-success" (click)="nanvigateHome()">Home</button>
 <button class="btn btn-primary" (click)="nanvigateback()">Back</button>

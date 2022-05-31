@@ -29,12 +29,27 @@ export class DashBoardComponent implements OnInit {
   responseData: any;
   sample: any;
   viewVal: any = [];
+  waterlength: any;
+  electrictylength: any;
+  gaslenght: Number | undefined
+  reneewablelength: any;
+  UserId: any;
+  userObject: any;
+  user: any;
 
 
   constructor(private router: Router, private Acrouter: ActivatedRoute, private data: DataService) { }
 
   ngOnInit(): void {
+    let userObject: any = localStorage.getItem('userData')
+    let user = JSON.parse(userObject.toString())
+    this.name = user['firstName']
+    this.email = user['email']
+    this.UserId = user['_id']
+    localStorage.setItem("userdetails", this.UserId)
+    this.localObject = localStorage.getItem("userdetails")
     this.Acrouter.queryParams.subscribe((params: any) => {
+
       console.log(params);
       this.id = params.data
       console.log(this.id);
@@ -52,6 +67,11 @@ export class DashBoardComponent implements OnInit {
       })
 
     })
+    this.getDataByView("water");
+    this.getDataLength()
+    this.gasDataLength();
+
+    this.getDataByUser()
     this.lengthOfArray()
     let db = 'energy-management-login';
     this.data.getnumbers(db).subscribe((res => {
@@ -65,34 +85,39 @@ export class DashBoardComponent implements OnInit {
           this.temp = res
           this.localvalue = this.temp._id
           console.log(this.localvalue)
+
           localStorage.setItem("userdetails", this.localvalue)
           this.email = this.temp.email
           this.name = this.temp.firstName
           this.localObject = localStorage.getItem("userdetails")
           console.log(this.localObject)
+          this.email = localStorage.getItem('userObject')
+          let userObject: any = localStorage.getItem('userData')
+          let user = JSON.parse(userObject.toString())
+          user['_id']
+          console.log(user)
+          console.log(this.id)
 
         })
       })
     }))
   }
-  getDataByView(type: string) {
 
-  }
   lengthOfArray() {
     this.type = "water";
-    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
 
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
     user['_id']
     console.log(user)
-    this.data.getByTypedUser(this.type, fields, this.localObject).subscribe(res => {
+    this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
     })
     this.type = "electricty"
-    this.data.getByTypedUser(this.type, fields, this.localObject).subscribe(res => {
+
+    this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
@@ -122,4 +147,90 @@ export class DashBoardComponent implements OnInit {
   view() {
     this.router.navigate(['viwe'])
   }
+  getDataByView(type: string) {
+    this.data.getDataByViewDoc('energy-management-login', type, this.localObject).subscribe(res => {
+      console.log(res)
+      this.responseData = res
+      this.sample = this.responseData.rows
+      console.log(this.sample);
+
+      for (const iterator of this.sample) {
+        this.viewVal.push(iterator.doc);
+      }
+      this.waterlength = this.viewVal.length
+      console.log(this.waterlength)
+    })
+  }
+  getDataLength() {
+    this.type = "electricty"
+    // let fields: Array<string> = ["_id", "name", "useage", "cooling", "computer", "_rev", "date", "user"]
+    let userObject: any = localStorage.getItem('userData')
+    this.localObject = localStorage.getItem("userdetails")
+    console.log(this.localObject)
+    let user = JSON.parse(userObject.toString())
+    user['_id']
+    console.log(user)
+    this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
+      console.log(res)
+      this.value = res;
+      this.arrayVal = this.value.docs
+      this.electrictylength = this.arrayVal.length
+    });
+
+  }
+  gasDataLength() {
+    this.type = "gas"
+    // let fields: Array<string> = ["_id", "name", "useage", "food", "power", "heateing", "vehical", "_rev", "date", "user"]
+
+
+    this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
+      console.log(res)
+      this.value = res;
+      this.arrayVal = this.value.docs
+      console.log(this.arrayVal)
+      this.gaslenght = this.arrayVal.length
+      console.log(this.gaslenght)
+    }, err => { console.log(err) })
+  }
+
+  getDataByUser() {
+    this.type = "renewable"
+    this.Acrouter.queryParams.subscribe(res => {
+      this.id = res.data
+      this.localObject = localStorage.getItem("userdetails")
+      console.log(this.localObject)
+      this.type = "renewable"
+      // let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date", "user"]
+      let userObject: any = localStorage.getItem('userData')
+      let user = JSON.parse(userObject.toString())
+      user['_id']
+      console.log(user)
+      this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
+        console.log(res)
+        this.value = res;
+        this.arrayVal = this.value.docs
+        console.log(this.arrayVal)
+        this.reneewablelength = this.arrayVal.length
+        console.log(this.reneewablelength)
+
+
+      }, err => { console.log(err) })
+    })
+  }
+  navigateWater() {
+    this.router.navigate(['watertable'], { queryParams: { data: this.localObject } })
+  }
+  navigateelectricty() {
+    this.router.navigate(['eletable'], { queryParams: { data: this.localObject } })
+  }
+  navigategas() {
+    this.router.navigate(['gas'], { queryParams: { data: this.localObject } })
+  }
+  navigaterenewable() {
+    this.router.navigate(['rennewabletable'], { queryParams: { data: this.localObject } })
+  }
+  navigateadddata() {
+    this.router.navigate(['adddata'], { queryParams: { data: this.localObject } })
+  }
 }
+

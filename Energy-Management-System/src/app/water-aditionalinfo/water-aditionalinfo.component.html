@@ -21,10 +21,9 @@
             <input type="number" formControlName="uniquenumber" class="form-control" id="inputEmail4">
         </div>
         <div class="col-md-4">
-
+            <!-- (change)="fileselected($event.target.value)"  -->
             <select id="type" class="form-select" formControlName="useagetype">
-                <option selected>industrial</option>
-                <option>Domastic</option>
+                <option *ngFor="let vlaue of temp" [ngValue]="vlaue._id">{{vlaue.useagetype}}</option>
             </select>
         </div>
         <div class="col-12">

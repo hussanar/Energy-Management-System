@@ -20,9 +20,15 @@ export class RenewableViewTableComponent implements OnInit {
   typedData: any;
   response: any;
   localObject: any;
+  reneewablelength: any;
+  isDisabled: boolean | undefined
   constructor(private data: DataService, private acrouter: ActivatedRoute, private router: Router, private alert: NotificationService) { }
 
   ngOnInit(): void {
+    this.getDataByUser("renewable");
+    this.isDisabled = false;
+  }
+  getDataByUser(type: any) {
     this.acrouter.queryParams.subscribe(res => {
       this.id = res.data
       this.localObject = localStorage.getItem("userdetails")
@@ -33,30 +39,35 @@ export class RenewableViewTableComponent implements OnInit {
       let user = JSON.parse(userObject.toString())
       user['_id']
       console.log(user)
-      this.data.getByTypedUser(this.type, fields, this.localObject).subscribe(res => {
+      this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
         console.log(res)
         this.value = res;
         this.arrayVal = this.value.docs
         console.log(this.arrayVal)
+        this.reneewablelength = this.arrayVal.length
+        console.log(this.reneewablelength)
+
+        if (this.arrayVal.length != 0) {
+          this.isDisabled = false;
+        }
       }, err => { console.log(err) })
     })
   }
-  getDataByUser(type: any) {
 
-  }
   deleteuser(id: any, datarev: any) {
     console.log(id);
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
+      this.alert.showInfo("Your Data is Deleted Successfully", "Deleted")
     })
 
   }
   nanvigateHome() {
-    this.router.navigate(['dashboard'])
+    this.router.navigate(['dashboard'], { queryParams: { data: this.localObject } })
   }
   nanvigateback() {
-    this.router.navigate(['gas'])
+    this.router.navigate(['gas'], { queryParams: { data: this.localObject } })
   }
   view(obj: any) {
     this.router.navigate(['renewableView'], { queryParams: { data: obj } });
@@ -88,15 +99,12 @@ export class RenewableViewTableComponent implements OnInit {
     })
   }
   exportexcel(): void {
-    /* pass here the table id */
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /* save to file */
     XLSX.writeFile(wb, this.fileName);
 
   }

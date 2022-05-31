@@ -109,13 +109,16 @@ export class RenewableComponent implements OnInit {
 
 
   }
+  navigateToHme() {
+    this.router.navigate(['dashboard'], { queryParams: { data: this.id } })
+  }
   getDataByUser(type: any) {
     let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date", "user"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
     user['_id']
     console.log(user)
-    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+    this.data.getByTypedUser(type, this.id).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
@@ -126,8 +129,5 @@ export class RenewableComponent implements OnInit {
   movetoTable() {
     this.router.navigate(['rennewabletable', { queryparam: { data: this.id } }])
   }
-
-
-
 
 }

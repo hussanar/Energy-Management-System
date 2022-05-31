@@ -47,7 +47,7 @@ export class WaterViewTableComponent implements OnInit {
     user['_id']
     console.log(user)
     console.log(this.id)
-    this.data.getByTypedUser(type, fields, this.localObject).subscribe(res => {
+    this.data.getByTypedUser(type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs

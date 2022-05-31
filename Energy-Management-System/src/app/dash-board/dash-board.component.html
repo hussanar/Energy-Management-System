@@ -3,11 +3,15 @@
     <div id="mySidenav" class="sidenav">
         <p class="logo"><span>Energy</span> Manage</p>
         <a href="#" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
-        <a href="view" class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;Customers</a>
-        <a href="#" class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Projects</a>
-        <a href="#" class="icon-a"><i class="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Orders</a>
-        <a href="#" class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Inventory</a>
-        <a href="#" class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Accounts</a>
+        <a href="water" (click)="navigateWater()" class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;Water</a>
+        <a class="icon-a" (click)="navigateelectricty()"> <i class="fa fa-list icons"></i> &nbsp;&nbsp;Electricity
+        </a>
+        <a (click)="navigategas()" class="icon-a"><i class="fa fa-shopping-bag icons"></i>
+            &nbsp;&nbsp;Gas</a>
+        <a (click)="navigaterenewable()" class="icon-a"><i class="fa fa-tasks icons"></i>
+            &nbsp;&nbsp;Renewable Energy</a>
+        <a (click)="navigateadddata()" class="icon-a"><i class="fa fa-user icons"></i>
+            &nbsp;&nbsp;Accounts</a>
         <a href="#" class="icon-a"><button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Log
                 Out</button></a>
 
@@ -36,26 +40,26 @@
         <div class="col-div-3">
             <div class="box">
                 <a (click)="view()">
-                    <p>{{length}}<br /><span></span></p>
+                    <p>{{length }}<br /><span></span></p>
                 </a>
                 <img src="../../assets/icons8-water-96.png" alt="water">
             </div>
         </div>
         <div class="col-div-3">
             <div class="box">
-                <p>{{electricty}}<br /><span></span></p>
+                <p>{{electrictylength}}<br /><span></span></p>
                 <img src="../../assets/icons8-electricity-96.png" alt="electricty">
             </div>
         </div>
         <div class="col-div-3">
             <div class="box">
-                <p>99<br /><span></span></p>
+                <p>{{ gaslenght}}<br /><span></span></p>
                 <img src="../../assets/icons8-gas-96.png" alt="gas">
             </div>
         </div>
         <div class="col-div-3">
             <div class="box">
-                <p>78<br /><span></span></p>
+                <p>{{ reneewablelength }}<br /><span></span></p>
                 <img src="../../assets/icons8-renewable-energy-96.png" alt="renewable">
             </div>
         </div>

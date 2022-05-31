@@ -83,7 +83,19 @@ export class DataService {
 
   }
 
-  getByTypedUser(type: string, fields: any, id: any) {
+  getByTypedUser(type: string, id: any) {
+    let url = this.url + 'energy-management-login/_find'
+    let typedData = {
+      selector: {
+        type: type,
+        user: id
+      }
+
+    };
+    return this.http.post(url, typedData, this.httpOptions)
+
+  }
+  getByTypedUserFIeld(type: string, fields: any, id: any) {
     let url = this.url + 'energy-management-login/_find'
     let typedData = {
       selector: {

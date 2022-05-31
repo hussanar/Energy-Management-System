@@ -90,8 +90,12 @@ export class WaterComponent implements OnInit {
     console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
+      this.id = res.id
+      console.log(this.id)
       this.alert.showSuccess("Your Data Stored Successfully", "Success")
       console.log(doc)
+      this.router.navigate(['aditionalInfo'], { queryParams: { data: this.id } })
+
       this.type = "water"
     }, rejects => {
       alert("Sorry Can't post Data " + rejects)

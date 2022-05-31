@@ -25,6 +25,7 @@ export class GasViewTableComponent implements OnInit {
     this.localObject = localStorage.getItem("userdetails")
     console.log(this.localObject)
     this.isDisabled = true
+    this.getDataByUser("gas")
   }
 
   getDataByUser(type: any) {
@@ -34,7 +35,7 @@ export class GasViewTableComponent implements OnInit {
     user['_id']
     console.log(user)
 
-    this.data.getByTypedUser(type, fields, this.localObject).subscribe(res => {
+    this.data.getByTypedUser(type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
@@ -45,15 +46,12 @@ export class GasViewTableComponent implements OnInit {
     }, err => { console.log(err) })
   }
   exportexcel(): void {
-    /* pass here the table id */
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /* save to file */
     XLSX.writeFile(wb, this.fileName);
 
   }

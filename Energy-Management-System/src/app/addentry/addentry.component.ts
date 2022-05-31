@@ -80,7 +80,7 @@ export class AddentryComponent implements OnInit {
     let user = JSON.parse(userObject.toString())
     user['_id']
     console.log(user)
-    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+    this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
       this.value = res;
       var lenght = this.value.length
@@ -109,7 +109,7 @@ export class AddentryComponent implements OnInit {
     let user = JSON.parse(userObject.toString())
     user['_id']
     console.log(user)
-    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+    this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
@@ -129,7 +129,7 @@ export class AddentryComponent implements OnInit {
     let user = JSON.parse(userObject.toString())
     user['_id']
     console.log(user)
-    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+    this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
@@ -149,7 +149,7 @@ export class AddentryComponent implements OnInit {
     let user = JSON.parse(userObject.toString())
     user['_id']
     console.log(user)
-    this.data.getByTypedUser(type, fields, this.id).subscribe(res => {
+    this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs

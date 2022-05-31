@@ -38,6 +38,10 @@ import { EleViewTableComponent } from './ele-view-table/ele-view-table.component
 import { WaterViewTableComponent } from './water-view-table/water-view-table.component';
 import { GasLookupComponent } from './gas-lookup/gas-lookup.component';
 import { WaterAditionalinfoComponent } from './water-aditionalinfo/water-aditionalinfo.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpCallInterceptor } from './interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { ToastrModule } from 'ngx-toastr'
 @NgModule({
@@ -119,10 +123,17 @@ import { ToastrModule } from 'ngx-toastr'
       timeOut: 3000,
       progressBar: true,
     }),
+    BrowserAnimationsModule
+
 
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpCallInterceptor,
+    multi: true
+  }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
