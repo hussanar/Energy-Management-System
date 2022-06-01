@@ -10,31 +10,31 @@
     <tbody>
         <tr>
             <td>Name </td>
-            <td>{{temp.name}}</td>
+            <td>{{temp.name|titlecase}}</td>
         </tr>
         <tr>
             <td>Date</td>
-            <td>{{temp.date}}</td>
+            <td>{{temp.date|date}}</td>
         </tr>
         <tr>
             <td>Hydro</td>
-            <td>{{temp.hydro}}</td>
+            <td>{{temp.hydro|number}}</td>
         </tr>
         <tr>
             <td>Nuclear</td>
-            <td>{{temp.nuclear}}</td>
+            <td>{{temp.nuclear|number}}</td>
         </tr>
         <tr>
             <td>Solar</td>
-            <td>{{temp.solar}}</td>
+            <td>{{temp.solar|number}}</td>
         </tr>
         <tr>
             <td>Tidal</td>
-            <td>{{temp.tidal}}</td>
+            <td>{{temp.tidal|number}}</td>
         </tr>
         <tr>
             <td>Wind</td>
-            <td>{{temp.wind}}</td>
+            <td>{{temp.wind|number}}</td>
         </tr>
     </tbody>
 </table>

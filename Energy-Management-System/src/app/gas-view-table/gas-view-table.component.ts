@@ -18,6 +18,7 @@ export class GasViewTableComponent implements OnInit {
   tempr: any;
   localObject: any;
   isDisabled: boolean | undefined
+  term!: string
 
   constructor(private api: ApiService, private router: Router, private data: DataService, private alert: NotificationService) { }
   fileName = 'ExcelSheet.xlsx'
@@ -68,6 +69,8 @@ export class GasViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("Data Deleted successfully", "Data Deleted")
+    }, rej => {
+      this.alert.showError("cant Delete", "can't delete")
     })
 
   }

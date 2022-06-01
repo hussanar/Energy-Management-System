@@ -12,23 +12,23 @@
     <tbody>
         <tr>
             <td>Name </td>
-            <td>{{temp.name}}</td>
+            <td>{{temp.name|titlecase}}</td>
         </tr>
         <tr>
             <td>Date</td>
-            <td>{{temp.date}}</td>
+            <td>{{temp.date|date}}</td>
         </tr>
         <tr>
             <td>computer</td>
-            <td>{{temp.computer}}</td>
+            <td>{{temp.computer|number}}</td>
         </tr>
         <tr>
             <td>Cooling</td>
-            <td>{{temp.cooling}}</td>
+            <td>{{temp.cooling|number}}</td>
         </tr>
         <tr>
             <td>useage</td>
-            <td>{{temp.useage}}</td>
+            <td>{{temp.useage|number}}</td>
         </tr>
     </tbody>
 </table>

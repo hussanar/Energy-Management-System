@@ -116,22 +116,12 @@ export class GasComponent implements OnInit {
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
+    }, rej => {
+      this.alert.showError("can't Delete", "can't delete")
     })
 
   }
 
-  getData(type: string) {
-    console.log(type);
-    let fields: Array<string> = ["_id", "name", "useage", "food", "power", "heateing", "vehical", "_rev", "date"]
-    this.data.getByType(type, fields).subscribe(res => {
-      console.log(res);
-      this.response = res;
-      this.typedData = this.response.docs
-      console.log(this.typedData);
-      this.formGroup.markAsUntouched();
 
-
-    })
-  }
 
 }

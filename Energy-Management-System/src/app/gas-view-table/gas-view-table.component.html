@@ -1,42 +1,35 @@
 <button (click)="exportexcel()" class="btn btn-success
-" [disabled]="isDisabled">Export to Excel</button>
+" [disabled]=" arrayVal.length==0">Export to Excel</button>
 <button class="btn btn-primary" (click)="getDataByUser('gas')">getDataByUser</button>
 <button class="btn btn-success" (click)="nanvigateHome()">Home</button>
 <button class="btn btn-primary" (click)="nanvigateback()">Back</button>
-
-
+<p id="text">Search:</p>
+<input type="text" [(ngModel)]="term" class="form-control" id="search">
 <table class="table" id="excel-table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Useage</th>
-            <th scope="col">date</th>
-            <th scope="col">food</th>
-            <th scope="col">power the ovens</th>
-            <th scope="col">petrol for vehical</th>
-            <th scope="col">petrol for heateing</th>
-
-            <!-- <th scope="col">id</th> -->
+            <th scope="col">Date</th>
+            <th scope="col">Food</th>
+            <th scope="col">Power The Ovens</th>
+            <th scope="col">Petrol For Vehical</th>
+            <th scope="col">Petrol For Heateing</th>
             <th scope="col">Delete</th>
-            <th scope="col">view</th>
+            <th scope="col">View</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of arrayVal">
-            <td>{{user.name}}</td>
-            <td>{{user.useage}}</td>
+        <tr *ngFor="let user of arrayVal|filter:term">
+            <td>{{user.name|titlecase}}</td>
+            <td>{{user.useage|number}}</td>
             <td>{{user.date}}</td>
-            <td>{{user.food}}</td>
-            <td>{{user.power}}</td>
-            <td>{{user.vehical}}</td>
-            <td>{{user.heateing}}</td>
-            <!-- <td>{{user._id}}</td> -->
+            <td>{{user.food|number}}</td>
+            <td>{{user.power|number}}</td>
+            <td>{{user.vehical|number}}</td>
+            <td>{{user.heateing|number}}</td>
             <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
             <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
-
-            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
         </tr>
-
-
     </tbody>
 </table>

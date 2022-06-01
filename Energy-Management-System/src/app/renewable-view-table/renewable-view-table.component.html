@@ -1,39 +1,38 @@
-<button class="btn btn-primary" (click)="getData('renewable')">Get Data</button>
 <button (click)="exportexcel()" class="btn btn-success
-" [disabled]="isDisabled">Export to Excel</button>
+" [disabled]=" arrayVal.length==0">Export to Excel</button>
 <button class="btn btn-primary" (click)="getDataByUser('renewable')">getDataByUser</button>
 <button class="btn btn-success" (click)="nanvigateHome()">Home</button>
 <button class="btn btn-primary" (click)="nanvigateback()">Back</button>
+<p id="text">Search :</p><input type="text" [(ngModel)]="term" class="form-control" id="search">
+
 <table class="table" id="excel-table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Solar</th>
-            <th scope="col">date</th>
+            <th scope="col">Date</th>
             <th scope="col">Wind Mill</th>
             <th scope="col">Hydro power</th>
             <th scope="col">Nuclear power</th>
             <th scope="col">Tidal power</th>
-
-            <!-- <th scope="col">id</th> -->
             <th scope="col">Delete</th>
-            <th scope="col">view</th>
+            <th scope="col">View</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of arrayVal">
-            <td>{{user.name}}</td>
-            <td>{{user.solar}}</td>
-            <td>{{user.date}}</td>
-            <td>{{user.wind}}</td>
-            <td>{{user.hydro}}</td>
-            <td>{{user.nuclear}}</td>
-            <td>{{user.tidal}}</td>
-            <!-- <td>{{user._id}}</td> -->
+        <tr *ngFor="let user of arrayVal|filter:term">
+            <td>{{user.name|titlecase}}</td>
+            <td>{{user.solar|number}}</td>
+            <td>{{user.date|date}}</td>
+            <td>{{user.wind|number}}</td>
+            <td>{{user.hydro|number}}</td>
+            <td>{{user.nuclear|number}}</td>
+            <td>{{user.tidal|number}}</td>
+
             <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
             <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
 
-            <!-- <td><a class="btn btn-sm text-white btn-success"  (click)="edit(obj,j)" ></a></td> -->
+
         </tr>
 
 

@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="useage">How much Gas used for process and water heating, metal processing, drying in(Unit)</label>
-        <input id="useage" class="form-control" type='number' formControlName="useage" placeholder="How Much gas used kgs" required />
+        <label for="useage">How much Gas used for process and water heating, metal processing, drying in(Kg)</label>
+        <input id="useage" class="form-control" type='number' formControlName="useage" placeholder="How Much gas used kg" required />
         <div class="help-block text-danger" *ngIf="useage.touched">
             <span *ngIf="useage.errors?.required">
                 Useage is REQUIRED!!!
@@ -32,8 +32,8 @@
     </div>
 
     <div class="form-group">
-        <label for="food">How much Gas used for food production in(Unit)</label>
-        <input id="food" type='number' class="form-control" formControlName="food" placeholder="How Much gas used in  Unit" required />
+        <label for="food">How much Gas used for food production in (kg)</label>
+        <input id="food" type='number' class="form-control" formControlName="food" placeholder="How Much gas used in  kg" required />
         <div class="help-block text-danger" *ngIf="food.touched">
             <span *ngIf="food.errors?.required">
                 First Name is REQUIRED!!!
@@ -43,8 +43,8 @@
 
     <div class="form-group">
         <label for="power">How much Gas used for petrochemical production as well as powering industrial
-            ovens in(Unit)</label>
-        <input id="power" type='number' class="form-control" formControlName="power" placeholder="How Much gas used in  Unit" required />
+            ovens in (kg)</label>
+        <input id="power" type='number' class="form-control" formControlName="power" placeholder="How Much gas used in  kg" required />
         <div class="help-block text-danger" *ngIf="power.touched">
             <span *ngIf="power.errors?.required">
                 power is REQUIRED!!!

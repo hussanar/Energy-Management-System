@@ -14,6 +14,7 @@ import { NotificationService } from '../notification.service';
   styleUrls: ['./ele-view-table.component.css']
 })
 export class EleViewTableComponent implements OnInit {
+  term!: string
   tempr: any;
   arrayVal: any;
   value: any;
@@ -40,7 +41,6 @@ export class EleViewTableComponent implements OnInit {
     })
   }
   getDataByUser(type: any) {
-    let fields: Array<string> = ["_id", "name", "useage", "cooling", "computer", "_rev", "date", "user"]
     let userObject: any = localStorage.getItem('userData')
     this.localObject = localStorage.getItem("userdetails")
     console.log(this.localObject)
@@ -55,7 +55,12 @@ export class EleViewTableComponent implements OnInit {
       if (this.arrayVal.length != 0) {
         this.isDisabled = false;
       }
-    }, err => { console.log(err) })
+    }, err => {
+      console.log(err)
+      this.alert.showError("can't get Data", "can't Get");
+    })
+
+
   }
 
   nanvigateHome() {
@@ -84,6 +89,9 @@ export class EleViewTableComponent implements OnInit {
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
+      this.alert.showInfo("your Data Deleted Successfully", "Data Deleted")
+    }, ref => {
+      this.alert.showError("data Can't Be Deleted", "Cant Deleted")
     })
 
   }

@@ -133,6 +133,8 @@ export class ElectrictyComponent implements OnInit {
       var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
       console.log(result)
       console.log(typeof (result))
+    }, rej => {
+      this.alert.showError("can't Get Data", "Can't Get")
     })
   }
   movetoTable() {

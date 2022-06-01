@@ -15,8 +15,6 @@ export class View1Component implements OnInit {
   constructor(private api: ApiService, private data: DataService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.temp = this.data.pusharray;
-    //console.log(this.temp);
     this.route.queryParams.subscribe((params: any) => {
       console.log(params);
       console.log(params.data)

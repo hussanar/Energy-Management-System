@@ -58,7 +58,7 @@ export class WaterAditionalinfoComponent implements OnInit {
       console.log(res)
       this.alert.showSuccess("Data Stored Successfully", "Success")
       this.userId = localStorage.getItem('userData')
-      this.router.navigate(['water'], { queryParams: { data: this.userId._id } })
+      this.router.navigate(['water'], { queryParams: { data: this.id } })
     })
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())

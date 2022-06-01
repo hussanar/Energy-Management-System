@@ -142,7 +142,7 @@ export class DashBoardComponent implements OnInit {
     this.router.navigate(['adddata'], { queryParams: { data: this.localObject } })
   }
   logout() {
-
+    localStorage.clear();
   }
   view() {
     this.router.navigate(['viwe'])
@@ -163,7 +163,6 @@ export class DashBoardComponent implements OnInit {
   }
   getDataLength() {
     this.type = "electricty"
-    // let fields: Array<string> = ["_id", "name", "useage", "cooling", "computer", "_rev", "date", "user"]
     let userObject: any = localStorage.getItem('userData')
     this.localObject = localStorage.getItem("userdetails")
     console.log(this.localObject)
@@ -180,9 +179,6 @@ export class DashBoardComponent implements OnInit {
   }
   gasDataLength() {
     this.type = "gas"
-    // let fields: Array<string> = ["_id", "name", "useage", "food", "power", "heateing", "vehical", "_rev", "date", "user"]
-
-
     this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
@@ -200,7 +196,6 @@ export class DashBoardComponent implements OnInit {
       this.localObject = localStorage.getItem("userdetails")
       console.log(this.localObject)
       this.type = "renewable"
-      // let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date", "user"]
       let userObject: any = localStorage.getItem('userData')
       let user = JSON.parse(userObject.toString())
       user['_id']

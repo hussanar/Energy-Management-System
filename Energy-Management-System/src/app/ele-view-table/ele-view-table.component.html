@@ -1,29 +1,30 @@
 <button (click)="exportexcel()" class="btn btn-success
-" [disabled]="isDisabled">Export to Excel</button>
+" [disabled]=" arrayVal.length==0">Export to Excel</button>
 <button class="btn btn-primary" (click)="getDataByUser('electricty')">getDataByUser</button>
 
 <button class="btn btn-success" (click)="nanvigateHome()">Home</button>
 <button class="btn btn-primary" (click)="nanvigateback()">Back</button>
+<p id="text">Search :</p><input type="text" [(ngModel)]="term" class="form-control" id="search">
 
 <table class="table" id="excel-table">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Useage</th>
-            <th scope="col">date</th>
-            <th scope="col">cooling</th>
-            <th scope="col">computer</th>
+            <th scope="col">Date</th>
+            <th scope="col">Cooling</th>
+            <th scope="col">Computer</th>
             <th scope="col">Delete</th>
             <th scope="col">view</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of arrayVal">
-            <td>{{user.name}}</td>
-            <td>{{user.useage}}</td>
+        <tr *ngFor="let user of arrayVal |filter:term">
+            <td>{{user.name|titlecase}}</td>
+            <td>{{user.useage|number}}</td>
             <td>{{user.date}}</td>
-            <td>{{user.cooling}}</td>
-            <td>{{user.computer}}</td>
+            <td>{{user.cooling|number}}</td>
+            <td>{{user.computer|number}}</td>
             <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
             <td><a class="btn btn-primary " (click)="viewele(user._id)">View</a> </td>
 

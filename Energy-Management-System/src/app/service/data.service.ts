@@ -119,7 +119,6 @@ export class DataService {
   deleteData(id: any, rev: any): Observable<{}> {
     const urld = this.url + 'energy-management-login/' + id + '/?rev=' + rev;
     return this.http.delete(urld, this.httpOptions);
-    this.alert.showWarning("Data Deleted Successfully", "Deleted")
   }
 
   getDocByIds(db: string, id: any): Observable<{}> {

@@ -10,6 +10,7 @@ import { NotificationService } from '../notification.service';
   styleUrls: ['./renewable-view-table.component.css']
 })
 export class RenewableViewTableComponent implements OnInit {
+  term!: string
   value: any;
   arrayVal: any;
   id: any;
@@ -26,7 +27,7 @@ export class RenewableViewTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataByUser("renewable");
-    this.isDisabled = false;
+    this.isDisabled = true;
   }
   getDataByUser(type: any) {
     this.acrouter.queryParams.subscribe(res => {
@@ -60,6 +61,8 @@ export class RenewableViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("Your Data is Deleted Successfully", "Deleted")
+    }, rej => {
+      this.alert.showError("Data cant be Delete", "Can't deleted")
     })
 
   }
@@ -74,7 +77,6 @@ export class RenewableViewTableComponent implements OnInit {
     this.data.getDataById('energy-management-login', obj).subscribe(Response => {
       this.tempr = Response
       console.log(Response);
-      // this.temp=this.res.rows
       this.data.save(this.tempr);
       this.alert.showSuccess("get data successfully", "Success")
     }, rej => {

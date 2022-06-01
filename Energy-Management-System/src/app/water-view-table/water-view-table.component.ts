@@ -14,6 +14,7 @@ import { NotificationService } from '../notification.service';
   styleUrls: ['./water-view-table.component.css']
 })
 export class WaterViewTableComponent implements OnInit {
+  term!: string
   value: any;
   arrayVal: any;
   fileName = 'ExcelSheet.xlsx'
@@ -59,7 +60,10 @@ export class WaterViewTableComponent implements OnInit {
       });
       var result = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
       console.log(result)
-    }, err => { console.log(err) })
+    }, err => {
+      console.log(err)
+      this.alert.showError("Can't Get Data", "Can't Get Data")
+    })
   }
   getDataByView(type: string) {
     this.data.getDataByViewDoc('energy-management-login', type, this.localObject).subscribe(res => {
@@ -76,6 +80,8 @@ export class WaterViewTableComponent implements OnInit {
       if (this.length != 0) {
         this.isDisabled = false;
       }
+    }, rej => {
+      this.alert.showError("Cant Get Data", "Cant Get Data")
     })
   }
   navigateHome() {
@@ -104,6 +110,8 @@ export class WaterViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("Your Data deleted successfully", "Deleted")
+    }, rej => {
+      this.alert.showError("Can't Delete Data", "Can't Delete Data")
     })
 
   }
@@ -112,7 +120,6 @@ export class WaterViewTableComponent implements OnInit {
     this.data.getDataById('energy-management-login', obj).subscribe(Response => {
       this.tempr = Response
       console.log(Response);
-      // this.temp=this.res.rows
       this.data.save(this.tempr);
       this.alert.showSuccess("get data successfully", "Success")
     }, rej => {

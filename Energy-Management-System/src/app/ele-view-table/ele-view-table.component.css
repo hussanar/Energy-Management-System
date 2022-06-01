@@ -9,3 +9,15 @@ button {
     margin-top: 20px;
     margin-left: 20px;
 }
+
+#search {
+    width: 25%;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+#text {
+    margin-top: 20px;
+    margin-left: 25px;
+    font-size: 1.2rem;
+}

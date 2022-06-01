@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 import * as _ from 'lodash';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-addentry',
@@ -28,7 +29,7 @@ export class AddentryComponent implements OnInit {
   lenght: any;
   average: number | undefined
 
-  constructor(private data: DataService, private Acrouter: ActivatedRoute, private router: Router) {
+  constructor(private data: DataService, private Acrouter: ActivatedRoute, private router: Router, private alert: NotificationService) {
 
   }
   total: any;
@@ -54,25 +55,6 @@ export class AddentryComponent implements OnInit {
     this.getDataByUserrenewable('renewable')
     this.getDataByUser("water")
   }
-  // getData(type: string) {
-  //   console.log(type);
-  //   let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date"]
-  //   this.data.getByType(type, fields).subscribe(res => {
-  //     console.log(res);
-  //     this.response = res;
-  //     this.typedData = this.response.docs
-  //     console.log(this.typedData);
-  //       var i = 0
-  //     this.typedData.forEach((element: any) => {
-  //       element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
-  //       });
-  //     this.result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
-  //     console.log(this.result)
-  //     console.log(this.typedData.length)
-  //     this.resultweek = Number(this.result) / Number(this.typedData.lenth) * 7
-  //     this.resultmonthly = (Number(this.response) + Number(this.typedData.length) * 30)
-  // })
-  // }
 
   getDataByUser(type: any) {
     let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
@@ -92,15 +74,16 @@ export class AddentryComponent implements OnInit {
       console.log(this.arrayVal)
       this.arrayVal.forEach((element: any) => {
         element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
-
-
       });
       this.result = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
       console.log(this.result)
-      this.average = Number(this.result) / 2
-      console.log(this.average)
 
-    }, err => { console.log(err) })
+
+    }, err => {
+      console.log(err)
+      this.alert.showError("can't get Data", "can't Get")
+    })
+
   }
 
   getDataByUserele(type: any) {
@@ -121,7 +104,11 @@ export class AddentryComponent implements OnInit {
       });
       this.electricty = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
       console.log(this.electricty)
-    }, err => { console.log(err) })
+    }, err => {
+      console.log(err)
+      this.alert.showError("can't get Data", "can't Get")
+    })
+
   }
   getDataByUsergas(type: any) {
     let fields: Array<string> = ["_id", "name", "useage", "food", "power", "_rev", "date", "heateing", "vehical"]
@@ -140,7 +127,13 @@ export class AddentryComponent implements OnInit {
       });
       this.gas = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
       console.log(this.gas)
-    }, err => { console.log(err) })
+    }, err => {
+      console.log(err)
+      this.alert.showError("can't get Data", "can't Get")
+    })
+
+
+
   }
 
   getDataByUserrenewable(type: any) {
@@ -160,7 +153,12 @@ export class AddentryComponent implements OnInit {
       });
       this.renewable = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
       console.log(this.renewable)
-    }, err => { console.log(err) })
+    }, err => {
+      console.log(err)
+      this.alert.showError("can't get Data", "can't Get")
+    })
+
+
   }
 
   waterviewtable() {
