@@ -60,7 +60,8 @@ export class RenewableViewTableComponent implements OnInit {
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
-      this.alert.showInfo("Your Data is Deleted Successfully", "Deleted")
+      this.alert.showInfo("Your Data is Deleted Successfully", "Deleted");
+      this.getDataByUser("renewable");
     }, rej => {
       this.alert.showError("Data cant be Delete", "Can't deleted")
     })

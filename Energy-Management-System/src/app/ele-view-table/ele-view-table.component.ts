@@ -90,6 +90,8 @@ export class EleViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("your Data Deleted Successfully", "Data Deleted")
+      this.getDataByUser('electricty');
+
     }, ref => {
       this.alert.showError("data Can't Be Deleted", "Cant Deleted")
     })

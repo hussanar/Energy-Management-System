@@ -109,7 +109,7 @@ export class WaterViewTableComponent implements OnInit {
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
-      this.alert.showInfo("Your Data deleted successfully", "Deleted")
+      this.alert.showInfo("Your Data deleted successfully", "Deleted");
     }, rej => {
       this.alert.showError("Can't Delete Data", "Can't Delete Data")
     })

@@ -20,6 +20,7 @@ import { GasViewTableComponent } from './gas-view-table/gas-view-table.component
 import { WaterViewTableComponent } from './water-view-table/water-view-table.component';
 import { EleViewTableComponent } from './ele-view-table/ele-view-table.component';
 import { WaterAditionalinfoComponent } from './water-aditionalinfo/water-aditionalinfo.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,8 +42,8 @@ const routes: Routes = [
   { path: 'gastable', component: GasViewTableComponent },
   { path: 'watertable', component: WaterViewTableComponent },
   { path: 'eletable', component: EleViewTableComponent },
-  { path: 'aditionalInfo', component: WaterAditionalinfoComponent }
-
+  { path: 'aditionalInfo', component: WaterAditionalinfoComponent },
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({

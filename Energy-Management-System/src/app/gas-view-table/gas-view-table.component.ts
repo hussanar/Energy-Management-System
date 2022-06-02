@@ -69,6 +69,7 @@ export class GasViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("Data Deleted successfully", "Data Deleted")
+      this.getDataByUser("gas")
     }, rej => {
       this.alert.showError("cant Delete", "can't delete")
     })
