@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
-import * as _ from 'lodash';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../notification.service';
-import { reject } from 'lodash';
 
 
 @Component({

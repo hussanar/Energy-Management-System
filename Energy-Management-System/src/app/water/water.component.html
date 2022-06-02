@@ -1,60 +1,62 @@
-<h1>Water Management</h1>
-<button class="btn btn-primary move" (click)="movetoTable()" style="position: top right; margin-left: 700px;">View
-    Details</button>
-<button class="btn btn-success" id="home" (click)="navigateBack()">Back</button>
+<div class="content">
+    <h1>Water Management</h1>
+    <button class="btn btn-primary move" (click)="movetoTable()" style="position: top right; margin-left: 700px;">View
+        Details</button>
+    <button class="btn btn-success" id="home" (click)="navigateBack()">Back</button>
 
 
-<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value,id.data)">
-    <div class="form-group">
-        <label for="firstName">Name</label>
-        <input id="firstName" class="form-control" formControlName="name" placeholder="Name Required" required />
-        <div class="help-block text-danger" *ngIf="name.touched">
-            <span *ngIf="name.errors?.required">
-                First Name is REQUIRED!!!
-            </span>
+    <form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value,id.data)">
+        <div class="form-group">
+            <label for="firstName">Name</label>
+            <input id="firstName" class="form-control" id="name" formControlName="name" placeholder="Name Required" required />
+            <div class="help-block text-danger" *ngIf="name.touched">
+                <span *ngIf="name.errors?.required">
+                    First Name is REQUIRED!!!
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="useage">Water Useage per Day for drink in (Liter)</label>
-        <input id="useage" type='number' class="number" class="form-control" formControlName="useage" placeholder="How Much Water use in Liter" required />
-        <div class="help-block text-danger" *ngIf="useage.touched">
-            <span *ngIf="useage.errors?.required">
-                Useage can not be Empty
-            </span>
+        <div class="form-group">
+            <label for="useage">Water Useage per Day for drink in (Liter)</label>
+            <input id="useage" type='number' id="number" class="form-control" formControlName="useage" placeholder="How Much Water use in Liter" required />
+            <div class="help-block text-danger" *ngIf="useage.touched">
+                <span *ngIf="useage.errors?.required">
+                    Useage can not be Empty
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input id="date" class="form-control" type="date" formControlName="date" placeholder="Date " required />
-        <div class="help-block text-danger" *ngIf="useage.touched">
-            <span *ngIf="date.errors?.required">
-                Date can not be Empty
-            </span>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input id="date" class="form-control" type="date" formControlName="date" placeholder="Date " required />
+            <div class="help-block text-danger" *ngIf="useage.touched">
+                <span *ngIf="date.errors?.required">
+                    Date can not be Empty
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="cooling"> How much water used in Cooling systems in (Liter)</label>
-        <input id="cooling" class="form-control" type='number' class="number" formControlName="cooling" placeholder="How Much Water use in Liter" required />
-        <div class="help-block text-danger" *ngIf="useage.touched">
-            <span *ngIf="cooling.errors?.required">
-                Cooling can not be Empty
-            </span>
+        <div class="form-group">
+            <label for="cooling"> How much water used in Cooling systems in (Liter)</label>
+            <input id="cooling" class="form-control" type='number' id="number" formControlName="cooling" placeholder="How Much Water use in Liter" required />
+            <div class="help-block text-danger" *ngIf="useage.touched">
+                <span *ngIf="cooling.errors?.required">
+                    Cooling can not be Empty
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="gardening">How much water used in Toilet and cleaning and Gardening in (Liter)</label>
-        <input id="gardening" class="form-control" type='number' formControlName="gardening" placeholder="How Much Water use in Liter" required />
-        <div class="help-block text-danger" *ngIf="useage.touched">
-            <span *ngIf="gardening.errors?.required">
-                Gardening can not be Empty
-            </span>
+        <div class="form-group">
+            <label for="gardening">How much water used in Toilet and cleaning and Gardening in (Liter)</label>
+            <input id="gardening" class="form-control" type='number' id="number" formControlName="gardening" placeholder="How Much Water use in Liter" required />
+            <div class="help-block text-danger" *ngIf="useage.touched">
+                <span *ngIf="gardening.errors?.required">
+                    Gardening can not be Empty
+                </span>
+            </div>
         </div>
-    </div>
-    <hr />
-    <button class="btn btn-primary">Add Data</button>
+        <hr />
+        <button class="btn btn-primary">Add Data</button>
 
-</form>
+    </form>
+</div>

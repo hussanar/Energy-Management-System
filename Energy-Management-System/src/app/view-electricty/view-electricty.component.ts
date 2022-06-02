@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
-import { } from '@angular/router';
-
 import { NotificationService } from '../notification.service';
 
 @Component({

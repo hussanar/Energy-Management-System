@@ -36,7 +36,7 @@ export class DataService {
   save(Obj: Object) {
     console.log(Obj);
     this.temp = Obj;
-    this.pusharray.push(Obj);
+    this.pusharray = Obj;
     console.log(this.pusharray)
 
   }
