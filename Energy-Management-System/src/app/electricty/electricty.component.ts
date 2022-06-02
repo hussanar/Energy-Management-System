@@ -120,7 +120,7 @@ export class ElectrictyComponent implements OnInit {
         element['total'] = parseInt(element.cooling) + parseInt(element.computer) + parseInt(element.useage)
         console.log(this.typedData)
       });
-      var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
+      let result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
       console.log(result)
       console.log(typeof (result))
     }, rej => {

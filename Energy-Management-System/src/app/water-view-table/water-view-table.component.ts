@@ -55,7 +55,7 @@ export class WaterViewTableComponent implements OnInit {
       this.arrayVal.forEach((element: any) => {
         element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
       });
-      var result = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
+      let result = _.sumBy(this.arrayVal, function (Total: any) { return Total.total })
       console.log(result)
     }, err => {
       console.log(err)
@@ -64,6 +64,7 @@ export class WaterViewTableComponent implements OnInit {
   }
   getDataByView(type: string) {
     let userObject: any = localStorage.getItem('userData')
+    userObject = JSON.parse(userObject)
     this.data.getDataByViewDoc('energy-management-login', type, userObject['_id']).subscribe(res => {
       console.log(res)
       this.responseData = res

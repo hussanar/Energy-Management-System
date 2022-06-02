@@ -34,6 +34,7 @@ export class DashBoardComponent implements OnInit {
   UserId: any;
   userObject: any;
   user: any;
+  private _id: any;
 
 
   constructor(private router: Router, private Acrouter: ActivatedRoute, private data: DataService) { }
@@ -41,9 +42,11 @@ export class DashBoardComponent implements OnInit {
   ngOnInit(): void {
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
+    this._id = user['_id']
     this.name = user['firstName']
     this.email = user['email']
-    localStorage.setItem("userdetails", this.UserId)
+    console.log(this._id)
+    localStorage.setItem("userdetails", this._id)
     this.localObject = localStorage.getItem("userdetails")
     this.Acrouter.queryParams.subscribe((params: any) => {
 
@@ -105,7 +108,7 @@ export class DashBoardComponent implements OnInit {
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
     console.log(user)
-    this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
+    this.data.getByTypedUser(this.type, this._id).subscribe(res => {
       console.log(res)
       this.value = res;
       this.arrayVal = this.value.docs
@@ -148,20 +151,15 @@ export class DashBoardComponent implements OnInit {
       this.responseData = res
       this.sample = this.responseData.rows
       console.log(this.sample);
-
-      for (const iterator of this.sample) {
-        this.viewVal.push(iterator.doc);
-      }
+      this.viewVal = this.sample.map((el: any) => el.doc)
       this.waterlength = this.viewVal.length
       console.log(this.waterlength)
     })
   }
   getDataLength() {
     this.type = "electricty"
-    let userObject: any = localStorage.getItem('userData')
     this.localObject = localStorage.getItem("userdetails")
     console.log(this.localObject)
-    let user = JSON.parse(userObject.toString())
     this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
@@ -205,19 +203,19 @@ export class DashBoardComponent implements OnInit {
     })
   }
   navigateWater() {
-    this.router.navigate(['watertable'], { queryParams: { data: this.localObject } })
+    this.router.navigate(['watertable'], { queryParams: { data: this._id } })
   }
   navigateelectricty() {
-    this.router.navigate(['eletable'], { queryParams: { data: this.localObject } })
+    this.router.navigate(['eletable'], { queryParams: { data: this._id } })
   }
   navigategas() {
-    this.router.navigate(['gas'], { queryParams: { data: this.localObject } })
+    this.router.navigate(['gas'], { queryParams: { data: this._id } })
   }
   navigaterenewable() {
-    this.router.navigate(['rennewabletable'], { queryParams: { data: this.localObject } })
+    this.router.navigate(['rennewabletable'], { queryParams: { data: this._id } })
   }
   navigateadddata() {
-    this.router.navigate(['adddata'], { queryParams: { data: this.localObject } })
+    this.router.navigate(['adddata'], { queryParams: { data: this._id } })
   }
 }
 

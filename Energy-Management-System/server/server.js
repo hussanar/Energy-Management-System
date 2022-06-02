@@ -14,7 +14,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.get('/getdata/:id', (req, res) => {
     console.log("retreived......", req.params.id);
-    var object = {
+    const object = {
         selector: {
 
             "email": req.params.id

@@ -64,12 +64,11 @@ export class AddentryComponent implements OnInit {
     this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
       this.value = res;
-      var lenght = this.value.length
-      console.log(lenght)
+      let length = this.value.length
+      console.log(length)
       this.arrayVal = this.value.docs
 
       this.lenght = this.arrayVal.length
-      console.log(lenght)
       console.log(this.arrayVal)
       this.arrayVal.forEach((element: any) => {
         element['total'] = parseInt(element.cooling) + parseInt(element.gardening) + parseInt(element.useage)
