@@ -80,9 +80,9 @@ export class DashBoardComponent implements OnInit {
       this.TotalNumberOfUsers = this.temp.rows.length;
       this.Acrouter.queryParams.subscribe(response => {
         console.log(response);
-        this.data.getDocByIds("energy-management-login", response.data).subscribe(response => {
-          console.log(response)
-          this.temp = response
+        this.data.getDocByIds("energy-management-login", response.data).subscribe(resultis => {
+          console.log(resultis)
+          this.temp = resultis
           this.localvalue = this.temp._id
           console.log(this.localvalue)
 
