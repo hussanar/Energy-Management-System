@@ -84,15 +84,6 @@ h2 {
     font-weight: normal;
     margin-bottom: 22px;
     text-align: center;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-h2 {
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
@@ -106,9 +97,6 @@ p {
     color: #505050;
     font-size: 1em;
     line-height: 1.6;
-}
-
-p {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;

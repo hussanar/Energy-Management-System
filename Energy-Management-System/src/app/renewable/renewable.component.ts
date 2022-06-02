@@ -96,8 +96,8 @@ export class RenewableComponent implements OnInit {
       this.alert.showSuccess("Your Data is stored Successfully", "Success")
       console.log(doc)
       this.type = "gas"
-      this.data.postByTypedUser(this.type, this.id).subscribe(res => {
-        console.log(res)
+      this.data.postByTypedUser(this.type, this.id).subscribe(result => {
+        console.log(result)
         console.log(this.id)
       })
 

@@ -89,9 +89,8 @@ export class ElectrictyComponent implements OnInit {
       this.alert.showSuccess("Your Data is stored Successfully", "Success")
       console.log(doc)
       this.type = "electricty"
-      this.data.postByTypedUser(this.type, this.id).subscribe(res => {
-        console.log(res)
-        console.log(this.id)
+      this.data.postByTypedUser(this.type, this.id).subscribe(result => {
+        console.log(result)
       })
 
     }, _rejects => {
@@ -123,7 +122,7 @@ export class ElectrictyComponent implements OnInit {
       let result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
       console.log(result)
       console.log(typeof (result))
-    }, rej => {
+    }, _rej => {
       this.alert.showError("can't Get Data", "Can't Get")
     })
   }

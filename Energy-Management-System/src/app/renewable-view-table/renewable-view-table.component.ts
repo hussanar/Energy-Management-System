@@ -95,7 +95,7 @@ export class RenewableViewTableComponent implements OnInit {
       for (let array of this.typedData) {
 
         this.totalUseage += array.useage
-        console.log(`${this.totalUseage += parseInt(array.useage)}`)
+
       }
     })
   }
