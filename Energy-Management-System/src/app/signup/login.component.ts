@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-login',
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    const body = { title: 'Angular put request ' };
   }
   get firstName() {
     return this.formGroup.get('firstName')!;
@@ -62,7 +60,7 @@ export class LoginComponent implements OnInit {
       this.alert.showSuccess("Success", "Data Posted Success Fully")
       this.router.navigate(['loginmain']);
 
-    }, rej => {
+    }, _rej => {
       this.alert.showError("opps! Can not post data", "Error")
     });
 

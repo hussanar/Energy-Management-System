@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
 import { NotificationService } from '../notification.service';
 
@@ -21,7 +21,7 @@ export class RenewableViewComponent implements OnInit {
         this.temp = Response
         console.log(this.temp);
         this.alert.showSuccess("get data successfully", "Success")
-      }, rej => {
+      }, _rej => {
         this.alert.showError("Sorry Cant Get the Object", "Error")
       }
       );

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
-import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 
 @Component({
@@ -31,7 +30,7 @@ export class DashBoardComponent implements OnInit {
   viewVal: any = [];
   waterlength: any;
   electrictylength: any;
-  gaslenght: Number | undefined
+  gaslenght: number | undefined
   reneewablelength: any;
   UserId: any;
   userObject: any;
@@ -79,9 +78,9 @@ export class DashBoardComponent implements OnInit {
       this.TotalNumberOfUsers = this.temp.rows.length;
       this.Acrouter.queryParams.subscribe(res => {
         console.log(res);
-        this.data.getDocByIds("energy-management-login", res.data).subscribe(res => {
-          console.log(res)
-          this.temp = res
+        this.data.getDocByIds("energy-management-login", res.data).subscribe(response => {
+          console.log(response)
+          this.temp = response
           this.localvalue = this.temp._id
           console.log(this.localvalue)
 
@@ -92,7 +91,7 @@ export class DashBoardComponent implements OnInit {
           console.log(this.localObject)
           this.email = localStorage.getItem('userObject')
           let userObject: any = localStorage.getItem('userData')
-          let user = JSON.parse(userObject.toString())
+          user = JSON.parse(userObject.toString())
           console.log(user)
           console.log(this.id)
 
@@ -194,9 +193,9 @@ export class DashBoardComponent implements OnInit {
       let userObject: any = localStorage.getItem('userData')
       let user = JSON.parse(userObject.toString())
       console.log(user)
-      this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
-        console.log(res)
-        this.value = res;
+      this.data.getByTypedUser(this.type, this.localObject).subscribe(response => {
+        console.log(response)
+        this.value = response;
         this.arrayVal = this.value.docs
         console.log(this.arrayVal)
         this.reneewablelength = this.arrayVal.length

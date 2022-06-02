@@ -36,8 +36,8 @@ export class AddentryComponent implements OnInit {
   alluserData: any;
   fields: any = []
   obj: any;
-  resultmonthly: Number | undefined
-  gas: Number | undefined
+  resultmonthly: number | undefined
+  gas: number | undefined
   ngOnInit(): void {
 
     this.Acrouter.queryParams.subscribe((params: any) => {

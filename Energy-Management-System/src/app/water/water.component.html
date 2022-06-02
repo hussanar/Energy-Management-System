@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label for="useage">Water Useage per Day for drink in (Liter)</label>
-        <input id="useage" type='number' class="form-control" formControlName="useage" placeholder="How Much Water use in Liter" required />
+        <input id="useage" type='number' class="number" class="form-control" formControlName="useage" placeholder="How Much Water use in Liter" required />
         <div class="help-block text-danger" *ngIf="useage.touched">
             <span *ngIf="useage.errors?.required">
                 Useage can not be Empty
@@ -37,7 +37,7 @@
 
     <div class="form-group">
         <label for="cooling"> How much water used in Cooling systems in (Liter)</label>
-        <input id="cooling" class="form-control" type='number' formControlName="cooling" placeholder="How Much Water use in Liter" required />
+        <input id="cooling" class="form-control" type='number' class="number" formControlName="cooling" placeholder="How Much Water use in Liter" required />
         <div class="help-block text-danger" *ngIf="useage.touched">
             <span *ngIf="cooling.errors?.required">
                 Cooling can not be Empty

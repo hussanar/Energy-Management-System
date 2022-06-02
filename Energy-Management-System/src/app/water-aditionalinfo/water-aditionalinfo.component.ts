@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validator } from '@angular/forms';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-water-aditionalinfo',
@@ -50,7 +48,7 @@ export class WaterAditionalinfoComponent implements OnInit {
     type: 'aditionalinfo'
 
   };
-  storeing(doc: any, id: any) {
+  storeing(doc: any) {
     console.log(doc)
     doc['water'] = this.id;
 

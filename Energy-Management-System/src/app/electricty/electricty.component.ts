@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validator } from '@angular/forms';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { NotificationService } from '../notification.service';
 
@@ -91,12 +89,12 @@ export class ElectrictyComponent implements OnInit {
       this.alert.showSuccess("Your Data is stored Successfully", "Success")
       console.log(doc)
       this.type = "electricty"
-      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
+      this.data.postByTypedUser(this.type, this.id).subscribe(res => {
         console.log(res)
         console.log(this.id)
       })
 
-    }, rejects => {
+    }, _rejects => {
       this.alert.showError("Sorry Can't post Data ", "Error")
     });
 
@@ -118,17 +116,9 @@ export class ElectrictyComponent implements OnInit {
       });
       this.total = Number(this.typedData[1].useage) + Number(this.typedData[1].cooling) + Number(this.typedData[1].computer)
       console.log(this.total)
-
-
-      for (var i = 0; i < length; i++) {
-        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].computer)
-      }
       this.typedData.forEach((element: any) => {
         element['total'] = parseInt(element.cooling) + parseInt(element.computer) + parseInt(element.useage)
         console.log(this.typedData)
-
-        this.total = Number(this.typedData[i].useage) + Number(this.typedData[i].cooling) + Number(this.typedData[i].computer)
-
       });
       var result = _.sumBy(this.typedData, function (Total: any) { return Total.total })
       console.log(result)

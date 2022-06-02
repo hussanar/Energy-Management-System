@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
 import { NotificationService } from '../notification.service';
 @Component({
@@ -21,7 +21,7 @@ export class ViewWaterComponent implements OnInit {
         console.log(this.temp);
         console.log(this.temp.cooling)
         this.alert.showSuccess("get data successfully", "Success")
-      }, rej => {
+      }, _rej => {
         this.alert.showError("sorry Cant Get the Object", "Error")
       }
       );

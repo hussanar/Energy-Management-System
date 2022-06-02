@@ -29,7 +29,6 @@ export class ApiService {
   }
 
   add(db: string, doc: object): Observable<{}> {
-    // const url2 = `${this.url}${db}`;
     const url = this.url + db;
     return this.http.post(url, doc, this.httpOptions)
   }

@@ -33,6 +33,10 @@ body {
     overflow: hidden;
     transition: 0.5s;
     padding-top: 30px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
 }
 
 .sidenav a {
@@ -47,13 +51,6 @@ body {
 .sidenav a:hover {
     color: #f1f1f1;
     background-color: #1b203d;
-}
-
-.sidenav {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
 }
 
 #main {

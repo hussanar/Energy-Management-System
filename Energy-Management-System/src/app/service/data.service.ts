@@ -70,7 +70,7 @@ export class DataService {
     return this.http.post(url, typedData, this.httpOptions)
 
   }
-  postByTypedUser(type: string, fields: any, id: any) {
+  postByTypedUser(type: string, id: any) {
     let url = this.url + 'energy-management-login/_find'
     let typedData = {
       selector: {
@@ -135,7 +135,7 @@ export class DataService {
     return this.http.get(url, this.httpOptions)
 
   }
-  checkuserlogin(email: any, password: any) {
+  checkuserlogin(email: any) {
     return this.http.get<any>('http://localhost:8000/getdata/' + email);
   }
   getDataByViewDoc(db: string, type: string, id: any) {

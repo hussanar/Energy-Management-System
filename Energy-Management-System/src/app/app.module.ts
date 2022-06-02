@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './signup/login.component';
-import { NgForm, ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { Login2Component } from './login/login2.component';
 import { MainComponent } from './main/main.component';
-import { Login1Component } from './login1/login1.component';
+
 import { ViewComponent } from './view/view.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { ElectrictyComponent } from './electricty/electricty.component';
@@ -23,21 +22,19 @@ import { ViewWaterComponent } from './view-water/view-water.component';
 import { ViewElectrictyComponent } from './view-electricty/view-electricty.component';
 import { ViewGasComponent } from './view-gas/view-gas.component';
 import { RenewableViewComponent } from './renewable-view/renewable-view.component';
-import { SolutionsComponent } from './solutions/solutions.component';
-import { IndustriesComponent } from './industries/industries.component';
-import { ProductsComponent } from './products/products.component';
+
+
+
 import { RenewableViewTableComponent } from './renewable-view-table/renewable-view-table.component';
 import { GasViewTableComponent } from './gas-view-table/gas-view-table.component';
 import { EleViewTableComponent } from './ele-view-table/ele-view-table.component';
 import { WaterViewTableComponent } from './water-view-table/water-view-table.component';
-import { GasLookupComponent } from './gas-lookup/gas-lookup.component';
+
 import { WaterAditionalinfoComponent } from './water-aditionalinfo/water-aditionalinfo.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpCallInterceptor } from './interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ToastrModule } from 'ngx-toastr';
-import { CustomPipe } from './custom.pipe'
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +51,6 @@ import { CustomPipe } from './custom.pipe'
 
     MainComponent,
 
-    Login1Component,
 
     ViewComponent,
 
@@ -80,11 +76,8 @@ import { CustomPipe } from './custom.pipe'
 
     RenewableViewComponent,
 
-    SolutionsComponent,
 
-    IndustriesComponent,
 
-    ProductsComponent,
     RenewableViewTableComponent,
 
     GasViewTableComponent,
@@ -93,11 +86,9 @@ import { CustomPipe } from './custom.pipe'
 
     WaterViewTableComponent,
 
-    GasLookupComponent,
 
     WaterAditionalinfoComponent,
 
-    CustomPipe
   ],
   imports: [
     BrowserModule,

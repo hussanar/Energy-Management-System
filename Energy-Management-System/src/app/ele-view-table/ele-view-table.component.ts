@@ -3,9 +3,9 @@ import * as XLSX from 'xlsx';
 import * as _ from 'lodash';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../notification.service';
+import { reject } from 'lodash';
 
 
 @Component({
@@ -77,7 +77,7 @@ export class EleViewTableComponent implements OnInit {
       this.data.save(this.tempr);
       this.alert.showSuccess("get data successfully", "Success")
 
-    }, rej => {
+    }, _rej => {
       this.alert.showError("sorry Cant Get the Object", "Error")
     }
     );
@@ -91,7 +91,7 @@ export class EleViewTableComponent implements OnInit {
       this.alert.showInfo("your Data Deleted Successfully", "Data Deleted")
       this.getDataByUser('electricty');
 
-    }, ref => {
+    }, _reject => {
       this.alert.showError("data Can't Be Deleted", "Cant Deleted")
     })
 

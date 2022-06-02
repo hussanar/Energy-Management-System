@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Data } from '@angular/router';
 import * as XLSX from 'xlsx';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
-import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../notification.service';
 
 @Component({
@@ -42,7 +40,7 @@ export class WaterViewTableComponent implements OnInit {
     this.getDataByView("water")
   }
   getDataByUser(type: any) {
-    let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
+
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
     console.log(user)
@@ -79,7 +77,7 @@ export class WaterViewTableComponent implements OnInit {
       if (this.length != 0) {
         this.isDisabled = false;
       }
-    }, rej => {
+    }, _rej => {
       this.alert.showError("Cant Get Data", "Cant Get Data")
     })
   }
@@ -109,7 +107,7 @@ export class WaterViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("Your Data deleted successfully", "Deleted");
-    }, rej => {
+    }, _rej => {
       this.alert.showError("Can't Delete Data", "Can't Delete Data")
     })
 
@@ -121,7 +119,7 @@ export class WaterViewTableComponent implements OnInit {
       console.log(Response);
       this.data.save(this.tempr);
       this.alert.showSuccess("get data successfully", "Success")
-    }, rej => {
+    }, _rej => {
       this.alert.showError("sorry Cant Get the Object", "Error")
     }
     );

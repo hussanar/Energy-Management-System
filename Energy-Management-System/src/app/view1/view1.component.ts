@@ -22,7 +22,7 @@ export class View1Component implements OnInit {
         this.temp = Response
         console.log(Response);
         alert('get data successfully');
-      }, rej => {
+      }, _rej => {
         alert('sorry Cant Get the Object')
       }
       );
@@ -33,8 +33,6 @@ export class View1Component implements OnInit {
 
 
   }
-  show() {
 
-  }
 
 }

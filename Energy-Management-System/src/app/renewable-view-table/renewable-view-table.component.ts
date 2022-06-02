@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../service/data.service';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 import { NotificationService } from '../notification.service';
+import { DataService } from '../service/data.service';
 @Component({
   selector: 'app-renewable-view-table',
   templateUrl: './renewable-view-table.component.html',
@@ -26,22 +25,22 @@ export class RenewableViewTableComponent implements OnInit {
   constructor(private data: DataService, private acrouter: ActivatedRoute, private router: Router, private alert: NotificationService) { }
 
   ngOnInit(): void {
-    this.getDataByUser("renewable");
+    this.getDataByUser();
     this.isDisabled = true;
   }
-  getDataByUser(type: any) {
+  getDataByUser() {
     this.acrouter.queryParams.subscribe(res => {
       this.id = res.data
       this.localObject = localStorage.getItem("userdetails")
       console.log(this.localObject)
       this.type = "renewable"
-      let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date", "user"]
+
       let userObject: any = localStorage.getItem('userData')
       let user = JSON.parse(userObject.toString())
       console.log(user)
-      this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
-        console.log(res)
-        this.value = res;
+      this.data.getByTypedUser(this.type, this.localObject).subscribe(response => {
+        console.log(response)
+        this.value = response;
         this.arrayVal = this.value.docs
         console.log(this.arrayVal)
         this.reneewablelength = this.arrayVal.length
@@ -60,8 +59,8 @@ export class RenewableViewTableComponent implements OnInit {
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
       this.alert.showInfo("Your Data is Deleted Successfully", "Deleted");
-      this.getDataByUser("renewable");
-    }, rej => {
+      this.getDataByUser();
+    }, _rej => {
       this.alert.showError("Data cant be Delete", "Can't deleted")
     })
 
@@ -79,7 +78,7 @@ export class RenewableViewTableComponent implements OnInit {
       console.log(Response);
       this.data.save(this.tempr);
       this.alert.showSuccess("get data successfully", "Success")
-    }, rej => {
+    }, _rej => {
       this.alert.showError("sorry Cant Get the Object", "Error")
     }
     );

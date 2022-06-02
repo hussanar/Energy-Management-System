@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormGroup, Validator } from '@angular/forms';
-import { FormBuilder, NgForm } from '@angular/forms';
+
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { DataService } from '../service/data.service';
+
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../notification.service';
 
 
@@ -55,7 +52,7 @@ export class WaterComponent implements OnInit {
   fields: any = []
   obj: any;
   idValue: any;
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private acrouter: ActivatedRoute, private alert: NotificationService) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private http: HttpClient, private acrouter: ActivatedRoute, private alert: NotificationService) {
     this.formGroup = this.fb.group({
       name: [this.empRecord.name],
       useage: [this.empRecord.useage],

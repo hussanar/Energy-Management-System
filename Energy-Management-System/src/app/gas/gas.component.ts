@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validator } from '@angular/forms';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-gas',
@@ -100,12 +98,12 @@ export class GasComponent implements OnInit {
       this.alert.showSuccess("Your Data is stored Successfully", "Success")
       console.log(doc)
       this.type = "gas"
-      this.data.postByTypedUser("energy-management-login", this.type, this.id).subscribe(res => {
+      this.data.postByTypedUser(this.type, this.id).subscribe(res => {
         console.log(res)
         console.log(this.id)
       })
 
-    }, rejects => {
+    }, _rejects => {
       this.alert.showError("Sorry Can't post Data", "Error")
     });
 
@@ -116,7 +114,7 @@ export class GasComponent implements OnInit {
     console.log(datarev)
     this.data.deleteData(id, datarev).subscribe(res => {
       console.log(res);
-    }, rej => {
+    }, _rej => {
       this.alert.showError("can't Delete", "can't delete")
     })
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
-import { Router } from '@angular/router';
-import { parseMessage } from '@angular/localize/src/utils';
+import { } from '@angular/router';
+
 import { NotificationService } from '../notification.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class ViewElectrictyComponent implements OnInit {
         this.alert.showSuccess("get data successfully", "Success")
 
 
-      }, rej => {
+      }, _rej => {
         this.alert.showError("sorry Cant Get the Object", "Error")
       }
       );

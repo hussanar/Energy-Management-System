@@ -1,6 +1,6 @@
 <button (click)="exportexcel()" class="btn btn-success
 " [disabled]=" arrayVal.length==0">Export to Excel</button>
-<button class="btn btn-primary" (click)="getDataByUser('renewable')">getDataByUser</button>
+<button class="btn btn-primary" (click)="getDataByUser()">getDataByUser</button>
 <button class="btn btn-success" (click)="nanvigateHome()">Home</button>
 <button class="btn btn-primary" (click)="nanvigateback()">Back</button>
 <p id="text">Search :</p><input type="text" [(ngModel)]="term" class="form-control" id="search">

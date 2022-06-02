@@ -7,7 +7,6 @@
     }
 </style>
 
-<!-- Background image -->
 <div class="bg-image" style="
       background-image: url('https://mdbcdn.b-cdn.net/img/new/fluid/nature/018.webp');
       height: 100vh;
@@ -15,13 +14,13 @@
     <div class="mask mask-custom"></div>
 </div>
 <div class="container">
-    <form class="row g-3" [formGroup]="formGroup" (ngSubmit)="storeing(this.formGroup.value,id)">
+    <form class="row g-3" [formGroup]="formGroup" (ngSubmit)="storeing(this.formGroup.value)">
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Enter water line Number</label>
             <input type="number" formControlName="uniquenumber" class="form-control" id="inputEmail4">
         </div>
         <div class="col-md-4">
-            <!-- (change)="fileselected($event.target.value)"  -->
+
             <select id="type" class="form-select" formControlName="useagetype">
                 <option *ngFor="let vlaue of temp" [ngValue]="vlaue._id">{{vlaue.useagetype}}</option>
             </select>

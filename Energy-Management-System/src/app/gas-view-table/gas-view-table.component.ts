@@ -30,7 +30,7 @@ export class GasViewTableComponent implements OnInit {
   }
 
   getDataByUser(type: any) {
-    let fields: Array<string> = ["_id", "name", "useage", "food", "power", "heateing", "vehical", "_rev", "date", "user"]
+
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
     console.log(user)
@@ -68,7 +68,7 @@ export class GasViewTableComponent implements OnInit {
       console.log(res);
       this.alert.showInfo("Data Deleted successfully", "Data Deleted")
       this.getDataByUser("gas")
-    }, rej => {
+    }, _rej => {
       this.alert.showError("cant Delete", "can't delete")
     })
 
@@ -81,7 +81,7 @@ export class GasViewTableComponent implements OnInit {
       console.log(Response);
       this.data.save(this.tempr);
       this.alert.showSuccess("get data successfully", "Success")
-    }, rej => {
+    }, _rej => {
       this.alert.showError("sorry Cant Get the Object", "Error")
     }
     );
