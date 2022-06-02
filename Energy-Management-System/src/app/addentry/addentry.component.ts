@@ -16,11 +16,11 @@ export class AddentryComponent implements OnInit {
   totalUseage: any | undefined
   tempr: Object | undefined
   water: any
-  result: Number | undefined
-  result1: Number | undefined
+  result: number | undefined
+  result1: number | undefined
   total1: number | undefined
-  electricty: Number | undefined
-  renewable: Number | undefined
+  electricty: number | undefined
+  renewable: number | undefined
   id: any;
   localObject: string | null | undefined;
   value: any;
