@@ -62,7 +62,6 @@ export class WaterAditionalinfoComponent implements OnInit {
     })
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
     console.log(this.id)
 

@@ -60,7 +60,7 @@ export class AddentryComponent implements OnInit {
     let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
+
     console.log(user)
     this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
@@ -90,7 +90,6 @@ export class AddentryComponent implements OnInit {
     let fields: Array<string> = ["_id", "name", "useage", "cooling", "computer", "_rev", "date"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
     this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
@@ -114,7 +113,6 @@ export class AddentryComponent implements OnInit {
     let fields: Array<string> = ["_id", "name", "useage", "food", "power", "_rev", "date", "heateing", "vehical"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
     this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)
@@ -140,7 +138,7 @@ export class AddentryComponent implements OnInit {
     let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "_rev", "date", "tidal", "nuclear"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
+
     console.log(user)
     this.data.getByTypedUserFIeld(type, fields, this.id).subscribe(res => {
       console.log(res)

@@ -38,7 +38,6 @@ export class RenewableViewTableComponent implements OnInit {
       let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "nuclear", "tidal", "_rev", "date", "user"]
       let userObject: any = localStorage.getItem('userData')
       let user = JSON.parse(userObject.toString())
-      user['_id']
       console.log(user)
       this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
         console.log(res)

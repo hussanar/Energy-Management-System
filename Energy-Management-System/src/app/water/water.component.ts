@@ -36,7 +36,6 @@ export class WaterComponent implements OnInit {
       console.log(params);
       this.id = params.data
       console.log(this.id)
-      this.localObject
     })
 
   }

@@ -45,7 +45,6 @@ export class WaterViewTableComponent implements OnInit {
     let fields: Array<string> = ["_id", "name", "useage", "cooling", "gardening", "_rev", "date", "user"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
     console.log(this.id)
     this.data.getByTypedUser(type, this.localObject).subscribe(res => {

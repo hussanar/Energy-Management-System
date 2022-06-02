@@ -45,7 +45,6 @@ export class DashBoardComponent implements OnInit {
     let user = JSON.parse(userObject.toString())
     this.name = user['firstName']
     this.email = user['email']
-    this.UserId = user['_id']
     localStorage.setItem("userdetails", this.UserId)
     this.localObject = localStorage.getItem("userdetails")
     this.Acrouter.queryParams.subscribe((params: any) => {
@@ -94,7 +93,6 @@ export class DashBoardComponent implements OnInit {
           this.email = localStorage.getItem('userObject')
           let userObject: any = localStorage.getItem('userData')
           let user = JSON.parse(userObject.toString())
-          user['_id']
           console.log(user)
           console.log(this.id)
 
@@ -108,7 +106,6 @@ export class DashBoardComponent implements OnInit {
 
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
     this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
       console.log(res)
@@ -167,8 +164,6 @@ export class DashBoardComponent implements OnInit {
     this.localObject = localStorage.getItem("userdetails")
     console.log(this.localObject)
     let user = JSON.parse(userObject.toString())
-    user['_id']
-    console.log(user)
     this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;
@@ -198,7 +193,6 @@ export class DashBoardComponent implements OnInit {
       this.type = "renewable"
       let userObject: any = localStorage.getItem('userData')
       let user = JSON.parse(userObject.toString())
-      user['_id']
       console.log(user)
       this.data.getByTypedUser(this.type, this.localObject).subscribe(res => {
         console.log(res)
