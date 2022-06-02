@@ -10,7 +10,7 @@ import { NotificationService } from '../notification.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
 
 
@@ -39,8 +39,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+
   get firstName() {
     return this.formGroup.get('firstName')!;
   }

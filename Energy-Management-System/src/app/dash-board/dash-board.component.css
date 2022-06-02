@@ -46,6 +46,10 @@ body {
     transition: 0.3s;
 }
 
+.profile {
+    margin-left: 300px;
+}
+
 .sidenav a:hover {
     color: #f1f1f1;
     background-color: #1b203d;

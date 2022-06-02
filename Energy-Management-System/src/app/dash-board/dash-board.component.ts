@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { result } from 'lodash';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -79,9 +78,9 @@ export class DashBoardComponent implements OnInit {
       console.log(res);
       this.temp = res;
       this.TotalNumberOfUsers = this.temp.rows.length;
-      this.Acrouter.queryParams.subscribe(result => {
-        console.log(result);
-        this.data.getDocByIds("energy-management-login", result.data).subscribe(response => {
+      this.Acrouter.queryParams.subscribe(response => {
+        console.log(response);
+        this.data.getDocByIds("energy-management-login", response.data).subscribe(response => {
           console.log(response)
           this.temp = response
           this.localvalue = this.temp._id

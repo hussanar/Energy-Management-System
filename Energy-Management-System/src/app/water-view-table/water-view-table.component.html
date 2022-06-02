@@ -4,7 +4,7 @@
 <button class="btn btn-primary" (click)="getDataByView('water')">Get Data By View</button>
 <button class="btn btn-primary" id="home" (click)="navigateHome()">Home</button>
 <button class="btn btn-success" id="home" (click)="navigateBack()">Back</button>
-
+<p id="text">Search:</p><input type="text" [(ngModel)]="term" class="form-control" id="search">
 
 <table class="table" id="excel-table">
     <caption>Water consumption view By User</caption>
@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of viewVal ">
+        <tr *ngFor="let user of viewVal |filter:term">
             <td>{{user.name|titlecase }}</td>
             <td>{{user.useage|number}}</td>
             <td>{{user.date}}</td>
