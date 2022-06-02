@@ -45,7 +45,6 @@ export class EleViewTableComponent implements OnInit {
     this.localObject = localStorage.getItem("userdetails")
     console.log(this.localObject)
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
     this.data.getByTypedUser(type, this.localObject).subscribe(res => {
       console.log(res)

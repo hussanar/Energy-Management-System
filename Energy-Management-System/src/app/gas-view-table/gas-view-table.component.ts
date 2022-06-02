@@ -33,9 +33,7 @@ export class GasViewTableComponent implements OnInit {
     let fields: Array<string> = ["_id", "name", "useage", "food", "power", "heateing", "vehical", "_rev", "date", "user"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
-    user['_id']
     console.log(user)
-
     this.data.getByTypedUser(type, this.localObject).subscribe(res => {
       console.log(res)
       this.value = res;

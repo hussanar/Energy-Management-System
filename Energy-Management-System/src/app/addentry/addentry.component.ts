@@ -10,7 +10,6 @@ import { NotificationService } from '../notification.service';
   styleUrls: ['./addentry.component.css']
 })
 export class AddentryComponent implements OnInit {
-  resultweek: Number | undefined
   response: any | undefined;
   typedData: any = [];
   fileName = 'ExcelSheet.xlsx'

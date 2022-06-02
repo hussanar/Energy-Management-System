@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './signup/login.component';
 import { NgForm, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { Login2Component } from './login/login2.component';
@@ -25,7 +23,6 @@ import { ViewWaterComponent } from './view-water/view-water.component';
 import { ViewElectrictyComponent } from './view-electricty/view-electricty.component';
 import { ViewGasComponent } from './view-gas/view-gas.component';
 import { RenewableViewComponent } from './renewable-view/renewable-view.component';
-import { AboutComponent } from './about/about.component';
 import { SolutionsComponent } from './solutions/solutions.component';
 import { IndustriesComponent } from './industries/industries.component';
 import { ProductsComponent } from './products/products.component';
@@ -39,8 +36,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpCallInterceptor } from './interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
-
 import { ToastrModule } from 'ngx-toastr';
 import { CustomPipe } from './custom.pipe'
 @NgModule({
@@ -84,7 +79,6 @@ import { CustomPipe } from './custom.pipe'
     ViewGasComponent,
 
     RenewableViewComponent,
-    AboutComponent,
 
     SolutionsComponent,
 
