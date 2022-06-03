@@ -26,14 +26,14 @@
         <tr *ngFor="let user of arrayVal|filter:term">
             <td>{{user.name|titlecase}}</td>
             <td>{{user.solar|number}}</td>
-            <td>{{user.date|date}}</td>
+            <td>{{user.date|date:'d-MM-yyyy'}}</td>
             <td>{{user.wind|number}}</td>
             <td>{{user.hydro|number}}</td>
             <td>{{user.nuclear|number}}</td>
             <td>{{user.tidal|number}}</td>
 
             <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
-            <td><a class="btn btn-primary " (click)="view(user._id)">View</a> </td>
+            <td><a class="btn btn-primary  text-white" (click)="view(user._id)">View</a> </td>
 
 
         </tr>

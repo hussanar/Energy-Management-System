@@ -12,6 +12,12 @@ app.use(cors({
     origin: 'http://localhost:4200'
 }));
 app.use(bodyParser.json());
+app.get('', (req, res) => {
+    console.log(req)
+    const template = `
+    <h1>hello we are under maintanence</h1>`
+    res.send(template)
+})
 app.get('/getdata/:id', (req, res) => {
     console.log("retreived......", req.params.id);
     const object = {
