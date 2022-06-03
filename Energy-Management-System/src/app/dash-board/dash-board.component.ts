@@ -53,7 +53,7 @@ export class DashBoardComponent implements OnInit {
       console.log(params);
       this.id = params.data
       console.log(this.id);
-      this.data.getDataByViewDoc('energy-management-login', 'water', this.localObject).subscribe(res => {
+      this.data.getDataByViewDoc('energy-management-login', 'water').subscribe(res => {
         console.log(res)
         this.responseData = res
         this.sample = this.responseData.rows
@@ -143,7 +143,7 @@ export class DashBoardComponent implements OnInit {
     this.router.navigate(['viwe'])
   }
   getDataByView(type: string) {
-    this.data.getDataByViewDoc('energy-management-login', type, this.localObject).subscribe(res => {
+    this.data.getDataByViewDoc('energy-management-login', type).subscribe(res => {
       console.log(res)
       this.responseData = res
       this.sample = this.responseData.rows

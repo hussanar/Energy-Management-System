@@ -138,10 +138,13 @@ export class DataService {
   checkuserlogin(email: any) {
     return this.http.get<any>('http://localhost:8000/getdata/' + email);
   }
-  getDataByViewDoc(db: string, type: string, id: any) {
+  getDataByViewDoc(db: string, type: string) {
+    let userObject: any = localStorage.getItem('userData')
+    let user = JSON.parse(userObject.toString())
+    console.log(user)
     const url = this.url + db + '/_design/' + type + '/_view' + '/new-view' + '?include_docs=true'
     const objectview = {
-      "keys": [type + id]
+      "keys": [type + user['_id']]
     }
     return this.http.post(url, objectview, this.httpOptions)
   }

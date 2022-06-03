@@ -55,8 +55,10 @@ export class WaterAditionalinfoComponent implements OnInit {
     this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
       console.log(res)
       this.alert.showSuccess("Data Stored Successfully", "Success")
-      this.userId = localStorage.getItem('userData')
-      this.router.navigate(['water'], { queryParams: { data: this.id } })
+      let userObject: any = localStorage.getItem('userData')
+      let user = JSON.parse(userObject.toString())
+      this.userId = user['_id']
+      this.router.navigate(['water'], { queryParams: { data: this.userId } })
     })
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
@@ -64,6 +66,7 @@ export class WaterAditionalinfoComponent implements OnInit {
     console.log(this.id)
 
   }
+
   getData() {
     let fields: Array<string> = ["_id", "useagetype"]
     this.type = "useagetype"

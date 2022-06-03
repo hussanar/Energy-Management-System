@@ -63,9 +63,7 @@ export class WaterViewTableComponent implements OnInit {
     })
   }
   getDataByView(type: string) {
-    let userObject: any = localStorage.getItem('userData')
-    userObject = JSON.parse(userObject)
-    this.data.getDataByViewDoc('energy-management-login', type, userObject['_id']).subscribe(res => {
+    this.data.getDataByViewDoc('energy-management-login', type).subscribe(res => {
       console.log(res)
       this.responseData = res
       this.sample = this.responseData.rows
