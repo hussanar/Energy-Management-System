@@ -24,7 +24,7 @@
         <tr *ngFor="let user of viewVal |filter:term">
             <td>{{user.name|titlecase }}</td>
             <td>{{user.useage|number}}</td>
-            <td>{{user.date}}</td>
+            <td>{{user.date|date:'d-MM-yyyy'}}</td>
             <td>{{user.cooling|number}}</td>
             <td>{{user.gardening|number}}</td>
             <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>

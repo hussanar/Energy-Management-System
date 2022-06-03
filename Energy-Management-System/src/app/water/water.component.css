@@ -1,5 +1,5 @@
 form {
-    width: 30%;
+    width: 40%;
     align-items: center;
     margin: 20px auto;
 }
@@ -14,5 +14,62 @@ h1 {
 }
 
 #home {
-    margin-left: 10px;
+    margin-left: 80px;
+    margin-top: -87px;
+}
+
+.container {
+    border: 2px solid gray;
+    background-image: linear-gradient(to right, rgb(130, 238, 236), rgb(140, 102, 187));
+    width: 560px
+}
+
+#view {
+    margin-left: 1500px;
+    margin-top: -83px;
+}
+
+.content {
+    animation: 2s anim-lineUp ease-out;
+    background-image: linear-gradient(rgb(130, 232, 247));
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-left: -60px;
+}
+
+.form-control {
+    display: block;
+    width: 168%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    margin-left: -65px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+@keyframes anim-lineUp {
+    0% {
+        opacity: 0;
+        transform: translateY(80%);
+    }
+    20% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
 }
