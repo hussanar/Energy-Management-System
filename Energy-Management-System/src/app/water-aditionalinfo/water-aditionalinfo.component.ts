@@ -55,9 +55,9 @@ export class WaterAditionalinfoComponent implements OnInit {
     this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
       console.log(res)
       this.alert.showSuccess("Data Stored Successfully", "Success")
-      let userObject: any = localStorage.getItem('userData')
-      let user = JSON.parse(userObject.toString())
-      this.userId = user['_id']
+      let userObjectid: any = localStorage.getItem('userData')
+      let userid = JSON.parse(userObjectid.toString())
+      this.userId = userid['_id']
       this.router.navigate(['water'], { queryParams: { data: this.userId } })
     })
     let userObject: any = localStorage.getItem('userData')
