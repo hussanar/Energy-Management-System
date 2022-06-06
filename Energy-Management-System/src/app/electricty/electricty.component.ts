@@ -83,6 +83,8 @@ export class ElectrictyComponent implements OnInit {
 
     console.log(doc);
     doc['user'] = this.id;
+    doc['date'] = new Date
+
     console.log(id)
     this.api.add("energy-management-login", this.formval.value).subscribe((res: any) => {
       console.log(res);

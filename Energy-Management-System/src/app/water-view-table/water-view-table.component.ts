@@ -91,6 +91,9 @@ export class WaterViewTableComponent implements OnInit {
   exportexcel(): void {
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    ws['!cols'] = [];
+    ws['!cols'][6] = { hidden: true };
+    ws['!cols'][5] = { hidden: true };
 
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');

@@ -214,7 +214,7 @@ th {
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill {
     animation: fill ease-in-out 3s;
-    transform: rotate(126deg);
+    transform: rotate(180deg);
 }
 
 @keyframes fill {
@@ -222,7 +222,7 @@ th {
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(126deg);
+        transform: rotate(180deg);
     }
 }
 

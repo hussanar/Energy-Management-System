@@ -5,9 +5,5 @@ const url = "https://apikey-v2-15a2mog1stn0kv0gjnidlq2eoth4psp58f8ov9zs42i6:aabc
 const nanodb = nano(process.env.COUCHDB_URL || url);
 const fresher = nanodb.use('energy-management-login');
 
-app.use(function(_req, res, next) {
-    res.header("Access-Control-Allow-Origin', '*'");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with,Content-type,Accept");
-    next();
-});
+
 module.exports = { fresher, nano };

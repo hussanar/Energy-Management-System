@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-dash-board',
@@ -35,6 +36,7 @@ export class DashBoardComponent implements OnInit {
   userObject: any;
   user: any;
   private _id: any;
+  avg: number | undefined
 
 
   constructor(private router: Router, private Acrouter: ActivatedRoute, private data: DataService) { }
@@ -214,5 +216,6 @@ export class DashBoardComponent implements OnInit {
   navigateadddata() {
     this.router.navigate(['adddata'], { queryParams: { data: this._id } })
   }
+
 }
 

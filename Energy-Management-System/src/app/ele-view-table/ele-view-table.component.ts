@@ -99,6 +99,9 @@ export class EleViewTableComponent implements OnInit {
     /* pass here the table id */
     let element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    ws['!cols'] = [];
+    ws['!cols'][6] = { hidden: true };
+    ws['!cols'][5] = { hidden: true };
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th><span>Name</span></th>
-                                <th><span>Created</span></th>
+                                <th><span>Created Date</span></th>
                                 <th class="text-center"><span>Useage</span></th>
                                 <th><span>Cooling</span></th>
                                 <th><span>Gardening</span></th>
@@ -36,7 +36,7 @@
                                     <span class="user-subhead">User</span>
                                 </td>
                                 <td>
-                                    {{user.date|date:'d-MM-yyyy'}}
+                                    {{user.date|date:'fullDate'}}
                                 </td>
                                 <td class="text-center">
                                     <span class="label label-default">{{user.useage|number}}</span>
