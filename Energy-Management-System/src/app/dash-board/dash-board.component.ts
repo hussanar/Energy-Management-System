@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../service/data.service';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-dash-board',
