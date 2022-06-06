@@ -31,6 +31,7 @@ app.get('/getdata/:id', (req, res) => {
         res.json(data);
 
     }))
+
 })
 
 app.listen(port, (err) => {

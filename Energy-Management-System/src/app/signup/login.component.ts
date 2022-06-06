@@ -61,8 +61,8 @@ export class LoginComponent {
       this.sample = res
       this.temp = this.sample.docs.length
       if (this.temp == 0) {
-        this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
-          console.log(res);
+        this.api.add("energy-management-login", this.formGroup.value).subscribe(result => {
+          console.log(result);
           this.alert.showSuccess("Success", "Data Posted Success Fully")
           this.router.navigate(['loginmain']);
 
