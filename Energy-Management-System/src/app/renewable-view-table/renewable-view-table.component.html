@@ -1,43 +1,74 @@
-<button (click)="exportexcel()" class="btn btn-success
-" [disabled]=" arrayVal.length==0">Export to Excel</button>
-<button class="btn btn-primary" (click)="getDataByUser()">getDataByUser</button>
-<button class="btn btn-success" (click)="nanvigateHome()">Home</button>
-<button class="btn btn-primary" (click)="nanvigateback()">Back</button>
-<p id="text">Search :</p><input type="text" [(ngModel)]="term" class="form-control" id="search">
+<p id="text">Search:</p><input type="text" [(ngModel)]="term" class="form-control" id="search">
+<div class="buttons">
+    <button (click)="exportexcel()" class="btn btn-success
+    " [disabled]="arrayVal.length==0">Export to Excel</button>
 
-<table class="table" id="excel-table">
+    <button class="btn btn-primary" (click)="getDataByUser()">Refresh</button>
+    <button class="btn btn-primary" id="home" (click)="nanvigateHome()">Home</button>
+    <button class="btn btn-success" id="home" (click)="nanvigateback()">Back</button>
+</div>
 
-    <caption>Renewable view By User</caption>
-    <thead class="thead-dark">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <div class="table-responsive">
+                    <table class="table user-list" id="excel-table">
+                        <caption>Renewable view By User</caption>
+                        <thead>
+                            <tr>
+                                <th><span>Name</span></th>
+                                <th><span>Date</span></th>
+                                <th class="text-center"><span>Solar </span></th>
+                                <th><span>Wind Mill</span></th>
+                                <th><span>Hydro Power</span></th>
+                                <th><span>Nuclear</span></th>
+                                <th><span>Tidal</span></th>
+                                <th><span>Delete</span></th>
+                                <th><span>View</span></th>
 
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Solar</th>
-            <th scope="col">Date</th>
-            <th scope="col">Wind Mill</th>
-            <th scope="col">Hydro power</th>
-            <th scope="col">Nuclear power</th>
-            <th scope="col">Tidal power</th>
-            <th scope="col">Delete</th>
-            <th scope="col">View</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of arrayVal|filter:term">
-            <td>{{user.name|titlecase}}</td>
-            <td>{{user.solar|number}}</td>
-            <td>{{user.date|date:'d-MM-yyyy'}}</td>
-            <td>{{user.wind|number}}</td>
-            <td>{{user.hydro|number}}</td>
-            <td>{{user.nuclear|number}}</td>
-            <td>{{user.tidal|number}}</td>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of arrayVal |filter:term">
+                                <td>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="userImage">
+                                    <a href="#" class="user-link">{{user.name|titlecase }}</a>
+                                    <span class="user-subhead">User</span>
+                                </td>
+                                <td>
+                                    {{user.date|date:'d-MM-yyyy'}}
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{user.solar|number}}</span>
+                                </td>
+                                <td>
+                                    <span class="label label-default">{{user.wind|number}}</span>
 
-            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
-            <td><a class="btn btn-primary  text-white" (click)="view(user._id)">View</a> </td>
+                                </td>
+                                <td>
+                                    <span class="label label-default">{{user.hydro|number}}</span>
 
+                                </td>
+                                <td>
+                                    <span class="label label-default">{{user.nuclear|number}}</span>
 
-        </tr>
+                                </td>
+                                <td>
+                                    <span class="label label-default">{{user.tidal|number}}</span>
 
+                                </td>
+                                <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+                                <td><a class="btn btn-primary text-white " (click)="view(user._id)">View</a> </td>
+                            </tr>
 
-    </tbody>
-</table>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
