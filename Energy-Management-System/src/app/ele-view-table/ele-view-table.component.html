@@ -23,7 +23,7 @@
         <tr *ngFor="let user of arrayVal |filter:term">
             <td>{{user.name|titlecase}}</td>
             <td>{{user.useage|number}}</td>
-            <td>{{user.datedate|date:'d-MM-yyyy'}}</td>
+            <td>{{user.date|date:'dd-MM-yyyy'}}</td>
             <td>{{user.cooling|number}}</td>
             <td>{{user.computer|number}}</td>
             <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>

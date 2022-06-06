@@ -1,35 +1,105 @@
-<h1>user details for Water</h1>
+<div class="container-fluid">
+
+    <div class="container">
+        <!-- Title -->
+        <div class="d-flex justify-content-between align-items-center py-3">
+            <h2 class="h5 mb-0">
+                <a href="#" class="text-muted"></a> User details for Water
+            </h2>
+        </div>
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Details -->
+                <div class="card mb-4">
+
+                    <table class="table table-borderless">
+                        <caption> User details for Water</caption>
+                        <tbody>
+                            <th></th>
+                            <th></th>
+                            <tr>
+                                <td>
+                                    <div class="d-flex mb-2">
+
+                                        <div class="flex-lg-grow-1 ms-3">
+
+                                            <tr>
+                                                <td>Name </td>
+                                            </tr>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>{{temp.name|titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex mb-2">
+
+                                        <div class="flex-lg-grow-1 ms-3">
+                                            <td>Date</td>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>{{temp.date|date}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex mb-2">
+
+                                        <div class="flex-lg-grow-1 ms-3">
+                                            <td>Gardening</td>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{temp.gardening|number}}</td>
 
 
-<table class="table">
-    <caption>Water consumption Detail view By User</caption>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex mb-2">
 
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">fields</th>
-            <th scope="col">user details</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Name </td>
-            <td>{{temp.name|titlecase}}</td>
-        </tr>
-        <tr>
-            <td>Date</td>
-            <td>{{temp.date|date}}</td>
-        </tr>
-        <tr>
-            <td>Gardening</td>
-            <td>{{temp.gardening|number}}</td>
-        </tr>
-        <tr>
-            <td>Cooling</td>
-            <td>{{temp.cooling|number}}</td>
-        </tr>
-        <tr>
-            <td>useage</td>
-            <td>{{temp.useage|number}}</td>
-        </tr>
-    </tbody>
-</table>
+                                        <div class="flex-lg-grow-1 ms-3">
+
+                                            <td>Cooling</td>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>{{temp.cooling|number}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex mb-2">
+
+                                        <div class="flex-lg-grow-1 ms-3">
+                                            <td>useage</td>
+
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>{{temp.useage|number}}</td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <!-- Payment -->
+
+        </div>
+
+    </div>
+</div>

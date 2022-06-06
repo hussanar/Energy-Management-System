@@ -5,4 +5,9 @@ const fresher = nanodb.use('energy-management-login');
 const get = function(dbname) {
     return cloudant.use(dbname).list();
 };
+app.use(function(_req, res, next) {
+    res.header("Access-Control-Allow-Origin', '*'");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with,Content-type,Accept");
+    next();
+});
 module.exports = { fresher, nano, get };

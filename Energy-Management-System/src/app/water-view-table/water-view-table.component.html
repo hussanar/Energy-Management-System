@@ -1,35 +1,62 @@
-<button (click)="exportexcel()" class="btn btn-success
-" [disabled]="viewVal.length==0">Export to Excel</button>
-
-<button class="btn btn-primary" (click)="getDataByView('water')">Get Data By View</button>
-<button class="btn btn-primary" id="home" (click)="navigateHome()">Home</button>
-<button class="btn btn-success" id="home" (click)="navigateBack()">Back</button>
 <p id="text">Search:</p><input type="text" [(ngModel)]="term" class="form-control" id="search">
+<div class="buttons">
+    <button (click)="exportexcel()" class="btn btn-success
+    " [disabled]="viewVal.length==0">Export to Excel</button>
 
-<table class="table" id="excel-table">
-    <caption>Water consumption view By User</caption>
+    <button class="btn btn-primary" (click)="getDataByView('water')">Get Data By View</button>
+    <button class="btn btn-primary" id="home" (click)="navigateHome()">Home</button>
+    <button class="btn btn-success" id="home" (click)="navigateBack()">Back</button>
+</div>
 
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Useage</th>
-            <th scope="col">Date</th>
-            <th scope="col">Cooling</th>
-            <th scope="col">Gardening</th>
-            <th scope="col">Delete</th>
-            <th scope="col">View</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of viewVal |filter:term">
-            <td>{{user.name|titlecase }}</td>
-            <td>{{user.useage|number}}</td>
-            <td>{{user.date|date:'d-MM-yyyy'}}</td>
-            <td>{{user.cooling|number}}</td>
-            <td>{{user.gardening|number}}</td>
-            <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
-            <td><a class="btn btn-primary text-white " (click)="viewWater(user._id)">View</a> </td>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <div class="table-responsive">
+                    <table class="table user-list" id="excel-table">
+                        <thead>
+                            <tr>
+                                <th><span>Name</span></th>
+                                <th><span>Created</span></th>
+                                <th class="text-center"><span>Useage</span></th>
+                                <th><span>Cooling</span></th>
+                                <th><span>Gardening</span></th>
+                                <th><span>Delete</span></th>
+                                <th><span>View</span></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of viewVal |filter:term">
+                                <td>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="userImage">
+                                    <a href="#" class="user-link">{{user.name|titlecase }}</a>
+                                    <span class="user-subhead">User</span>
+                                </td>
+                                <td>
+                                    {{user.date|date:'d-MM-yyyy'}}
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{user.useage|number}}</span>
+                                </td>
+                                <td>
+                                    <span class="label label-default">{{user.cooling|number}}</span>
 
-        </tr>
-    </tbody>
-</table>
+                                </td>
+                                <td>
+                                    <span class="label label-default">{{user.gardening|number}}</span>
+
+                                </td>
+                                <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
+                                <td><a class="btn btn-primary text-white " (click)="viewWater(user._id)">View</a> </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

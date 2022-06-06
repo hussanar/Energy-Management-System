@@ -28,6 +28,8 @@ export class LoginComponent {
   store: any = []
   obj: any;
   idValue: any;
+  sample: any;
+  temp: any;
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private alert: NotificationService) {
     this.formGroup = this.fb.group({
       firstName: [this.empRecord.firstName, Validators.required],
@@ -54,14 +56,26 @@ export class LoginComponent {
   }
   storing(formdata: NgForm) {
     console.log(formdata)
-    this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
-      console.log(res);
-      this.alert.showSuccess("Success", "Data Posted Success Fully")
-      this.router.navigate(['loginmain']);
+    console.log(this.formGroup.value.email)
+    this.data.login(this.formGroup.value.email, this.formGroup.value.password, "login").subscribe(res => {
+      this.sample = res
+      this.temp = this.sample.docs.length
+      if (this.temp == 0) {
+        this.api.add("energy-management-login", this.formGroup.value).subscribe(res => {
+          console.log(res);
+          this.alert.showSuccess("Success", "Data Posted Success Fully")
+          this.router.navigate(['loginmain']);
 
-    }, _rej => {
-      this.alert.showError("opps! Can not post data", "Error")
-    });
+        }, _rej => {
+          this.alert.showError("opps! Can not post data", "Error")
+        });
+      }
+      else {
+        this.alert.showError(" this Email is already Exist", "Already Exist")
+      }
+
+    })
+
 
     this.api.get("energy-management-login").subscribe(res => {
       this.alluser = res;
@@ -70,7 +84,6 @@ export class LoginComponent {
       console.log(this.alluserData[0]);
       this.api.array(this.alluserData);
       this.data.store(this.alluserData);
-
 
     });
 

@@ -83,7 +83,6 @@ export class WaterComponent implements OnInit {
 
     console.log(doc);
     doc['user'] = this.id;
-    doc['date'] = new Date
     console.log(id)
     this.api.add("energy-management-login", this.formGroup.value).subscribe((res: any) => {
       console.log(res);
