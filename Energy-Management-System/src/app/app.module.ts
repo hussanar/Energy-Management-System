@@ -35,7 +35,6 @@ import { HttpCallInterceptor } from './interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ToastrModule } from 'ngx-toastr';
-import { AdminComponent } from './admin/admin.component';
 import { EditComponent } from './edit/edit.component';
 @NgModule({
   declarations: [
@@ -92,7 +91,6 @@ import { EditComponent } from './edit/edit.component';
     WaterAditionalinfoComponent,
 
 
-    AdminComponent,
 
 
     EditComponent,

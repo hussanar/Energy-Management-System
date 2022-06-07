@@ -19,9 +19,9 @@ export class EditComponent implements OnInit {
       console.log(res)
       this._id = res.data
       this.rev = res.rev
-      this.data.getDataById("energy-management-login", this._id).subscribe(res => {
-        console.log(res)
-        this.temp = res
+      this.data.getDataById("energy-management-login", this._id).subscribe(Response => {
+        console.log(Response)
+        this.temp = Response
         console.log(this.temp.name)
         console.log(this.formGroup)
         this.setValueToForm()
