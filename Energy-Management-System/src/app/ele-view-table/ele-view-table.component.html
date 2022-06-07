@@ -8,6 +8,7 @@
     <button class="btn btn-success" id="home" (click)="nanvigateback()">Back</button>
 </div>
 
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
@@ -30,6 +31,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let user of arrayVal |filter:term">
+
+
+
                                 <td>
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="userImage">
                                     <a href="#" class="user-link">{{user.name|titlecase }}</a>
@@ -55,6 +59,9 @@
 
                         </tbody>
                     </table>
+                    <div class="empty" *ngIf="arrayVal.length==0">
+                        No Records Found
+                    </div>
                 </div>
 
             </div>

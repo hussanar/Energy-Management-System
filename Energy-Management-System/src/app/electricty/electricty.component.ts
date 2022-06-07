@@ -6,7 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
 import { NotificationService } from '../notification.service';
-// import { WhiteSpaceValidator } from'../service/';
 @Component({
   selector: 'app-electricty',
   templateUrl: './electricty.component.html',

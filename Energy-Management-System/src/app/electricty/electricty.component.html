@@ -17,24 +17,44 @@
 
         <div class="form-group">
             <label for="useage">How much Electricty used for operating industrial motors and machinery in (unit)</label>
-            <input id="useage" type='number' class="form-control" formControlName="useage" placeholder="How Much Electricty use in Unit" />
+            <input id="useage" type='number' class="form-control" formControlName="useage" placeholder="How Much Electricty use in Unit" required />
+            <div class="help-block text-danger" *ngIf="name.touched">
+                <span *ngIf="useage.errors?.required">
+                    Useage cannot be empty
+                </span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="date">Date</label>
-            <input id="date" class="form-control" type="date" formControlName="date" placeholder="Date " />
+            <input id="date" class="form-control" type="date" formControlName="date" placeholder="Date " required />
+            <div class="help-block text-danger" *ngIf="name.touched">
+                <span *ngIf="date.errors?.required">
+                    Date Can't be Empty
+                </span>
+            </div>
 
         </div>
 
         <div class="form-group">
             <label for="cooling">How much Electricty used for lights,cooling, and ventilation in (unit)</label>
-            <input id="cooling" type='number' class="form-control" formControlName="cooling" placeholder="How Much Electricty use in Unit" />
+            <input id="cooling" type='number' class="form-control" formControlName="cooling" placeholder="How Much Electricty use in Unit" required />
+            <div class="help-block text-danger" *ngIf="name.touched">
+                <span *ngIf="cooling.errors?.required">
+                    Cooling can't be empty
+                </span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="computer">How much Electricty computers and office equipment and equipment for facility
                 heating in (unit)</label>
-            <input id="computer" type='number' class="form-control" formControlName="computer" placeholder="How Much Electricty use in Unit" />
+            <input id="computer" type='number' class="form-control" formControlName="computer" placeholder="How Much Electricty use in Unit" required />
+            <div class="help-block text-danger" *ngIf="name.touched">
+                <span *ngIf="name.errors?.required">
+                    Heateing can't be null
+                </span>
+            </div>
         </div>
         <hr />
         <button class="btn btn-primary">Add Data</button>
