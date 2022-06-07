@@ -16,7 +16,6 @@ form {
 
 .content {
     animation: 2s anim-lineUp ease-out;
-    background-image: linear-gradient(rgb(130, 232, 247));
     border: 2px solid gray;
     background-image: linear-gradient(to right, rgb(130, 238, 236), rgb(140, 102, 187));
     width: 100vh;

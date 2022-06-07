@@ -26,8 +26,6 @@ export class ViewElectrictyComponent implements OnInit {
         console.log(this.temp);
         console.log(this.temp.cooling)
         this.alert.showSuccess("get data successfully", "Success")
-
-
       }, _rej => {
         this.alert.showError("sorry Cant Get the Object", "Error")
       }

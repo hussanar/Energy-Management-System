@@ -2,10 +2,16 @@ form {
     width: 30%;
     align-items: center;
     margin: 20px auto;
+    width: 40%;
+    align-items: center;
+    margin: 20px auto;
 }
 
 #btn {
     margin-left: 800px;
+    margin-right: 15px;
+    margin-top: -86px;
+    margin-left: 500px;
 }
 
 h1 {
@@ -15,18 +21,6 @@ h1 {
 
 #home {
     margin-left: 35px;
-}
-
-form {
-    width: 40%;
-    align-items: center;
-    margin: 20px auto;
-}
-
-#btn {
-    margin-right: 15px;
-    margin-top: -86px;
-    margin-left: 500px;
 }
 
 h1 {
@@ -45,7 +39,6 @@ h1 {
 
 .container {
     border: 2px solid gray;
-    background-image: linear-gradient(to right, rgb(130, 238, 236), rgb(140, 102, 187));
     width: 560px
 }
 
