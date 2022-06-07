@@ -32,6 +32,7 @@ export class Login2Component implements OnInit {
   value: any;
   array: any;
   private _id: any;
+  adminPwd: any;
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private alert: NotificationService) {
     this.formGroup = this.fb.group({
 
@@ -51,10 +52,16 @@ export class Login2Component implements OnInit {
       this._id = this.array[0]?._id
       console.log(this._id)
 
+
       if ((data.docs[0].password == this.password)) {
 
         localStorage.setItem('userData', JSON.stringify(data.docs[0]))
         this.router.navigate(['dashboard'], { queryParams: { data: this._id } });
+        this.alert.showSuccess("Login Successfully", "Success");
+      }
+      else if ((data.docs[0].password == this.adminPwd)) {
+        localStorage.setItem('userData', JSON.stringify(data.docs[0]))
+        this.router.navigate(['admin'], { queryParams: { data: this._id } });
         this.alert.showSuccess("Login Successfully", "Success")
       }
       else {

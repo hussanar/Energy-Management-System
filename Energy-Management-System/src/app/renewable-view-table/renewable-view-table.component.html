@@ -27,6 +27,8 @@
                                 <th><span>Tidal</span></th>
                                 <th><span>Delete</span></th>
                                 <th><span>View</span></th>
+                                <th><span>Edit</span></th>
+
 
                                 <th>&nbsp;</th>
                             </tr>
@@ -62,6 +64,8 @@
                                 </td>
                                 <td><a class="btn btn-sm text-white btn-danger" (click)="deleteuser(user._id,user._rev)">Delete</a></td>
                                 <td><a class="btn btn-primary text-white " (click)="view(user._id)">View</a> </td>
+                                <td><a class="btn btn-primary text-white " (click)="Update(user._id,user._rev)">Edit</a>
+                                </td>
                             </tr>
 
                         </tbody>

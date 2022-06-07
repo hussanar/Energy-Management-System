@@ -109,12 +109,11 @@ export class DataService {
 
   }
 
-  updateData(updateobj: any) {
+  updateData(updateobj: any, changedObj: any) {
     const id = updateobj.id;
     const rev = updateobj.rev;
-    const changedObj = updateobj.changedVal;
     const url = this.url + 'energy-management-login/' + id + '/rev=' + rev;
-    return this.http.put(url, changedObj)
+    return this.http.put(url, changedObj, this.httpOptions)
   }
   deleteData(id: any, rev: any): Observable<{}> {
     const urld = this.url + 'energy-management-login/' + id + '/?rev=' + rev;

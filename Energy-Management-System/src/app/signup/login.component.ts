@@ -32,11 +32,11 @@ export class LoginComponent {
   temp: any;
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private data: DataService, private http: HttpClient, private alert: NotificationService) {
     this.formGroup = this.fb.group({
-      firstName: [this.empRecord.firstName, Validators.required],
+      firstName: ['', Validators.required],
       lastName: [this.empRecord.lastName, Validators.required],
-      email: [this.empRecord.email, [Validators.required, Validators.pattern("[a-zA-Z0-9]*@gmail.com")]],
-      password: [this.empRecord.password, [Validators.required, Validators.pattern("[a-zA-z@_]{6,}")]],
-      mobile: [this.empRecord.mobile, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      email: [this.empRecord.email, [Validators.required, Validators.email]],
+      password: [this.empRecord.password, [Validators.required]],
+      mobile: [this.empRecord.mobile, [Validators.required]],
       type: [this.empRecord.type]
     });
   }

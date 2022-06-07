@@ -111,4 +111,7 @@ export class RenewableViewTableComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
 
   }
+  Update(id: any, rev: any) {
+    this.router.navigate(['edit'], { queryParams: { data: id, rev } })
+  }
 }
