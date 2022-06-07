@@ -4,12 +4,8 @@ form {
     margin: 20px auto;
 }
 
-#btn-primary {
-    margin-left: -50px;
-}
-
 #btn {
-    margin-left: 800px;
+    margin-left: 500px;
     margin-right: 15px;
     margin-top: -86px;
 }
