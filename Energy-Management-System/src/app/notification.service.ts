@@ -23,4 +23,8 @@ export class NotificationService {
   showWarning(message: string | undefined, title: string | undefined) {
     this.toastr.warning(message, title)
   }
+  error(err: any) {
+    this.toastr.error(err)
+
+  }
 }

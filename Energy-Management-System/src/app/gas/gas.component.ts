@@ -103,8 +103,9 @@ export class GasComponent implements OnInit {
         console.log(this.id)
       })
 
-    }, _rejects => {
+    }, rejects => {
       this.alert.showError("Sorry Can't post Data", "Error")
+      this.alert.error(rejects.error.reason);
     });
 
 

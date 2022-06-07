@@ -59,7 +59,8 @@ export class WaterViewTableComponent implements OnInit {
       console.log(result)
     }, err => {
       console.log(err)
-      this.alert.showError("Can't Get Data", "Can't Get Data")
+      this.alert.showError("Can't Get Data", "Can't Get Data" + err.error.reason);
+
     })
   }
   getDataByView(type: string) {

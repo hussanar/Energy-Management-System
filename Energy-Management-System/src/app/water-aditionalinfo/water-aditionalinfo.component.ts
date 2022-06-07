@@ -59,6 +59,8 @@ export class WaterAditionalinfoComponent implements OnInit {
       let userid = JSON.parse(userObjectid.toString())
       this.userId = userid['_id']
       this.router.navigate(['water'], { queryParams: { data: this.userId } })
+    }, rej => {
+      this.alert.error(rej.error.reason);
     })
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())

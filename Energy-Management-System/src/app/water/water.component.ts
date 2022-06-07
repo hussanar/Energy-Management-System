@@ -6,6 +6,7 @@ import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../notification.service';
+import { reject } from 'lodash';
 
 
 
@@ -94,8 +95,8 @@ export class WaterComponent implements OnInit {
 
       this.type = "water"
     }, rejects => {
-      alert("Sorry Can't post Data " + rejects)
-      this.alert.showError("Sorry Can't Post Data", "Error")
+      this.alert.error(rejects.error.reason);
+
     });
   }
   navigateBack() {

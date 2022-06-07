@@ -66,8 +66,9 @@ export class LoginComponent {
           this.alert.showSuccess("Success", "Data Posted Success Fully")
           this.router.navigate(['loginmain']);
 
-        }, _rej => {
+        }, rej => {
           this.alert.showError("opps! Can not post data", "Error")
+          this.alert.error(rej.error.reason);
         });
       }
       else {

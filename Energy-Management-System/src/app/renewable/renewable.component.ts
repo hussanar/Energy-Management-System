@@ -101,8 +101,9 @@ export class RenewableComponent implements OnInit {
         console.log(this.id)
       })
 
-    }, _rejects => {
-      this.alert.showError("Sorry Can't post Data", "Error")
+    }, rejects => {
+      this.alert.showError("Sorry Can't post Data", "Error");
+      this.alert.error(rejects.error.reason);
     });
 
 

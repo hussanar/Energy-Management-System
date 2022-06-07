@@ -206,7 +206,7 @@ export class DashBoardComponent implements OnInit {
     this.router.navigate(['eletable'], { queryParams: { data: this._id } })
   }
   navigategas() {
-    this.router.navigate(['gas'], { queryParams: { data: this._id } })
+    this.router.navigate(['gastable'], { queryParams: { data: this._id } })
   }
   navigaterenewable() {
     this.router.navigate(['rennewabletable'], { queryParams: { data: this._id } })
