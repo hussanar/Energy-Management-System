@@ -14,19 +14,20 @@ h1 {
 }
 
 #home {
-    margin-left: 80px;
-    margin-top: -87px;
+    margin-left: 50px;
+    margin-top: -30px;
 }
 
 .container {
     border: 2px solid gray;
     background-image: linear-gradient(to right, rgb(130, 238, 236), rgb(140, 102, 187));
-    width: 560px
+    width: 560px;
+    margin-top: 40px;
 }
 
 #view {
     margin-left: 1500px;
-    margin-top: -83px;
+    margin-top: -30px;
 }
 
 .content {

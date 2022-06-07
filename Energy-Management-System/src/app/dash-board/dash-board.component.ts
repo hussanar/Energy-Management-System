@@ -71,7 +71,6 @@ export class DashBoardComponent implements OnInit {
     this.getDataByView("water");
     this.getDataLength()
     this.gasDataLength();
-
     this.getDataByUser()
     this.lengthOfArray()
     let db = 'energy-management-login';

@@ -1,76 +1,79 @@
 <h1>Gas and petrolium Management</h1>
+
 <button class="btn btn-primary move" id="btn" (click)="movetoTable()">View Details</button>
 <button class="btn btn-primary btn-success" id="home" (click)="navigateHome()">Home</button>
-<form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value,id)">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input id="name" class="form-control" formControlName="name" placeholder="Name Required" required />
-        <div class="help-block text-danger" *ngIf="name.touched">
-            <span *ngIf="name.errors?.required">
-                First Name is REQUIRED!!!
-            </span>
+<div class=" content">
+    <form [formGroup]="formGroup" class="form" (ngSubmit)="storing(this.formGroup.value,id)">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" class="form-control" formControlName="name" placeholder="Name Required" required />
+            <div class="help-block text-danger" *ngIf="name.touched">
+                <span *ngIf="name.errors?.required">
+                    First Name is REQUIRED!!!
+                </span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="useage">How much Gas used for process and water heating, metal processing, drying in(Kg)</label>
-        <input id="useage" class="form-control" type='number' formControlName="useage" placeholder="How Much gas used kg" required />
-        <div class="help-block text-danger" *ngIf="useage.touched">
-            <span *ngIf="useage.errors?.required">
-                Useage is REQUIRED!!!
-            </span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input id="date" class="form-control" type="date" formControlName="date" placeholder="Date " required />
-        <div class="help-block text-danger" *ngIf="date.touched">
-            <span *ngIf="date.errors?.required">
-                Date is REQUIRED!!!
-            </span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="food">How much Gas used for food production in (kg)</label>
-        <input id="food" type='number' class="form-control" formControlName="food" placeholder="How Much gas used in  kg" required />
-        <div class="help-block text-danger" *ngIf="food.touched">
-            <span *ngIf="food.errors?.required">
-                First Name is REQUIRED!!!
-            </span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="power">How much Gas used for petrochemical production as well as powering industrial
-            ovens in (kg)</label>
-        <input id="power" type='number' class="form-control" formControlName="power" placeholder="How Much gas used in  kg" required />
-        <div class="help-block text-danger" *ngIf="power.touched">
-            <span *ngIf="power.errors?.required">
-                power is REQUIRED!!!
-            </span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="vehical">How much peroliam used for vehicles and Generater in(Liter))</label>
-        <input id="vehical" class="form-control" formControlName="vehical" placeholder="How much peroliam use in Liter" required>
-        <div class="help-block text-danger" *ngIf="vehical.touched">
-            <span *ngIf="vehical.errors?.required">
-                power is REQUIRED!!!
-            </span>
+        <div class="form-group">
+            <label for="useage">How much Gas used for process and water heating, metal processing, drying in(Kg)</label>
+            <input id="useage" class="form-control" type='number' formControlName="useage" placeholder="How Much gas used kg" required />
+            <div class="help-block text-danger" *ngIf="useage.touched">
+                <span *ngIf="useage.errors?.required">
+                    Useage is REQUIRED!!!
+                </span>
+            </div>
         </div>
 
-    </div>
-
-    <div class="form-group">
-        <label for="heateing">How much petrolium used for heateing and components and furnaces in(Liter) </label>
-        <input id="heateing" type='number' class="form-control" formControlName="heateing" placeholder="How much peroliam use in Liter" />
-        <div class="help-block text-danger" *ngIf="heateing.touched">
-            <span *ngIf="heateing.errors?.required">
-                Heateing is REQUIRED!!!
-            </span>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input id="date" class="form-control" type="date" formControlName="date" placeholder="Date " required />
+            <div class="help-block text-danger" *ngIf="date.touched">
+                <span *ngIf="date.errors?.required">
+                    Date is REQUIRED!!!
+                </span>
+            </div>
         </div>
-    </div>
-    <hr />
-    <button class="btn btn-primary">Add Data</button>
-</form>
+
+        <div class="form-group">
+            <label for="food">How much Gas used for food production in (kg)</label>
+            <input id="food" type='number' class="form-control" formControlName="food" placeholder="How Much gas used in  kg" required />
+            <div class="help-block text-danger" *ngIf="food.touched">
+                <span *ngIf="food.errors?.required">
+                    First Name is REQUIRED!!!
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="power">How much Gas used for petrochemical production as well as powering industrial
+                ovens in (kg)</label>
+            <input id="power" type='number' class="form-control" formControlName="power" placeholder="How Much gas used in  kg" required />
+            <div class="help-block text-danger" *ngIf="power.touched">
+                <span *ngIf="power.errors?.required">
+                    power is REQUIRED!!!
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="vehical">How much peroliam used for vehicles and Generater in(Liter))</label>
+            <input id="vehical" class="form-control" formControlName="vehical" placeholder="How much peroliam use in Liter" required>
+            <div class="help-block text-danger" *ngIf="vehical.touched">
+                <span *ngIf="vehical.errors?.required">
+                    power is REQUIRED!!!
+                </span>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="heateing">How much petrolium used for heateing and components and furnaces in(Liter) </label>
+            <input id="heateing" type='number' class="form-control" formControlName="heateing" placeholder="How much peroliam use in Liter" />
+            <div class="help-block text-danger" *ngIf="heateing.touched">
+                <span *ngIf="heateing.errors?.required">
+                    Heateing is REQUIRED!!!
+                </span>
+            </div>
+        </div>
+        <hr />
+        <button class="btn btn-primary">Add Data</button>
+    </form>
+</div>

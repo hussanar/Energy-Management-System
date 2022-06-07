@@ -13,3 +13,36 @@ form {
     margin-top: 15px;
     margin-left: 20px;
 }
+
+.content {
+    animation: 2s anim-lineUp ease-out;
+    background-image: linear-gradient(rgb(130, 232, 247));
+    border: 2px solid gray;
+    background-image: linear-gradient(to right, rgb(130, 238, 236), rgb(140, 102, 187));
+    width: 100vh;
+    margin-left: 350px;
+    height: 140vh;
+    margin-top: 60px;
+    padding: -10px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-left: -60px;
+}
+
+.form-control {
+    display: block;
+    width: 168%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    margin-left: -65px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
