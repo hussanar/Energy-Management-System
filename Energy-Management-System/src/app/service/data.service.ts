@@ -110,16 +110,23 @@ export class DataService {
   }
 
   updateData(updateobj: any, changedObj: any) {
-    const id = updateobj.id;
-    const rev = updateobj.rev;
-    const url = this.url + 'energy-management-login/' + id + '/rev=' + rev;
+    console.log(changedObj)
+    const id = updateobj._id;
+    console.log(id)
+    const rev = updateobj._rev;
+    console.log(rev)
+    const url = this.url + 'energy-management-login/' + id + '/?rev=' + rev;
     return this.http.put(url, changedObj, this.httpOptions)
   }
   deleteData(id: any, rev: any): Observable<{}> {
     const urld = this.url + 'energy-management-login/' + id + '/?rev=' + rev;
     return this.http.delete(urld, this.httpOptions);
   }
-
+  updateDataUser(changedValue: object, id: number, rev: number) {
+    const changeObj = changedValue;
+    const url = `${this.url + 'energy-management-login/'}/${id}?rev=${rev}`;
+    return this.http.put(url, changeObj, this.httpOptions);
+  }
   getDocByIds(db: string, id: any): Observable<{}> {
     const url = this.url + db + '/' + id;
     return this.http.get(url, this.httpOptions);

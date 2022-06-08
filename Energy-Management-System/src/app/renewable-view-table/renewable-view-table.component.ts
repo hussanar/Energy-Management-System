@@ -105,6 +105,8 @@ export class RenewableViewTableComponent implements OnInit {
     ws['!cols'] = [];
     ws['!cols'][8] = { hidden: true };
     ws['!cols'][7] = { hidden: true };
+    ws['!cols'][9] = { hidden: true };
+
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
