@@ -133,6 +133,7 @@ export class AddentryComponent implements OnInit {
   }
 
   getDataByUserrenewable(type: any) {
+    let user1 = "hussain";
     let fields: Array<string> = ["_id", "name", "solar", "wind", "hydro", "_rev", "date", "tidal", "nuclear"]
     let userObject: any = localStorage.getItem('userData')
     let user = JSON.parse(userObject.toString())
@@ -169,4 +170,5 @@ export class AddentryComponent implements OnInit {
   renewableviewtable() {
     this.router.navigate(['rennewabletable'], { queryParams: { data: this.id } })
   }
+
 }
