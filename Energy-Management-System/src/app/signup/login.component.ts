@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { DataService } from '../service/data.service';
@@ -54,17 +54,14 @@ export class LoginComponent {
   get password() {
     return this.formGroup.get('password')!;
   }
-  storing(doc:any) {
+  storing(doc: any) {
     console.log(this.formGroup.value.email)
     const encodedData = btoa(this.formGroup.value.password)
-    const decodedData = atob(encodedData);
-
-
     this.data.login(this.formGroup.value.email, this.formGroup.value.password, "login").subscribe(res => {
       this.sample = res
       this.temp = this.sample.docs.length
       if (this.temp == 0) {
-        doc['password']= encodedData
+        doc['password'] = encodedData
         this.api.add("energy-management-login", this.formGroup.value).subscribe(result => {
           console.log(result);
           this.alert.showSuccess("Success", "Data Posted Success Fully")
