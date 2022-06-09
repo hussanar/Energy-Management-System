@@ -44,7 +44,8 @@ export class Login2Component implements OnInit {
   login(val: any) {
     console.log(val);
     this.email = val.email
-    this.password = val.password
+    this.password = btoa(val.password)
+
     this.data.checkuserlogin(this.email).subscribe(data => {
       console.log(data);
       this.value = data

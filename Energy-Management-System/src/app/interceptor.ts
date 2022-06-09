@@ -16,9 +16,6 @@ export class HttpCallInterceptor implements HttpInterceptor {
                 console.log(evt)
             }, err => {
                 console.log(err);
-
-
-
             })
         )
     }

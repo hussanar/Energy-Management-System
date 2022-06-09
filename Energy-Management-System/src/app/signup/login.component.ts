@@ -54,13 +54,17 @@ export class LoginComponent {
   get password() {
     return this.formGroup.get('password')!;
   }
-  storing(formdata: NgForm) {
-    console.log(formdata)
+  storing(doc:any) {
     console.log(this.formGroup.value.email)
+    const encodedData = btoa(this.formGroup.value.password)
+    const decodedData = atob(encodedData);
+
+
     this.data.login(this.formGroup.value.email, this.formGroup.value.password, "login").subscribe(res => {
       this.sample = res
       this.temp = this.sample.docs.length
       if (this.temp == 0) {
+        doc['password']= encodedData
         this.api.add("energy-management-login", this.formGroup.value).subscribe(result => {
           console.log(result);
           this.alert.showSuccess("Success", "Data Posted Success Fully")
